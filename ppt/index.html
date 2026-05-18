@@ -2181,8 +2181,8 @@ function buildOverview(){
 
 function toggleOverview(){
   overviewOn=!overviewOn;
-  if(overviewOn){buildOverview();ov.style.display='block';document.body.style.overflow='hidden';}
-  else{ov.style.display='none';document.body.style.overflow='';}
+  if(overviewOn){buildOverview();ov.style.display='block';document.getElementById('deck').style.visibility='hidden';document.getElementById('bg-grid').style.visibility='hidden';document.body.style.overflow='hidden';}
+  else{ov.style.display='none';document.getElementById('deck').style.visibility='';document.getElementById('bg-grid').style.visibility='';document.body.style.overflow='';}
 }
 
 addEventListener('keydown',e=>{
