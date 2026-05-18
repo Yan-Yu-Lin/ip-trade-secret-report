@@ -1191,10 +1191,10 @@
     const KEY = 'guizang-ppt-low-power';
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const stored = localStorage.getItem(KEY);
-    window.__lowPowerMode = stored === '0' ? false : true;
+    window.__lowPowerMode = stored === '1' ? true : false;
     function updateHint(){
       const hint = document.getElementById('hint');
-      if(hint) hint.textContent = `← → 翻页 · B ${window.__lowPowerMode ? '动态' : '静态'} · ESC 索引`;
+      if(hint) hint.textContent = `← → 翻頁 · B ${window.__lowPowerMode ? '動態' : '靜態'} · F 全螢幕 · ESC 索引`;
     }
     window.__setLowPowerMode = function(on, opts={}){
       window.__lowPowerMode = !!on;
@@ -1213,7 +1213,7 @@
 </script>
 
 <canvas id="bg-grid" class="bg"></canvas>
-<div id="hint">← → 翻页 · B 静态 · ESC 索引</div>
+<div id="hint">← → 翻頁 · B 靜態 · F 全螢幕 · ESC 索引</div>
 
 <div id="deck">
 
@@ -1515,17 +1515,32 @@
   </div>
 </section>
 
-<section class="slide light" data-layout="S22" data-animate="image-hero">
-  <div class="canvas-card" style="padding:0;display:flex;flex-direction:column;overflow:hidden">
-    <div data-anim="img" style="position:relative;flex:0 0 60%;overflow:hidden;background:var(--paper)">
-      <img src="images/11-dolby-ecosystem.svg" data-image-slot="s22-hero-21x9" alt="Dolby 授權生態系圖" loading="eager" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center">
-      <div class="chrome-min" style="position:absolute;top:0;left:0;right:0;padding:5.6vh 5vw 0"><div class="l">Case 01 · Dolby</div><div class="r">11 / 24</div></div>
-      <div data-anim="title-block" style="position:absolute;left:5vw;top:11vh;background:var(--paper);padding:3vh 3vw;max-width:42vw"><div style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(5.2vw,9vh);line-height:1;letter-spacing:-.035em;color:var(--text-primary)">最乾淨的<br/>授權機器</div></div>
+<section class="slide light" data-layout="S16" data-animate="field-notes">
+  <div class="canvas-card">
+    <div class="chrome-min">
+      <div class="l">Case 01 · Dolby</div>
+      <div class="r">11 / 24</div>
     </div>
-    <div data-anim="kpi" class="image-hero-body">
-      <div style="max-width:48ch;font-family:var(--sans),var(--sans-zh);font-size:max(15px,1.3vw);line-height:1.55;font-weight:300;color:var(--text-primary)">Dolby 幾乎不做硬體，卻把專利、know-how、軟體、品牌與認證包成可稽核的授權系統。</div>
-      <div class="image-hero-stats">
-        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">授權收入</div><div class="kpi-hero" style="font-size:min(4.6vw,7.6vh);font-weight:200;color:var(--ink)">$1.248B</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">FY2025</p></div><div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">營收占比</div><div class="kpi-hero" style="font-size:min(4.6vw,7.6vh);font-weight:200;color:var(--accent)">92.5%</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">來自授權</p></div><div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">被授權方</div><div class="kpi-hero" style="font-size:min(4.6vw,7.6vh);font-weight:200;color:var(--ink)">~1,000</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">全球設備與晶片生態</p></div>
+    <div style="flex:1;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:2.6vh">
+      <div data-anim="line" style="display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3vw;align-items:end">
+        <div>
+          <div class="t-meta">Dolby 授權生態系</div>
+          <h2 style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(5.4vw,9.4vh);line-height:.98;letter-spacing:-.025em;color:var(--text-primary);margin-top:1.2vh">最乾淨的<br/>授權機器</h2>
+        </div>
+        <p class="lead" style="font-weight:300;color:var(--text-secondary);max-width:38ch">Dolby 把專利、know-how、軟體、品牌與認證包成一個可測試、可稽核的授權系統。</p>
+      </div>
+      <div data-anim="up" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:1.2vw 1.2vw">
+        <article class="card-fill" style="padding:1.8vh 1.25vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta">01 / 晶片商</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.55vw);line-height:1.15">實作授權</h3><p class="body-sm">技術整合進晶片</p></article>
+        <article class="card-accent" style="padding:1.8vh 1.25vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta" style="color:var(--accent-on)">02 / 設備商</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.55vw);line-height:1.15">系統授權</h3><p class="body-sm" style="color:var(--accent-on)">每台出貨付費</p></article>
+        <article class="card-fill" style="padding:1.8vh 1.25vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta">03 / 內容平台</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.55vw);line-height:1.15">格式輸出</h3><p class="body-sm">串流與標準綁定</p></article>
+        <article class="card-fill" style="padding:1.8vh 1.25vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta">04 / 消費者</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.55vw);line-height:1.15">品質訊號</h3><p class="body-sm">品牌成為期待</p></article>
+        <article class="card-fill" style="padding:1.8vh 1.25vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta">05 / 認證</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.55vw);line-height:1.15">上市前測試</h3><p class="body-sm">控制體驗與信任</p></article>
+        <article class="card-ink" style="padding:1.8vh 1.25vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta" style="color:rgba(255,255,255,.62)">06 / 稽核</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.55vw);line-height:1.15;color:#fff">收入防漏</h3><p class="body-sm" style="color:rgba(255,255,255,.76)">雙邊報告交叉驗證</p></article>
+      </div>
+      <div data-anim="up" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2vw;border-top:1px solid var(--ink);padding-top:1.6vh">
+        <div><div class="t-meta">授權收入</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.4vh);line-height:.95;letter-spacing:-.04em">$1.248B</div><p class="body-sm">FY2025</p></div>
+        <div><div class="t-meta">營收占比</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.4vh);line-height:.95;letter-spacing:-.04em;color:var(--accent)">92.5%</div><p class="body-sm">來自授權</p></div>
+        <div><div class="t-meta">被授權方</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.4vh);line-height:.95;letter-spacing:-.04em">~1,000</div><p class="body-sm">Licensees</p></div>
       </div>
     </div>
   </div>
@@ -1654,17 +1669,32 @@
   </div>
 </section>
 
-<section class="slide light" data-layout="S22" data-animate="image-hero">
-  <div class="canvas-card" style="padding:0;display:flex;flex-direction:column;overflow:hidden">
-    <div data-anim="img" style="position:relative;flex:0 0 60%;overflow:hidden;background:var(--paper)">
-      <img src="images/15-tsmc-process-system.svg" data-image-slot="s22-hero-21x9" alt="台積電製程 know-how 系統圖" loading="eager" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center">
-      <div class="chrome-min" style="position:absolute;top:0;left:0;right:0;padding:5.6vh 5vw 0"><div class="l">Case 02 · TSMC</div><div class="r">15 / 24</div></div>
-      <div data-anim="title-block" style="position:absolute;left:5vw;top:11vh;background:var(--paper);padding:3vh 3vw;max-width:44vw"><div style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(5.2vw,9vh);line-height:1;letter-spacing:-.035em;color:var(--text-primary)">最強的模式<br/>是不授權</div></div>
+<section class="slide light" data-layout="S16" data-animate="field-notes">
+  <div class="canvas-card">
+    <div class="chrome-min">
+      <div class="l">Case 02 · TSMC</div>
+      <div class="r">15 / 24</div>
     </div>
-    <div data-anim="kpi" class="image-hero-body">
-      <div style="max-width:48ch;font-family:var(--sans),var(--sans-zh);font-size:max(15px,1.3vw);line-height:1.55;font-weight:300;color:var(--text-primary)">台積電把秘密留在工廠裡，賣給客戶的是更高良率、更快投產與更可靠量產。</div>
-      <div class="image-hero-stats">
-        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">2024 營收</div><div class="kpi-hero" style="font-size:min(4.6vw,7.6vh);font-weight:200;color:var(--ink)">US$90.08B</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">約 NT$2.894T</p></div><div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">先進製程</div><div class="kpi-hero" style="font-size:min(4.6vw,7.6vh);font-weight:200;color:var(--ink)">69%</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">7nm 以下營收占比</p></div><div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">內部登錄</div><div class="kpi-hero" style="font-size:min(4.6vw,7.6vh);font-weight:200;color:var(--accent)">475,462</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">2013–2024 營業秘密</p></div>
+    <div style="flex:1;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:2.6vh">
+      <div data-anim="line" style="display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3vw;align-items:end">
+        <div>
+          <div class="t-meta">台積電製程 know-how 系統</div>
+          <h2 style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(5.4vw,9.4vh);line-height:.98;letter-spacing:-.025em;color:var(--text-primary);margin-top:1.2vh">最強的模式<br/>是不授權</h2>
+        </div>
+        <p class="lead" style="font-weight:300;color:var(--text-secondary);max-width:38ch">台積電把秘密留在工廠裡，賣給客戶的是更高良率、更快投產與更可靠量產。</p>
+      </div>
+      <div data-anim="up" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:1.2vw 1.2vw">
+        <article class="card-fill" style="padding:1.8vh 1.25vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta">01 / 製程窗口</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.55vw);line-height:1.15">溫度壓力</h3><p class="body-sm">氣體、時序、雜質容忍</p></article>
+        <article class="card-fill" style="padding:1.8vh 1.25vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta">02 / 設備配方</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.55vw);line-height:1.15">機台調校</h3><p class="body-sm">每台機器的最佳參數</p></article>
+        <article class="card-accent" style="padding:1.8vh 1.25vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta" style="color:var(--accent-on)">03 / 良率資料</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.55vw);line-height:1.15">失敗記憶</h3><p class="body-sm" style="color:var(--accent-on)">知道什麼不能做</p></article>
+        <article class="card-fill" style="padding:1.8vh 1.25vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta">04 / 缺陷診斷</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.55vw);line-height:1.15">早期訊號</h3><p class="body-sm">預測良率崩潰</p></article>
+        <article class="card-fill" style="padding:1.8vh 1.25vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta">05 / 供應商</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.55vw);line-height:1.15">材料批次</h3><p class="body-sm">化學品與變異控制</p></article>
+        <article class="card-ink" style="padding:1.8vh 1.25vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta" style="color:rgba(255,255,255,.62)">06 / 客戶協作</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.55vw);line-height:1.15;color:#fff">量產節奏</h3><p class="body-sm" style="color:rgba(255,255,255,.76)">投產、迭代、保密</p></article>
+      </div>
+      <div data-anim="up" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2vw;border-top:1px solid var(--ink);padding-top:1.6vh">
+        <div><div class="t-meta">2024 營收</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.4vh);line-height:.95;letter-spacing:-.04em">US$90.08B</div><p class="body-sm">約 NT$2.894T</p></div>
+        <div><div class="t-meta">先進製程</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.4vh);line-height:.95;letter-spacing:-.04em">69%</div><p class="body-sm">7nm 以下營收占比</p></div>
+        <div><div class="t-meta">內部登錄</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.4vh);line-height:.95;letter-spacing:-.04em;color:var(--accent)">475,462</div><p class="body-sm">2013–2024 營業秘密</p></div>
       </div>
     </div>
   </div>
@@ -1745,17 +1775,32 @@
   </div>
 </section>
 
-<section class="slide light" data-layout="S22" data-animate="image-hero">
-  <div class="canvas-card" style="padding:0;display:flex;flex-direction:column;overflow:hidden">
-    <div data-anim="img" style="position:relative;flex:0 0 60%;overflow:hidden;background:var(--paper)">
-      <img src="images/19-waymo-lidar-evidence.svg" data-image-slot="s22-hero-21x9" alt="Waymo Uber 時間壓縮攻擊證據圖" loading="eager" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center">
-      <div class="chrome-min" style="position:absolute;top:0;left:0;right:0;padding:5.6vh 5vw 0"><div class="l">Case 03 · Waymo v. Uber</div><div class="r">19 / 24</div></div>
-      <div data-anim="title-block" style="position:absolute;left:5vw;top:11vh;background:var(--paper);padding:3vh 3vw;max-width:44vw"><div style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(5.2vw,9vh);line-height:1;letter-spacing:-.035em;color:var(--text-primary)">時間壓縮<br/>攻擊</div></div>
+<section class="slide light" data-layout="S16" data-animate="field-notes">
+  <div class="canvas-card">
+    <div class="chrome-min">
+      <div class="l">Case 03 · Waymo v. Uber</div>
+      <div class="r">19 / 24</div>
     </div>
-    <div data-anim="kpi" class="image-hero-body">
-      <div style="max-width:48ch;font-family:var(--sans),var(--sans-zh);font-size:max(15px,1.3vw);line-height:1.55;font-weight:300;color:var(--text-primary)">營業秘密竊盜買的不是資訊本身，而是跳過數年研發、試錯與人才訓練的速度。</div>
-      <div class="image-hero-stats">
-        <div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">下載檔案</div><div class="kpi-hero" style="font-size:min(4.6vw,7.6vh);font-weight:200;color:var(--accent)">14,107</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">共 9.7GB</p></div><div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">民事和解</div><div class="kpi-hero" style="font-size:min(4.6vw,7.6vh);font-weight:200;color:var(--ink)">$245M</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">0.34% Uber 股權</p></div><div style="display:flex;flex-direction:column;gap:.6vh"><div style="height:1px;background:var(--ink)"></div><div class="t-meta">Uber 投入</div><div class="kpi-hero" style="font-size:min(4.6vw,7.6vh);font-weight:200;color:var(--ink)">~$3B</div><div style="height:1px;background:var(--border-subtle);margin-top:auto"></div><p class="body-sm">最終出售自駕部門</p></div>
+    <div style="flex:1;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:2.6vh">
+      <div data-anim="line" style="display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3vw;align-items:end">
+        <div>
+          <div class="t-meta">Waymo / Uber</div>
+          <h2 style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(5.4vw,9.4vh);line-height:.98;letter-spacing:-.025em;color:var(--text-primary);margin-top:1.2vh">時間壓縮<br/>攻擊</h2>
+        </div>
+        <p class="lead" style="font-weight:300;color:var(--text-secondary);max-width:38ch">營業秘密竊盜買的不是資訊本身，而是跳過數年研發、試錯與人才訓練的速度。</p>
+      </div>
+      <div data-anim="up" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:1.2vw 1.2vw">
+        <article class="card-accent" style="padding:1.8vh 1.25vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta" style="color:var(--accent-on)">01 / 下載</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.55vw);line-height:1.15">14,107 檔</h3><p class="body-sm" style="color:var(--accent-on)">9.7GB 設計與規格</p></article>
+        <article class="card-fill" style="padding:1.8vh 1.25vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta">02 / 搬移</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.55vw);line-height:1.15">USB 硬碟</h3><p class="body-sm">外接儲存轉出</p></article>
+        <article class="card-fill" style="padding:1.8vh 1.25vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta">03 / 抹除</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.55vw);line-height:1.15">重灌筆電</h3><p class="body-sm">試圖破壞證據</p></article>
+        <article class="card-fill" style="padding:1.8vh 1.25vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta">04 / 意外</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.55vw);line-height:1.15">OTTO FILES</h3><p class="body-sm">供應商信件 CC</p></article>
+        <article class="card-fill" style="padding:1.8vh 1.25vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta">05 / 鑑識</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.55vw);line-height:1.15">三組日誌</h3><p class="body-sm">Armada / Bit9 / GRR</p></article>
+        <article class="card-ink" style="padding:1.8vh 1.25vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta" style="color:rgba(255,255,255,.62)">06 / 後果</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.55vw);line-height:1.15;color:#fff">$245M</h3><p class="body-sm" style="color:rgba(255,255,255,.76)">和解與禁用承諾</p></article>
+      </div>
+      <div data-anim="up" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2vw;border-top:1px solid var(--ink);padding-top:1.6vh">
+        <div><div class="t-meta">下載檔案</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.4vh);line-height:.95;letter-spacing:-.04em;color:var(--accent)">14,107</div><p class="body-sm">共 9.7GB</p></div>
+        <div><div class="t-meta">民事和解</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.4vh);line-height:.95;letter-spacing:-.04em">$245M</div><p class="body-sm">0.34% Uber 股權</p></div>
+        <div><div class="t-meta">Uber 投入</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.4vh);line-height:.95;letter-spacing:-.04em">~$3B</div><p class="body-sm">最終出售自駕部門</p></div>
       </div>
     </div>
   </div>
@@ -2145,6 +2190,12 @@ addEventListener('keydown',e=>{
   if(e.key && e.key.toLowerCase()==='b' && !e.metaKey && !e.ctrlKey && !e.altKey){
     e.preventDefault();
     window.__setLowPowerMode(!window.__lowPowerMode);
+    return;
+  }
+  if(e.key && e.key.toLowerCase()==='f' && !e.metaKey && !e.ctrlKey && !e.altKey){
+    e.preventDefault();
+    if(!document.fullscreenElement){document.documentElement.requestFullscreen().catch(()=>{});}
+    else{document.exitFullscreen();}
     return;
   }
   if(overviewOn)return;
