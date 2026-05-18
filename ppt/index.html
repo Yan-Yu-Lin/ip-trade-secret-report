@@ -88,7 +88,7 @@
   body.low-power canvas.ascii-bg{display:none!important}
 
   /* ============ Deck 容器 + 翻页 ============ */
-  #deck{position:fixed;inset:0;width:10000vw;height:100vh;display:flex;flex-wrap:nowrap;transition:transform .9s cubic-bezier(.77,0,.175,1);z-index:10;will-change:transform}
+  #deck{position:fixed;inset:0;width:10000vw;height:100vh;display:flex;flex-wrap:nowrap;transition:transform .4s cubic-bezier(.77,0,.175,1);z-index:10;will-change:transform}
   .slide{
     width:100vw;height:100vh;flex:0 0 100vw;
     position:relative;
@@ -2142,8 +2142,8 @@ function go(n){
   const isDark = el.classList.contains('dark') || el.classList.contains('accent');
   document.body.classList.toggle('dark-bg', isDark);
   darkMode = isDark;
-  if(window.__playSlide) setTimeout(()=>window.__playSlide(idx), 450);
-  lock=true;setTimeout(()=>lock=false,700);
+  if(window.__playSlide) setTimeout(()=>window.__playSlide(idx), 200);
+  lock=true;setTimeout(()=>lock=false,350);
 }
 
 /* =============== ESC 索引视图 =============== */
