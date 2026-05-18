@@ -2181,8 +2181,8 @@ function buildOverview(){
 
 function toggleOverview(){
   overviewOn=!overviewOn;
-  if(overviewOn){buildOverview();ov.style.display='block';}
-  else{ov.style.display='none';}
+  if(overviewOn){buildOverview();ov.style.display='block';document.body.style.overflow='hidden';}
+  else{ov.style.display='none';document.body.style.overflow='';}
 }
 
 addEventListener('keydown',e=>{
@@ -2211,6 +2211,7 @@ addEventListener('keydown',e=>{
 
 let wheelTO=null,wheelAcc=0;
 addEventListener('wheel',e=>{
+  if(overviewOn)return;
   wheelAcc+=e.deltaY+e.deltaX;
   if(Math.abs(wheelAcc)>50){
     if(wheelAcc>0 && window.__pipeAdvance && window.__pipeAdvance()){
