@@ -172,8 +172,9 @@
   .slide-card {
     background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
     margin-bottom: 24px; overflow: hidden; box-shadow: var(--shadow-sm);
-    transition: box-shadow 0.3s ease; animation: slideIn 0.4s ease both;
+    transition: box-shadow 0.3s ease;
   }
+  body:not(.no-animate) .slide-card { animation: slideIn 0.4s ease both; }
   @keyframes slideIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
   .slide-card:hover { box-shadow: var(--shadow-md); }
   .slide-card-header {
@@ -1018,7 +1019,7 @@ function renderSlides() {
     const card = document.createElement('div');
     card.className = 'slide-card speaker-' + slide.speaker;
     card.id = 'slide-' + slide.num;
-    card.style.animationDelay = Math.min(idx * 0.03, 0.3) + 's';
+    if (!document.body.classList.contains('no-animate')) card.style.animationDelay = Math.min(idx * 0.03, 0.3) + 's';
     let supplementHTML = '';
     if (slide.supplement && slide.supplement.length > 0) {
       const items = slide.supplement.map(s => '<li>' + s + '</li>').join('');
@@ -1076,11 +1077,13 @@ function switchVersion(version) {
   } else {
     note.innerHTML = '每頁標註講者建議、預估時間、要講的內容。講者可以用自己的話講，這裡是參考底稿。';
   }
+  document.body.classList.add('no-animate');
   renderSlides();
   buildToc();
   updateSlideNavActive(targetSlide);
   observeSlideCards();
   scrollToSlide(targetSlide, 'instant');
+  requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.remove('no-animate')));
 }
 
 function buildToc() {
