@@ -2284,6 +2284,13 @@ function buildOverview(){
   ov.innerHTML='';
   const grid=document.createElement('div');
   grid.style.cssText='display:grid;grid-template-columns:repeat(4,1fr);gap:2vh 1.6vw;max-width:90vw;margin:0 auto';
+  const getOverviewLabel=(slide,i)=>{
+    if(i===0) return '封面';
+    const chromeNumbers=[...slide.querySelectorAll('.chrome-min .r')]
+      .map(el=>el.textContent.trim())
+      .find(text=>/^\d{2}\s*\/\s*24$/.test(text));
+    return chromeNumbers ? chromeNumbers.replace(/\s+/g,'') : '—';
+  };
   slides.forEach((s,i)=>{
     const card=document.createElement('div');
     card.style.cssText='cursor:pointer;overflow:hidden;border:2px solid '+(i===idx?'var(--accent)':'rgba(0,0,0,.12)')+';transition:border-color .2s';
@@ -2297,7 +2304,7 @@ function buildOverview(){
     wrap.appendChild(clone);
     const label=document.createElement('div');
     label.style.cssText='padding:6px 10px;font-family:var(--mono);font-size:max(14px,1vw);letter-spacing:.08em;text-transform:none;color:var(--ink);opacity:.7';
-    label.textContent=(i+1)+' / '+total;
+    label.textContent=getOverviewLabel(s,i);
     card.appendChild(wrap);
     card.appendChild(label);
     card.onclick=()=>{toggleOverview();go(i)};
