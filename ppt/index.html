@@ -136,7 +136,7 @@
   .chrome{
     display:flex;justify-content:space-between;align-items:flex-start;
     font-family:var(--mono);
-    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    font-size:max(14px,1vw);letter-spacing:.08em;text-transform:none;
     opacity:.7;margin-bottom:auto
   }
   .chrome .l,.chrome .r{display:flex;gap:1.6em;align-items:center}
@@ -146,7 +146,7 @@
     margin-top:auto;
     display:flex;justify-content:space-between;align-items:flex-end;
     font-family:var(--mono);
-    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    font-size:max(14px,1vw);letter-spacing:.08em;text-transform:none;
     opacity:.55;
     padding-top:2vh;
     border-top:1px solid currentColor;
@@ -157,7 +157,7 @@
   /* ============ Tag / Kicker / Meta 标签 ============ */
   .kicker{
     font-family:var(--mono);
-    font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    font-size:max(14px,1vw);letter-spacing:.08em;text-transform:none;
     opacity:.65;margin-bottom:2.4vh;
     display:inline-flex;align-items:center;gap:.8em
   }
@@ -170,7 +170,7 @@
   .tag{
     display:inline-block;
     font-family:var(--mono);
-    font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+    font-size:max(14px,1vw);letter-spacing:.08em;text-transform:none;
     padding:5px 10px;border:1px solid currentColor;opacity:.85
   }
   .tag.solid{background:currentColor;color:var(--paper);border-color:transparent}
@@ -233,28 +233,28 @@
   .body{
     font-family:var(--sans),var(--sans-zh);
     font-weight:400;
-    font-size:max(13px,1.05vw);
-    line-height:1.6;
+    font-size:max(17px,1.3vw);
+    line-height:1.48;
     letter-spacing:0;
-    opacity:.78;
+    opacity:.86;
   }
   .body-sm{
     font-family:var(--sans),var(--sans-zh);
     font-weight:400;
-    font-size:max(11px,.84vw);
-    line-height:1.55;
-    opacity:.7;
+    font-size:max(16px,1.25vw);
+    line-height:1.42;
+    opacity:.84;
   }
   .meta{
     font-family:var(--mono);
-    font-size:max(10px,.78vw);
-    letter-spacing:.18em;text-transform:uppercase;
+    font-size:max(14px,1vw);
+    letter-spacing:.08em;text-transform:none;
     opacity:.6;
   }
   .meta-row{
     display:flex;gap:1.4em;align-items:baseline;flex-wrap:wrap;
     font-family:var(--mono);
-    font-size:max(11px,.85vw);letter-spacing:.18em;text-transform:uppercase;
+    font-size:max(14px,1vw);letter-spacing:.08em;text-transform:none;
     opacity:.65;
   }
   .meta-row span:not(.dot){display:inline-block}
@@ -310,8 +310,8 @@
   .stat-card.accent-top{border-top-color:var(--accent);border-top-width:3px}
   .stat-card .stat-label{
     font-family:var(--mono);
-    font-size:max(10px,.78vw);
-    letter-spacing:.24em;text-transform:uppercase;
+    font-size:max(14px,1vw);
+    letter-spacing:.08em;text-transform:none;
     opacity:.6;
   }
   .stat-card .stat-nb{
@@ -335,9 +335,9 @@
   .stat-card .stat-note{
     font-family:var(--sans),var(--sans-zh);
     font-weight:400;
-    font-size:max(12px,.95vw);
-    line-height:1.5;
-    opacity:.7;
+    font-size:max(16px,1.25vw);
+    line-height:1.42;
+    opacity:.84;
     margin-top:.6vh;
   }
   .grid-4 .stat-card .stat-nb{font-size:4.6vw}
@@ -379,8 +379,8 @@
   .pipeline-section:first-of-type{border-top:0;padding-top:0;margin-top:2.4vh}
   .pipeline-label{
     font-family:var(--mono);
-    font-size:max(10px,.82vw);
-    letter-spacing:.24em;text-transform:uppercase;
+    font-size:max(14px,1vw);
+    letter-spacing:.08em;text-transform:none;
     opacity:.6;margin-bottom:1.8vh;
   }
   .pipeline{
@@ -413,9 +413,9 @@
   .step-desc{
     font-family:var(--sans),var(--sans-zh);
     font-weight:400;
-    font-size:max(11px,.88vw);
-    line-height:1.45;
-    opacity:.7;
+    font-size:max(16px,1.22vw);
+    line-height:1.36;
+    opacity:.84;
   }
 
   /* ============ 网格系统 (模块化网格) ============ */
@@ -480,15 +480,15 @@
     padding:2vh 2vw;
     border-left:3px solid var(--accent);
     font-family:var(--sans),var(--sans-zh);
-    font-size:max(13px,1vw);
-    line-height:1.55;
+    font-size:max(17px,1.3vw);
+    line-height:1.42;
     opacity:.9;
   }
   .callout.ink{border-left-color:currentColor}
   .callout .cite,.callout .callout-src{
     display:block;margin-top:1.2vh;
     font-family:var(--mono);
-    font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+    font-size:max(14px,1vw);letter-spacing:.08em;text-transform:none;
     opacity:.6;
   }
 
@@ -539,8 +539,8 @@
   .img-cap{
     display:block;margin-top:.8vh;
     font-family:var(--mono);
-    font-size:max(10px,.78vw);
-    letter-spacing:.2em;text-transform:uppercase;
+    font-size:max(14px,1vw);
+    letter-spacing:.08em;text-transform:none;
     opacity:.6;
   }
   figure.frame-img,figure.tile{margin:0;display:flex;flex-direction:column;min-width:0}
@@ -567,23 +567,23 @@
   .swiss-img-caption{
     display:flex;justify-content:space-between;gap:var(--sp-5);
     margin-top:var(--sp-4);
-    font-family:var(--mono);font-size:max(9px,.68vw);
-    letter-spacing:.16em;text-transform:uppercase;color:var(--text-helper);
+    font-family:var(--mono);font-size:max(14px,1vw);
+    letter-spacing:.08em;text-transform:none;color:var(--text-helper);
     border-top:1px solid var(--border-subtle);padding-top:var(--sp-4)
   }
   .swiss-img-caption strong{
-    font-family:var(--sans),var(--sans-zh);font-size:max(12px,.88vw);
+    font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.18vw);
     font-weight:600;letter-spacing:0;text-transform:none;color:var(--text-primary)
   }
 
   /* ============ Bar Chart (扁平几何图表) ============ */
   .bar-chart{display:flex;flex-direction:column;gap:1.4vh}
   .bar-row{display:grid;grid-template-columns:8em 1fr 4em;gap:1.4vw;align-items:center}
-  .bar-row .bar-label{font-family:var(--mono);font-size:max(10px,.82vw);letter-spacing:.16em;text-transform:uppercase;opacity:.7}
+  .bar-row .bar-label{font-family:var(--mono);font-size:max(14px,1vw);letter-spacing:.08em;text-transform:none;opacity:.7}
   .bar-row .bar-track{height:14px;background:rgba(127,127,127,.18);position:relative}
   .bar-row .bar-fill{height:100%;background:var(--accent);position:absolute;left:0;top:0}
   .bar-row .bar-fill.ink{background:currentColor}
-  .bar-row .bar-value{font-family:var(--sans);font-weight:700;font-size:max(13px,1.05vw);text-align:right;font-feature-settings:"tnum"}
+  .bar-row .bar-value{font-family:var(--sans);font-weight:700;font-size:max(17px,1.3vw);text-align:right;font-feature-settings:"tnum"}
 
   /* ============ 导航 ============ */
   /* 底部分页导航: 仅保留方块本身,无背景无描边 */
@@ -594,7 +594,7 @@
   body.dark-bg #nav .dot{background:rgba(255,255,255,.32)}
   body.dark-bg #nav .dot.active{background:var(--accent)}
 
-  #hint{position:fixed;bottom:2.4vh;right:2.5vw;z-index:30;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.4;color:var(--ink-tint, currentColor)}
+  #hint{position:fixed;bottom:2.4vh;right:2.5vw;z-index:30;font-family:var(--mono);font-size:max(14px,1vw);letter-spacing:.08em;text-transform:none;opacity:.4;color:var(--ink-tint, currentColor)}
   body.dark-bg #hint{color:var(--paper);opacity:.4}
   body.low-power #hint{color:var(--accent);opacity:.72}
   body.dark-bg.low-power #hint{color:var(--paper);opacity:.72}
@@ -715,10 +715,10 @@
     border-left:1px solid var(--grey-2)
   }
   .kpi-row-4 > .kpi-cell:first-child{padding-left:0;border-left:none}
-  .kpi-cell .lbl{font-family:var(--mono);font-size:max(10px,.74vw);letter-spacing:.22em;text-transform:uppercase;opacity:.55;margin-bottom:1.2vh}
+  .kpi-cell .lbl{font-family:var(--mono);font-size:max(14px,1vw);letter-spacing:.08em;text-transform:none;opacity:.65;margin-bottom:1.2vh}
   .kpi-cell .nb{font-family:var(--sans);font-weight:250;font-size:3.2vw;line-height:1;letter-spacing:-.025em;font-feature-settings:"tnum"}
   .kpi-cell .nb .unit{font-size:.32em;font-weight:300;opacity:.6;margin-left:.1em;vertical-align:.4em}
-  .kpi-cell .note{font-family:var(--sans),var(--sans-zh);font-size:max(11px,.82vw);line-height:1.5;opacity:.7;margin-top:1.2vh}
+  .kpi-cell .note{font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.2vw);line-height:1.42;opacity:.82;margin-top:1.2vh}
 
   /* 时间线轴 — 通用 axis token, 横纵共享
      axis 列 = 24px 固定宽,dot 直径 8px,绝对居中在 axis 列中线 (12px)
@@ -756,7 +756,7 @@
   .tl-node.accent .dot{background:var(--accent)}
   .tl-node .yr{
     font-family:var(--mono);font-weight:500;
-    font-size:max(13px,1vw);letter-spacing:.04em
+    font-size:max(16px,1.2vw);letter-spacing:.04em
   }
   .tl-node .multi{
     font-family:var(--sans);font-weight:200;
@@ -775,7 +775,7 @@
   .tl-node.accent .multi{color:var(--accent)}
   .tl-node .desc{
     font-family:var(--sans),var(--sans-zh);
-    font-size:max(12px,.9vw);line-height:1.55;opacity:.78;
+    font-size:max(16px,1.22vw);line-height:1.42;opacity:.86;
     min-width:0
   }
 
@@ -812,24 +812,24 @@
   .timeline-h .th-node.accent .dot{background:var(--accent)}
   .timeline-h .th-node .label{
     position:absolute;left:50%;transform:translateX(-50%);
-    width:13vw;text-align:center;
+    width:15vw;text-align:center;
     display:flex;flex-direction:column;gap:.4vh
   }
   .timeline-h .th-node.up .label{bottom:calc(50% + 22px)}
   .timeline-h .th-node.down .label{top:calc(50% + 22px)}
   .timeline-h .th-node .yr{
-    font-family:var(--mono);font-size:max(10px,.74vw);letter-spacing:.06em;
+    font-family:var(--mono);font-size:max(15px,1.12vw);letter-spacing:.04em;
     color:var(--text-helper);font-weight:500
   }
   .timeline-h .th-node.accent .yr{color:var(--accent)}
   .timeline-h .th-node .name{
-    font-family:var(--sans);font-size:max(13px,1.05vw);font-weight:300;
+    font-family:var(--sans),var(--sans-zh);font-size:max(20px,1.45vw);font-weight:350;
     color:var(--text-primary);line-height:1.2;letter-spacing:-.005em
   }
   .timeline-h .th-node.accent .name{color:var(--accent)}
   .timeline-h .th-node .desc{
-    font-family:var(--sans),var(--sans-zh);font-size:max(10px,.78vw);
-    color:var(--text-secondary);font-weight:300;line-height:1.4
+    font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.16vw);
+    color:var(--text-secondary);font-weight:350;line-height:1.34
   }
 
   /* 几何图示 (参考图 5) — SVG-friendly 容器 */
@@ -854,11 +854,11 @@
   .sub-card.ink{background:var(--ink);color:var(--paper)}
   .sub-card .nb-corner{
     position:absolute;top:1.6vh;right:1.4vw;
-    font-family:var(--mono);font-size:max(10px,.78vw);
-    letter-spacing:.18em;opacity:.55
+    font-family:var(--mono);font-size:max(14px,1vw);
+    letter-spacing:.08em;opacity:.65
   }
   .sub-card .ttl{font-family:var(--sans),var(--sans-zh);font-weight:500;font-size:max(15px,1.5vw);line-height:1.2;letter-spacing:-.015em;margin-bottom:1vh}
-  .sub-card .desc{font-family:var(--sans),var(--sans-zh);font-size:max(11px,.86vw);line-height:1.55;opacity:.78;margin-top:auto}
+  .sub-card .desc{font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.22vw);line-height:1.42;opacity:.86;margin-top:auto}
   .sub-card .lucide{width:2.4vw;height:2.4vw;stroke-width:1.4;color:currentColor;margin-bottom:1.6vh;flex-shrink:0}
   .sub-card.accent .lucide{color:var(--accent-on)}
 
@@ -873,14 +873,14 @@
   .stack-block.b-accent{background:var(--accent);color:var(--accent-on)}
   .stack-block.b-grey{background:var(--grey-1);color:var(--ink)}
   .stack-block.b-ink{background:var(--ink);color:var(--paper)}
-  .stack-block .layer-nb{font-family:var(--mono);font-size:max(11px,.82vw);letter-spacing:.22em;opacity:.65;margin-bottom:auto}
+  .stack-block .layer-nb{font-family:var(--mono);font-size:max(15px,1.08vw);letter-spacing:.08em;opacity:.72;margin-bottom:auto}
   .stack-block .layer-icon{margin-bottom:1.6vh}
   .stack-block .layer-icon svg{width:3vw;height:3vw}
   .stack-block .layer-icon .stroke{fill:none;stroke:currentColor;stroke-width:1.6}
   .stack-block .layer-ttl{font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(17px,2vw);line-height:1.1;margin-top:1vh;letter-spacing:-.02em}
-  .stack-block .layer-desc{font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(11px,.88vw);line-height:1.55;opacity:.88;margin-top:1.4vh}
+  .stack-block .layer-desc{font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(16px,1.25vw);line-height:1.42;opacity:.9;margin-top:1.4vh}
   .stack-block .lucide{width:2.6vw;height:2.6vw;stroke-width:1.4;margin-bottom:1.6vh;flex-shrink:0}
-  .stack-block .layer-tag{font-family:var(--mono);font-size:max(9px,.7vw);letter-spacing:.2em;text-transform:uppercase;opacity:.7;margin-top:1.6vh;border-top:1px solid currentColor;padding-top:1vh}
+  .stack-block .layer-tag{font-family:var(--mono);font-size:max(14px,1vw);letter-spacing:.08em;text-transform:none;opacity:.7;margin-top:1.6vh;border-top:1px solid currentColor;padding-top:1vh}
 
   /* 不等高柱状 KPI 塔 (参考图 6) */
   .bar-towers{
@@ -911,11 +911,11 @@
   /* 默认所有 KPI 塔统一为浅描边卡 — 不抢戏;只有 .b-accent 突出为 IKB */
   .bar-tower .body-block{background:var(--paper);color:var(--ink);border:1px solid var(--grey-2)}
   .bar-tower .body-block.b-accent{background:var(--accent);color:var(--accent-on);border-color:var(--accent)}
-  .bar-tower .lbl{font-family:var(--mono);font-size:max(10px,.78vw);letter-spacing:.2em;text-transform:uppercase;opacity:.65;margin-bottom:1vh}
+  .bar-tower .lbl{font-family:var(--mono);font-size:max(14px,1vw);letter-spacing:.08em;text-transform:none;opacity:.72;margin-bottom:1vh}
   .bar-tower .nb{font-family:var(--sans);font-weight:250;font-size:max(20px,2.8vw);line-height:1;letter-spacing:-.03em;font-feature-settings:"tnum"}
   .bar-tower .body-block.b-accent .nb{font-weight:300}
   .bar-tower .nb .unit{font-size:.36em;font-weight:300;opacity:.7;margin-left:.08em;vertical-align:.4em}
-  .bar-tower .sub{font-family:var(--sans),var(--sans-zh);font-size:max(11px,.84vw);opacity:.75;margin-top:1.2vh;line-height:1.5}
+  .bar-tower .sub{font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.2vw);opacity:.84;margin-top:1.2vh;line-height:1.42}
   .bar-tower .cap{background:var(--grey-1);color:var(--ink)}
   .bar-tower .lucide{width:1.6vw;height:1.6vw;stroke-width:1.4}
 
@@ -926,8 +926,8 @@
   /* category label / eyebrow / section tag — small, bold, uppercase */
   .t-cat{
     font-family:var(--mono);
-    font-size:11px;font-weight:600;
-    letter-spacing:.18em;text-transform:uppercase;
+    font-size:max(14px,1vw);font-weight:600;
+    letter-spacing:.08em;text-transform:none;
     color:var(--text-helper);line-height:1.3
   }
   .t-cat.accent{color:var(--accent)}
@@ -936,15 +936,15 @@
   /* page chrome / breadcrumb / running header — extra-small mono */
   .t-meta{
     font-family:var(--mono);
-    font-size:11px;font-weight:500;
-    letter-spacing:.16em;text-transform:uppercase;
+    font-size:max(14px,1vw);font-weight:500;
+    letter-spacing:.08em;text-transform:none;
     color:var(--text-helper);line-height:1.45
   }
 
   /* helper / caption — tiny secondary text */
   .t-helper{
     font-family:var(--sans),var(--sans-zh);
-    font-size:12px;font-weight:400;
+    font-size:max(16px,1.18vw);font-weight:400;
     color:var(--text-helper);line-height:1.5;
     letter-spacing:.005em
   }
@@ -952,24 +952,24 @@
   /* body small — list items, table rows, captions */
   .t-body-sm{
     font-family:var(--sans),var(--sans-zh);
-    font-size:14px;font-weight:400;
-    color:var(--text-secondary);line-height:1.55;
+    font-size:max(16px,1.2vw);font-weight:400;
+    color:var(--text-secondary);line-height:1.42;
     letter-spacing:0
   }
 
   /* body — paragraphs, descriptions */
   .t-body{
     font-family:var(--sans),var(--sans-zh);
-    font-size:16px;font-weight:400;
-    color:var(--text-primary);line-height:1.5;
+    font-size:max(18px,1.3vw);font-weight:400;
+    color:var(--text-primary);line-height:1.42;
     letter-spacing:-.005em
   }
 
   /* body emphasis — 强调正文 */
   .t-body-emp{
     font-family:var(--sans),var(--sans-zh);
-    font-size:16px;font-weight:600;       /* SemiBold per Carbon */
-    color:var(--text-primary);line-height:1.5;
+    font-size:max(18px,1.3vw);font-weight:600;       /* SemiBold per Carbon */
+    color:var(--text-primary);line-height:1.42;
     letter-spacing:-.005em
   }
 
@@ -1043,7 +1043,7 @@
   }
   .h-bar-chart .row-lbl{
     font-family:var(--sans),var(--sans-zh);
-    font-weight:500;font-size:max(13px,1vw);
+    font-weight:500;font-size:max(17px,1.3vw);
     letter-spacing:-.005em;
     text-align:left
   }
@@ -1096,8 +1096,8 @@
     font-size:max(18px,1.6vw);letter-spacing:-.02em
   }
   .v-bar-chart .col-lbl{
-    font-family:var(--mono);font-size:max(10px,.74vw);
-    letter-spacing:.18em;text-transform:uppercase;opacity:.6;
+    font-family:var(--mono);font-size:max(14px,1vw);
+    letter-spacing:.08em;text-transform:none;opacity:.65;
     text-align:center;flex:0 0 auto
   }
 
@@ -1110,8 +1110,8 @@
   .duo-compare .vrule{background:var(--grey-2);width:1px;align-self:stretch}
   .duo-compare .col{display:flex;flex-direction:column;gap:1.6vh;padding:0 .4vw}
   .duo-compare .col-tag{
-    font-family:var(--mono);font-size:max(10px,.74vw);
-    letter-spacing:.22em;text-transform:uppercase;
+    font-family:var(--mono);font-size:max(15px,1.08vw);
+    letter-spacing:.08em;text-transform:none;
     color:var(--grey-3);
     display:flex;align-items:center;gap:.6vw
   }
@@ -1128,7 +1128,7 @@
   .duo-compare .col.accent .col-ttl{color:var(--accent)}
   .duo-compare .col-desc{
     font-family:var(--sans),var(--sans-zh);
-    font-size:max(13px,1.04vw);line-height:1.55;opacity:.78;
+    font-size:max(18px,1.35vw);line-height:1.42;opacity:.86;
     max-width:30vw
   }
   .duo-compare .col-list{
@@ -1137,7 +1137,7 @@
   }
   .duo-compare .col-list li{
     font-family:var(--sans),var(--sans-zh);
-    font-size:max(11px,.88vw);line-height:1.5;
+    font-size:max(16px,1.22vw);line-height:1.36;
     padding-left:1.4em;position:relative
   }
   .duo-compare .col-list li::before{
@@ -1156,9 +1156,9 @@
 
   /* 极简页眉 — t-meta 风格 (Carbon productive label-01) */
   .canvas-card .chrome-min{
-    display:flex;justify-content:space-between;align-items:flex-start;
-    font-family:var(--mono);font-size:11px;font-weight:500;
-    letter-spacing:.16em;text-transform:uppercase;
+    display:flex;justify-content:flex-end;align-items:flex-start;
+    font-family:var(--mono);font-size:max(14px,1vw);font-weight:500;
+    letter-spacing:.08em;text-transform:uppercase;
     color:var(--text-helper);
     flex:0 0 auto;
     margin-bottom:var(--sp-9);   /* 48px */
@@ -1167,6 +1167,7 @@
   .canvas-card .chrome-min .l, .canvas-card .chrome-min .r{
     max-width:48vw;line-height:1.5
   }
+  .canvas-card .chrome-min .l{display:none}
   .slide.dark .canvas-card .chrome-min,.split-half .half.b-ink .canvas-card .chrome-min{color:rgba(255,255,255,.62)}
 
   /* 响应式降级 */
@@ -1224,8 +1225,8 @@
     <canvas class="ascii-bg" aria-hidden="true"></canvas>
     
   <div class="chrome-min">
-    <div class="l">Trade Secrets IPR × Technology Licensing</div>
-    <div class="r">SWISS · IKB · 01 / 24</div>
+    <div class="l"></div>
+    <div class="r">01 / 24</div>
   </div>
     <div style="flex:1;display:grid;grid-template-rows:1fr auto;gap:4vh">
       <div data-anim="line" style="display:flex;flex-direction:column;gap:2vh;justify-content:center">
@@ -1258,24 +1259,23 @@
       <div class="half b-accent" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between;position:relative;overflow:hidden">
         <canvas class="ascii-bg" aria-hidden="true"></canvas>
         <div data-anim="left" style="display:flex;flex-direction:column;gap:2.2vh">
-          <div class="t-meta" style="color:rgba(255,255,255,.72)">TEAM</div>
+          <div class="t-meta" style="color:rgba(255,255,255,.72)">組員</div>
           <h2 style="font-family:var(--sans),var(--sans-zh);font-size:min(8.2vw,14.2vh);line-height:.92;letter-spacing:-.035em;font-weight:200;color:#fff">組員<br/>介紹</h2>
         </div>
-        <div class="t-meta" style="color:rgba(255,255,255,.66);border-top:1px solid rgba(255,255,255,.24);padding-top:2vh">第六組 · TRADE SECRETS IPR</div>
+        <div class="t-meta" style="color:rgba(255,255,255,.66);border-top:1px solid rgba(255,255,255,.24);padding-top:2vh">第六組</div>
       </div>
-      <div class="half" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between">
+      <div class="half" style="padding:5.6vh 3.6vw 4.4vh;justify-content:center">
         <div data-anim="right" style="display:flex;flex-direction:column;gap:0">
-          <div class="t-meta" style="color:var(--accent);margin-bottom:2vh">MEMBERS</div>
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:1.35vw 1.6vw;align-items:baseline;border-top:2px solid var(--accent);padding-top:2.4vh">
-            <div style="font-family:var(--sans);font-weight:300;font-size:max(13px,1vw);color:var(--text-helper)">01</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(18px,2vw);font-weight:300;line-height:1.35;color:var(--text-primary)">林晏宇 <span style="font-size:max(12px,1vw);color:var(--text-secondary);font-weight:300">—（系別待補）</span></div>
-            <div style="font-family:var(--sans);font-weight:300;font-size:max(13px,1vw);color:var(--text-helper)">02</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(18px,2vw);font-weight:300;line-height:1.35;color:var(--text-primary)">張凱茵 <span style="font-size:max(12px,1vw);color:var(--text-secondary);font-weight:300">—（系別待補）</span></div>
-            <div style="font-family:var(--sans);font-weight:300;font-size:max(13px,1vw);color:var(--text-helper)">03</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(18px,2vw);font-weight:300;line-height:1.35;color:var(--text-primary)">傅子芸 <span style="font-size:max(12px,1vw);color:var(--text-secondary);font-weight:300">—（系別待補）</span></div>
-            <div style="font-family:var(--sans);font-weight:300;font-size:max(13px,1vw);color:var(--text-helper)">04</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(18px,2vw);font-weight:300;line-height:1.35;color:var(--text-primary)">吳宜臻 <span style="font-size:max(12px,1vw);color:var(--text-secondary);font-weight:300">—（系別待補）</span></div>
-            <div style="font-family:var(--sans);font-weight:300;font-size:max(13px,1vw);color:var(--text-helper)">05</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(18px,2vw);font-weight:300;line-height:1.35;color:var(--text-primary)">王睿閎 <span style="font-size:max(12px,1vw);color:var(--text-secondary);font-weight:300">—（系別待補）</span></div>
-            <div style="font-family:var(--sans);font-weight:300;font-size:max(13px,1vw);color:var(--text-helper)">06</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(18px,2vw);font-weight:300;line-height:1.35;color:var(--text-primary)">吳玠廷 <span style="font-size:max(12px,1vw);color:var(--text-secondary);font-weight:300">—（系別待補）</span></div>
+          <div class="t-meta" style="color:var(--accent);margin-bottom:2.6vh">成員名單</div>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:2vh 1.8vw;align-items:baseline;border-top:3px solid var(--accent);padding-top:3vh">
+            <div style="font-family:var(--sans);font-weight:300;font-size:max(18px,1.35vw);color:var(--text-helper)">01</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(34px,3vw);font-weight:300;line-height:1.12;color:var(--text-primary)">林晏宇 <span style="font-size:max(20px,1.75vw);color:var(--text-secondary);font-weight:300">—（系別待補）</span></div>
+            <div style="font-family:var(--sans);font-weight:300;font-size:max(18px,1.35vw);color:var(--text-helper)">02</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(34px,3vw);font-weight:300;line-height:1.12;color:var(--text-primary)">張凱茵 <span style="font-size:max(20px,1.75vw);color:var(--text-secondary);font-weight:300">—（系別待補）</span></div>
+            <div style="font-family:var(--sans);font-weight:300;font-size:max(18px,1.35vw);color:var(--text-helper)">03</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(34px,3vw);font-weight:300;line-height:1.12;color:var(--text-primary)">傅子芸 <span style="font-size:max(20px,1.75vw);color:var(--text-secondary);font-weight:300">—（系別待補）</span></div>
+            <div style="font-family:var(--sans);font-weight:300;font-size:max(18px,1.35vw);color:var(--text-helper)">04</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(34px,3vw);font-weight:300;line-height:1.12;color:var(--text-primary)">吳宜臻 <span style="font-size:max(20px,1.75vw);color:var(--text-secondary);font-weight:300">—（系別待補）</span></div>
+            <div style="font-family:var(--sans);font-weight:300;font-size:max(18px,1.35vw);color:var(--text-helper)">05</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(34px,3vw);font-weight:300;line-height:1.12;color:var(--text-primary)">王睿閎 <span style="font-size:max(20px,1.75vw);color:var(--text-secondary);font-weight:300">—（系別待補）</span></div>
+            <div style="font-family:var(--sans);font-weight:300;font-size:max(18px,1.35vw);color:var(--text-helper)">06</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(34px,3vw);font-weight:300;line-height:1.12;color:var(--text-primary)">吳玠廷 <span style="font-size:max(20px,1.75vw);color:var(--text-secondary);font-weight:300">—（系別待補）</span></div>
           </div>
         </div>
-        <div class="t-meta" style="color:var(--text-helper);text-align:right">UNNUMBERED INTRO</div>
       </div>
     </div>
   </div>
@@ -1285,18 +1285,18 @@
   <div class="canvas-card">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:2vw">
       <div>
-        <div class="t-meta" style="color:var(--accent)">AGENDA</div>
+        <div class="t-meta" style="color:var(--accent)">報告流程</div>
         <h2 style="font-family:var(--sans),var(--sans-zh);font-size:min(6.4vw,10.5vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:var(--text-primary);margin-top:1.2vh">報告大綱</h2>
       </div>
-      <div class="t-meta" style="color:var(--text-helper)">第六組 · UNNUMBERED</div>
+      <div class="t-meta" style="color:var(--text-helper)">第六組</div>
     </div>
-    <div data-anim="cards" style="flex:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.35vh 1.2vw;align-content:center;margin-top:3vh">
-      <article class="card-fill" style="border-left:5px solid var(--speaker-1);padding:2.1vh 1.35vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta" style="color:var(--speaker-1)">Slide 1–4</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.65vw);line-height:1.15;color:var(--text-primary)">張凱茵</h3><p class="body-sm">開場、核心主張、三要件、專利 vs 營業秘密</p></article>
-      <article class="card-fill" style="border-left:5px solid var(--speaker-2);padding:2.1vh 1.35vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta" style="color:var(--speaker-2)">Slide 5–10</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.65vw);line-height:1.15;color:var(--text-primary)">林晏宇</h3><p class="body-sm">決策矩陣、變現路徑、授權包設計、BMC</p></article>
-      <article class="card-fill" style="border-left:5px solid var(--speaker-3);padding:2.1vh 1.35vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta" style="color:var(--speaker-3)">Slide 11–14</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.65vw);line-height:1.15;color:var(--text-primary)">傅子芸</h3><p class="body-sm">Dolby 案例</p></article>
-      <article class="card-fill" style="border-left:5px solid var(--speaker-4);padding:2.1vh 1.35vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta" style="color:var(--speaker-4)">Slide 15–18</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.65vw);line-height:1.15;color:var(--text-primary)">吳宜臻</h3><p class="body-sm">台積電案例</p></article>
-      <article class="card-fill" style="border-left:5px solid var(--speaker-5);padding:2.1vh 1.35vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta" style="color:var(--speaker-5)">Slide 19–22</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.65vw);line-height:1.15;color:var(--text-primary)">王睿閎</h3><p class="body-sm">Waymo v. Uber 案例</p></article>
-      <article class="card-fill" style="border-left:5px solid var(--speaker-6);padding:2.1vh 1.35vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta" style="color:var(--speaker-6)">Slide 23–24</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.65vw);line-height:1.15;color:var(--text-primary)">吳玠廷</h3><p class="body-sm">內控 + 結論</p></article>
+    <div data-anim="cards" style="flex:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5vh 1.35vw;align-content:center;margin-top:3vh">
+      <article class="card-fill" style="border-left:8px solid var(--speaker-1);padding:2.4vh 1.6vw;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1.2vw;align-items:center"><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:350;font-size:max(28px,2.15vw);line-height:1.12;color:var(--text-primary)">開場與基礎概念</h3><div style="text-align:right"><div class="t-meta" style="color:var(--speaker-1)">張凱茵</div><div class="body-sm" style="color:var(--text-secondary)">第 1-4 頁</div></div></article>
+      <article class="card-fill" style="border-left:8px solid var(--speaker-2);padding:2.4vh 1.6vw;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1.2vw;align-items:center"><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:350;font-size:max(28px,2.15vw);line-height:1.12;color:var(--text-primary)">決策矩陣與授權設計</h3><div style="text-align:right"><div class="t-meta" style="color:var(--speaker-2)">林晏宇</div><div class="body-sm" style="color:var(--text-secondary)">第 5-10 頁</div></div></article>
+      <article class="card-fill" style="border-left:8px solid var(--speaker-3);padding:2.4vh 1.6vw;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1.2vw;align-items:center"><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:350;font-size:max(28px,2.15vw);line-height:1.12;color:var(--text-primary)">Dolby 案例</h3><div style="text-align:right"><div class="t-meta" style="color:var(--speaker-3)">傅子芸</div><div class="body-sm" style="color:var(--text-secondary)">第 11-14 頁</div></div></article>
+      <article class="card-fill" style="border-left:8px solid var(--speaker-4);padding:2.4vh 1.6vw;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1.2vw;align-items:center"><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:350;font-size:max(28px,2.15vw);line-height:1.12;color:var(--text-primary)">台積電案例</h3><div style="text-align:right"><div class="t-meta" style="color:var(--speaker-4)">吳宜臻</div><div class="body-sm" style="color:var(--text-secondary)">第 15-18 頁</div></div></article>
+      <article class="card-fill" style="border-left:8px solid var(--speaker-5);padding:2.4vh 1.6vw;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1.2vw;align-items:center"><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:350;font-size:max(28px,2.15vw);line-height:1.12;color:var(--text-primary)">Waymo 案例</h3><div style="text-align:right"><div class="t-meta" style="color:var(--speaker-5)">王睿閎</div><div class="body-sm" style="color:var(--text-secondary)">第 19-22 頁</div></div></article>
+      <article class="card-fill" style="border-left:8px solid var(--speaker-6);padding:2.4vh 1.6vw;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1.2vw;align-items:center"><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:350;font-size:max(28px,2.15vw);line-height:1.12;color:var(--text-primary)">內控與結論</h3><div style="text-align:right"><div class="t-meta" style="color:var(--speaker-6)">吳玠廷</div><div class="body-sm" style="color:var(--text-secondary)">第 23-24 頁</div></div></article>
     </div>
   </div>
 </section>
@@ -1307,26 +1307,24 @@
       <div class="half b-ink" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between">
         
   <div class="chrome-min">
-    <div class="l">Core Thesis</div>
+    <div class="l"></div>
     <div class="r">02 / 24</div>
   </div>
         <div data-anim="left" style="display:flex;flex-direction:column;gap:2vh">
-          <div class="t-meta" style="color:rgba(255,255,255,.62)">PUBLIC BOUNDARY</div>
           <div style="font-family:var(--sans),var(--sans-zh);font-size:min(7.2vw,12.8vh);font-weight:200;line-height:.96;letter-spacing:-.025em;color:#fff">專利是<br/>公開的<br/>邊界線</div>
         </div>
-        <p style="font-family:var(--sans),var(--sans-zh);font-size:max(13px,1vw);line-height:1.6;color:rgba(255,255,255,.76);font-weight:300">公開發明細節，換取 20 年排他權。</p>
+        <p style="font-family:var(--sans),var(--sans-zh);font-size:max(18px,1.35vw);line-height:1.42;color:rgba(255,255,255,.76);font-weight:300">公開發明細節，換取 20 年排他權。</p>
       </div>
       <div class="half b-grey" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between">
         
   <div class="chrome-min">
-    <div class="l">Private Operating System</div>
+    <div class="l"></div>
     <div class="r">02 / 24</div>
   </div>
         <div data-anim="right" style="display:flex;flex-direction:column;gap:2vh">
-          <div class="t-meta">PRIVATE OPERATING SYSTEM</div>
           <div style="font-family:var(--sans),var(--sans-zh);font-size:min(7.2vw,12.8vh);font-weight:200;line-height:.96;letter-spacing:-.025em;color:var(--accent)">營業秘密是<br/>私有的<br/>執行系統</div>
         </div>
-        <p style="font-family:var(--sans),var(--sans-zh);font-size:max(13px,1vw);line-height:1.6;color:var(--text-secondary);font-weight:300">不公開配方、參數、失敗資料庫與量產 know-how；只要守得住，就沒有到期日。</p>
+        <p style="font-family:var(--sans),var(--sans-zh);font-size:max(18px,1.35vw);line-height:1.42;color:var(--text-secondary);font-weight:300">不公開配方、參數、失敗資料庫與量產 know-how；只要守得住，就沒有到期日。</p>
       </div>
     </div>
   </div>
@@ -1336,7 +1334,7 @@
   <div class="canvas-card">
     
   <div class="chrome-min">
-    <div class="l">Section 01 · Legal Definition</div>
+    <div class="l"></div>
     <div class="r">03 / 24</div>
   </div>
     
@@ -1346,9 +1344,9 @@
     <p class="lead" style="max-width:58ch;font-weight:300;color:var(--text-secondary)">法律看的是資訊本身的秘密性、經濟價值，以及公司是否真的採取合理保密措施。</p>
   </div>
     <div data-anim="up" class="stack-row">
-      <div class="stack-block b-grey"><div class="layer-nb">LAYER 01</div><div class="layer-ttl">不為公眾所知</div><div class="layer-desc">不是一般人能輕易取得，也不是產業內可直接查知的資訊。</div><div class="layer-tag">SECRECY</div></div>
-      <div class="stack-block b-accent"><div class="layer-nb">LAYER 02</div><div class="layer-ttl">具有經濟價值</div><div class="layer-desc">正因為它被保密，才帶來成本、速度、品質或市場優勢。</div><div class="layer-tag">VALUE</div></div>
-      <div class="stack-block b-ink"><div class="layer-nb">LAYER 03</div><div class="layer-ttl">合理保密措施</div><div class="layer-desc">有實際運作的控制機制；不是只有蓋一個「機密」章。</div><div class="layer-tag">CONTROL</div></div>
+      <div class="stack-block b-grey"><div class="layer-nb">第一層</div><div class="layer-ttl">不為公眾所知</div><div class="layer-desc">不是一般人能輕易取得，也不是產業內可直接查知的資訊。</div><div class="layer-tag">秘密性</div></div>
+      <div class="stack-block b-accent"><div class="layer-nb">第二層</div><div class="layer-ttl">具有經濟價值</div><div class="layer-desc">正因為它被保密，才帶來成本、速度、品質或市場優勢。</div><div class="layer-tag">價值</div></div>
+      <div class="stack-block b-ink"><div class="layer-nb">第三層</div><div class="layer-ttl">合理保密措施</div><div class="layer-desc">有實際運作的控制機制；不是只有蓋一個「機密」章。</div><div class="layer-tag">控制</div></div>
     </div>
   </div>
 </section>
@@ -1357,7 +1355,7 @@
   <div class="canvas-card">
     
   <div class="chrome-min">
-    <div class="l">Section 01 · Patent vs Trade Secret</div>
+    <div class="l"></div>
     <div class="r">04 / 24</div>
   </div>
     
@@ -1378,7 +1376,7 @@
   <div class="canvas-card">
     
   <div class="chrome-min">
-    <div class="l">Decision Matrix</div>
+    <div class="l"></div>
     <div class="r">05 / 24</div>
   </div>
     <div data-anim="line" style="display:flex;flex-direction:column;gap:1.6vh">
@@ -1388,27 +1386,27 @@
     <div data-anim="up" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.4vw;margin-top:auto">
       
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
-    <div class="t-meta" style="">01 / REVERSE</div>
+    <div class="t-meta" style="">01</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">逆向工程</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">產品賣出去就能拆解，偏向專利；製程藏在工廠裡，偏向秘密。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">產品賣出去就能拆解，偏向專利；製程藏在工廠裡，偏向秘密。</p>
   </article>
       
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
-    <div class="t-meta" style="">02 / LIFECYCLE</div>
+    <div class="t-meta" style="">02</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">生命週期</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">20 年內淘汰可專利；價值可能超過 20 年，保密更有利。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">20 年內淘汰可專利；價值可能超過 20 年，保密更有利。</p>
   </article>
       
   <article class="card-accent" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
-    <div class="t-meta" style="color:var(--accent-on)">03 / DETECT</div>
+    <div class="t-meta" style="color:var(--accent-on)">03</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">侵權偵測</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--accent-on)">產品上看得見可比對；競爭對手工廠內濫用很難查。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--accent-on)">產品上看得見可比對；競爭對手工廠內濫用很難查。</p>
   </article>
       
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
-    <div class="t-meta" style="">04 / INVENT</div>
+    <div class="t-meta" style="">04</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">獨立發明</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">別人很快會想到時靠專利；需要昂貴試錯才知道時靠秘密。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">別人很快會想到時靠專利；需要昂貴試錯才知道時靠秘密。</p>
   </article>
     </div>
   </div>
@@ -1418,7 +1416,7 @@
   <div class="canvas-card">
     
   <div class="chrome-min">
-    <div class="l">Section 02 · Monetization</div>
+    <div class="l"></div>
     <div class="r">06 / 24</div>
   </div>
     
@@ -1428,25 +1426,25 @@
     
   </div>
     <div data-anim="up" style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,11fr);gap:2vw;flex:1;margin-top:4vh">
-      <div class="card-ink" style="padding:3vh 2vw;display:flex;flex-direction:column;justify-content:space-between"><div class="t-meta" style="color:rgba(255,255,255,.62)">THREE PATHS</div><div style="font-family:var(--sans),var(--sans-zh);font-size:min(5vw,8.5vh);font-weight:200;line-height:1;color:#fff">價值<br/>轉化<br/>路徑</div></div>
+      <div class="card-ink" style="padding:3vh 2vw;display:flex;flex-direction:column;justify-content:space-between"><div class="t-meta" style="color:rgba(255,255,255,.62)">三種路徑</div><div style="font-family:var(--sans),var(--sans-zh);font-size:min(5vw,8.5vh);font-weight:200;line-height:1;color:#fff">價值<br/>轉化<br/>路徑</div></div>
       <div style="display:flex;flex-direction:column;gap:1.4vh">
         
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="">01</div>
-    <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">溢價 Premium</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">良率更高、成本更低、品質更穩，因此同樣產品可以有更好毛利。</p>
+    <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">溢價</h3>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">良率更高、成本更低、品質更穩，因此同樣產品可以有更好毛利。</p>
   </article>
         
   <article class="card-accent" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="color:var(--accent-on)">02</div>
-    <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">授權抽成 Licensing</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--accent-on)">把 know-how、軟體、品牌、認證與支援打包成授權組合。</p>
+    <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">授權抽成</h3>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--accent-on)">把 know-how、軟體、品牌、認證與支援打包成授權組合。</p>
   </article>
         
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="">03</div>
-    <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">風險降低 Risk Reduction</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">防止技術流失、避免追趕者跳過研發學費。</p>
+    <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">風險降低</h3>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">防止技術流失、避免追趕者跳過研發學費。</p>
   </article>
       </div>
     </div>
@@ -1459,13 +1457,13 @@
     <span class="ring-mat lg" style="position:absolute;left:4vw;bottom:8vh;width:18vw;height:18vw;color:var(--ink);opacity:.24"></span>
     
   <div class="chrome-min">
-    <div class="l">Inspection Paradox</div>
+    <div class="l"></div>
     <div class="r">07 / 24</div>
   </div>
     <h1 class="h-statement" data-anim="line" style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(8.4vw,14.8vh);line-height:1;letter-spacing:-.025em;margin-top:8vh">
       買家要先看到秘密<br/>才知道值不值得買；<br/><span style="color:var(--accent)">但看了秘密，<br/>就不是秘密了。</span>
     </h1>
-    <span class="stmt-anchor t-meta" style="position:absolute;right:5vw;bottom:10vh;color:var(--text-helper)">驗貨悖論 · INSPECTION PARADOX</span>
+    <span class="stmt-anchor t-meta" style="position:absolute;right:5vw;bottom:10vh;color:var(--text-helper)">驗貨悖論</span>
   </div>
 </section>
 
@@ -1473,7 +1471,7 @@
   <div class="canvas-card">
     
   <div class="chrome-min">
-    <div class="l">Tiered Disclosure</div>
+    <div class="l"></div>
     <div class="r">08 / 24</div>
   </div>
     
@@ -1487,7 +1485,7 @@
         <div class="th-node up "><span class="dot"></span><div class="label"><span class="yr">01</span><span class="name">NDA + 評估包</span><span class="desc">效果證明，不給配方</span></div></div><div class="th-node down "><span class="dot"></span><div class="label"><span class="yr">02</span><span class="name">付費試用</span><span class="desc">有限範圍與試產</span></div></div><div class="th-node up "><span class="dot"></span><div class="label"><span class="yr">03</span><span class="name">簽約授權</span><span class="desc">SOP / 設備 / 材料</span></div></div><div class="th-node down "><span class="dot"></span><div class="label"><span class="yr">04</span><span class="name">驗收里程碑</span><span class="desc">重現後交進階參數</span></div></div><div class="th-node up accent"><span class="dot"></span><div class="label"><span class="yr">05</span><span class="name">商業量產</span><span class="desc">缺陷庫與下一代改進</span></div></div>
       </div>
     </div>
-    <div class="t-meta" style="color:var(--text-helper)">DISCLOSURE IS A PRODUCT, NOT A LEAK.</div>
+    <div class="t-meta" style="color:var(--text-helper)">揭露本身就是產品設計</div>
   </div>
 </section>
 
@@ -1495,7 +1493,7 @@
   <div class="canvas-card">
     
   <div class="chrome-min">
-    <div class="l">Revenue Stack</div>
+    <div class="l"></div>
     <div class="r">09 / 24</div>
   </div>
     
@@ -1509,37 +1507,37 @@
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="">01</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">前期授權金</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">取得機密資料包的權利，也回收研發成本。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">取得機密資料包的權利，也回收研發成本。</p>
   </article>
       
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="">02</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">里程碑付款</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">被授權方重現效能後，才進一步揭露。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">被授權方重現效能後，才進一步揭露。</p>
   </article>
       
   <article class="card-accent" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="color:var(--accent-on)">03</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">按量／營收抽成</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--accent-on)">分享商業化後的上行利潤。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--accent-on)">分享商業化後的上行利潤。</p>
   </article>
       
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="">04</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">最低授權金</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">防止拿到技術後擱置不用。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">防止拿到技術後擱置不用。</p>
   </article>
       
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="">05</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">技術支援費</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">工程師培訓、現場調試、問題排除。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">工程師培訓、現場調試、問題排除。</p>
   </article>
       
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="">06</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">稽核權</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">確認範圍、數量、地區與保密遵守。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">確認範圍、數量、地區與保密遵守。</p>
   </article>
     </div>
   </div>
@@ -1549,7 +1547,7 @@
   <div class="canvas-card">
     
   <div class="chrome-min">
-    <div class="l">BMC · Business Model Canvas</div>
+    <div class="l"></div>
     <div class="r">10 / 24</div>
   </div>
     
@@ -1558,12 +1556,26 @@
     <h2 style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(5.8vw,10.2vh);line-height:1.02;letter-spacing:-.025em;color:var(--text-primary)">它不只是關鍵資源；它也決定價值主張、收入來源、客戶關係與成本結構。</h2>
     
   </div>
-    <div data-anim="up" style="display:grid;grid-template-columns:repeat(3,1fr);gap:.8vw;margin-top:2vh">
-      <div class="card-fill" style="padding:1.2vh 1.2vw;min-height:9vh"><div class="t-meta" style="">BMC 01</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(14px,1.1vw);font-weight:400;margin-top:.6vh">關鍵資源</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(10px,.78vw);font-weight:300;line-height:1.4;margin-top:.5vh;color:var(--text-secondary)">製程配方、隱性 know-how</div></div><div class="card-accent" style="padding:1.2vh 1.2vw;min-height:9vh"><div class="t-meta" style="color:var(--accent-on)">BMC 02</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(14px,1.1vw);font-weight:400;margin-top:.6vh">價值主張</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(10px,.78vw);font-weight:300;line-height:1.4;margin-top:.5vh;color:var(--accent-on)">更快投產、更高良率</div></div><div class="card-fill" style="padding:1.2vh 1.2vw;min-height:9vh"><div class="t-meta" style="">BMC 03</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(14px,1.1vw);font-weight:400;margin-top:.6vh">收入來源</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(10px,.78vw);font-weight:300;line-height:1.4;margin-top:.5vh;color:var(--text-secondary)">授權金、支援費、認證費</div></div><div class="card-fill" style="padding:1.2vh 1.2vw;min-height:9vh"><div class="t-meta" style="">BMC 04</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(14px,1.1vw);font-weight:400;margin-top:.6vh">關鍵活動</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(10px,.78vw);font-weight:300;line-height:1.4;margin-top:.5vh;color:var(--text-secondary)">保護、改良、培訓、稽核</div></div><div class="card-fill" style="padding:1.2vh 1.2vw;min-height:9vh"><div class="t-meta" style="">BMC 05</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(14px,1.1vw);font-weight:400;margin-top:.6vh">客戶關係</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(10px,.78vw);font-weight:300;line-height:1.4;margin-top:.5vh;color:var(--text-secondary)">長期支援、改進共享</div></div><div class="card-fill" style="padding:1.2vh 1.2vw;min-height:9vh"><div class="t-meta" style="">BMC 06</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(14px,1.1vw);font-weight:400;margin-top:.6vh">成本結構</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(10px,.78vw);font-weight:300;line-height:1.4;margin-top:.5vh;color:var(--text-secondary)">安全、法律、監控、訴訟</div></div><div class="card-fill" style="padding:1.2vh 1.2vw;min-height:9vh"><div class="t-meta" style="">BMC 07</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(14px,1.1vw);font-weight:400;margin-top:.6vh">關鍵夥伴</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(10px,.78vw);font-weight:300;line-height:1.4;margin-top:.5vh;color:var(--text-secondary)">被授權方、OEM、供應商</div></div><div class="card-fill" style="padding:1.2vh 1.2vw;min-height:9vh"><div class="t-meta" style="">BMC 08</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(14px,1.1vw);font-weight:400;margin-top:.6vh">通路</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(10px,.78vw);font-weight:300;line-height:1.4;margin-top:.5vh;color:var(--text-secondary)">技轉包、受控資料室</div></div><div class="card-fill" style="padding:1.2vh 1.2vw;min-height:9vh"><div class="t-meta" style="">BMC 09</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(14px,1.1vw);font-weight:400;margin-top:.6vh">目標客群</div><div style="font-family:var(--sans),var(--sans-zh);font-size:max(10px,.78vw);font-weight:300;line-height:1.4;margin-top:.5vh;color:var(--text-secondary)">缺時間、經驗與設備調校</div></div>
+    <div data-anim="up" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4vw;margin-top:4vh;flex:1">
+      <article class="card-fill" style="padding:3vh 1.8vw;display:flex;flex-direction:column;gap:2vh">
+        <div class="t-meta">資源與價值</div>
+        <h3 style="font-family:var(--sans),var(--sans-zh);font-size:max(24px,2vw);font-weight:350;line-height:1.12">關鍵資源<br/>價值主張<br/>目標客群</h3>
+        <p class="body-sm" style="color:var(--text-secondary)">製程配方與隱性 know-how，轉成更快投產、更高良率，賣給缺時間與經驗的客戶。</p>
+      </article>
+      <article class="card-accent" style="padding:3vh 1.8vw;display:flex;flex-direction:column;gap:2vh">
+        <div class="t-meta" style="color:var(--accent-on)">交易與關係</div>
+        <h3 style="font-family:var(--sans),var(--sans-zh);font-size:max(24px,2vw);font-weight:350;line-height:1.12">收入來源<br/>客戶關係<br/>通路</h3>
+        <p class="body-sm" style="color:var(--accent-on)">授權金、支援費、認證費，透過技轉包與受控資料室，形成長期支援與改進共享。</p>
+      </article>
+      <article class="card-fill" style="padding:3vh 1.8vw;display:flex;flex-direction:column;gap:2vh">
+        <div class="t-meta">執行與控制</div>
+        <h3 style="font-family:var(--sans),var(--sans-zh);font-size:max(24px,2vw);font-weight:350;line-height:1.12">關鍵活動<br/>成本結構<br/>關鍵夥伴</h3>
+        <p class="body-sm" style="color:var(--text-secondary)">保護、改良、培訓、稽核，同時承擔安全、法律、監控與訴訟成本。</p>
+      </article>
     </div>
     <div data-anim="up" style="margin-top:auto;border-top:1px solid var(--ink);padding-top:1.4vh;display:flex;justify-content:space-between;align-items:end">
       <div style="font-family:var(--sans),var(--sans-zh);font-size:min(3vw,5vh);font-weight:200;letter-spacing:-.035em;color:var(--accent)">執行優勢</div>
-      <p style="font-family:var(--sans),var(--sans-zh);font-size:max(11px,.9vw);font-weight:300;max-width:48ch;color:var(--text-secondary);line-height:1.5">專利變現的是排除權；營業秘密變現的是讓你更快、更便宜、更少損失地做到。</p>
+      <p style="font-family:var(--sans),var(--sans-zh);font-size:max(18px,1.35vw);font-weight:300;max-width:44ch;color:var(--text-secondary);line-height:1.42">專利變現的是排除權；營業秘密變現的是讓你更快、更便宜、更少損失地做到。</p>
     </div>
   </div>
 </section>
@@ -1571,7 +1583,7 @@
 <section class="slide light" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
     <div class="chrome-min">
-      <div class="l">Case 01 · Dolby</div>
+      <div class="l"></div>
       <div class="r">11 / 24</div>
     </div>
     <div style="flex:1;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:2.6vh">
@@ -1594,9 +1606,9 @@
         <article class="card-ink" style="padding:1.8vh 1.25vw;display:flex;flex-direction:column;gap:.8vh"><div class="t-meta" style="color:rgba(255,255,255,.62)">06 / 稽核</div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.55vw);line-height:1.15;color:#fff">收入防漏</h3><p class="body-sm" style="color:rgba(255,255,255,.76)">雙邊報告交叉驗證</p></article>
       </div>
       <div data-anim="up" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2vw;border-top:1px solid var(--ink);padding-top:1.6vh">
-        <div><div class="t-meta">授權收入</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.4vh);line-height:.95;letter-spacing:-.04em">$1.248B</div><p class="body-sm">FY2025</p></div>
+        <div><div class="t-meta">授權收入</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.4vh);line-height:.95;letter-spacing:-.04em">$1.248B</div><p class="body-sm">2025 財年</p></div>
         <div><div class="t-meta">營收占比</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.4vh);line-height:.95;letter-spacing:-.04em;color:var(--accent)">92.5%</div><p class="body-sm">來自授權</p></div>
-        <div><div class="t-meta">被授權方</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.4vh);line-height:.95;letter-spacing:-.04em">~1,000</div><p class="body-sm">Licensees</p></div>
+        <div><div class="t-meta">被授權方</div><div style="font-family:var(--sans);font-weight:200;font-size:min(4.6vw,7.4vh);line-height:.95;letter-spacing:-.04em">~1,000</div><p class="body-sm">授權客戶</p></div>
       </div>
     </div>
   </div>
@@ -1606,7 +1618,7 @@
   <div class="canvas-card">
     
   <div class="chrome-min">
-    <div class="l">Dolby · IP Bundle</div>
+    <div class="l"></div>
     <div class="r">12 / 24</div>
   </div>
     
@@ -1620,37 +1632,37 @@
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="">01</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">專利</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">音訊壓縮、Dolby Atmos、Dolby Vision HDR。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">音訊壓縮、Dolby Atmos、Dolby Vision HDR。</p>
   </article>
       
   <article class="card-accent" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="color:var(--accent-on)">02</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">Know-how</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--accent-on)">營業秘密、設計、規格、專有資訊。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--accent-on)">營業秘密、設計、規格、專有資訊。</p>
   </article>
       
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="">03</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">Show-how</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">教學、技能傳授、測試結果與技術示範。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">教學、技能傳授、測試結果與技術示範。</p>
   </article>
       
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="">04</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">軟體</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">參考解碼器，禁止逆向工程與修改。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">參考解碼器，禁止逆向工程與修改。</p>
   </article>
       
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="">05</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">品牌</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">Dolby 名稱與雙 D 標誌成為品質訊號。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">Dolby 名稱與雙 D 標誌成為品質訊號。</p>
   </article>
       
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="">06</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">認證</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">產品上市前必須通過 Dolby 測試。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">產品上市前必須通過 Dolby 測試。</p>
   </article>
     </div>
   </div>
@@ -1660,7 +1672,7 @@
   <div class="canvas-card">
     
   <div class="chrome-min">
-    <div class="l">Dolby · Two-tier Licensing</div>
+    <div class="l"></div>
     <div class="r">13 / 24</div>
   </div>
     
@@ -1672,25 +1684,25 @@
     <div data-anim="up" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2vw;align-items:stretch;margin-top:5vh;flex:1">
       
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
-    <div class="t-meta" style="">01 / Implementation</div>
+    <div class="t-meta" style="">01 / 實作授權</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">晶片商</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">Qualcomm、MediaTek 等把技術做進晶片，但銷售對象受控。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">Qualcomm、MediaTek 等把技術做進晶片，但銷售對象受控。</p>
   </article>
       
   <article class="card-accent" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
-    <div class="t-meta" style="color:var(--accent-on)">02 / System</div>
+    <div class="t-meta" style="color:var(--accent-on)">02 / 系統授權</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">設備商</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--accent-on)">Samsung、LG、Apple 等終端產品，每台出貨付授權金。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--accent-on)">Samsung、LG、Apple 等終端產品，每台出貨付授權金。</p>
   </article>
       
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
-    <div class="t-meta" style="">03 / Certified</div>
+    <div class="t-meta" style="">03 / 認證名單</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">合格名單</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">通過測試後列入 SQR，才能取得含 Dolby 技術的晶片。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">通過測試後列入 SQR，才能取得含 Dolby 技術的晶片。</p>
   </article>
     </div>
     <div data-anim="up" style="border-top:1px solid var(--ink);padding-top:2vh;display:flex;justify-content:space-between;align-items:end">
-      <div style="font-family:var(--sans);font-weight:200;font-size:min(5vw,8.5vh);letter-spacing:-.035em">CHIP → DEVICE → LICENSE</div>
+      <div style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(5vw,8.5vh);letter-spacing:-.035em">晶片 → 設備 → 授權</div>
       <p class="body" style="max-width:42ch;color:var(--text-secondary)">控制供應鏈入口，就是控制授權收入出口。</p>
     </div>
   </div>
@@ -1700,7 +1712,7 @@
   <div class="canvas-card">
     
   <div class="chrome-min">
-    <div class="l">Dolby · Audit Loop</div>
+    <div class="l"></div>
     <div class="r">14 / 24</div>
   </div>
     
@@ -1733,22 +1745,22 @@
         <div aria-hidden="true" style="position:absolute;right:38%;top:25%;z-index:2;font-family:var(--sans);font-weight:200;font-size:min(4vw,7vh);line-height:1;color:var(--accent);opacity:.62">↙</div>
         <div aria-hidden="true" style="position:absolute;left:50%;top:61%;transform:translateX(-50%);z-index:2;font-family:var(--sans);font-weight:200;font-size:min(4vw,7vh);line-height:1;color:var(--ink);opacity:.5">↓</div>
         <div class="card-fill" style="position:absolute;left:3%;top:0;width:13vw;min-height:13vh;padding:2vh 1.2vw;display:flex;flex-direction:column;justify-content:space-between;z-index:1">
-          <div class="t-meta">SOURCE A</div>
+          <div class="t-meta">晶片報告</div>
           <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(20px,1.7vw);line-height:1.05">晶片報告</h3>
           <p class="body-sm">晶片商回報出貨對象</p>
         </div>
         <div class="card-accent" style="position:absolute;right:3%;top:0;width:13vw;min-height:13vh;padding:2vh 1.2vw;display:flex;flex-direction:column;justify-content:space-between;z-index:1">
-          <div class="t-meta" style="color:var(--accent-on)">SOURCE B</div>
+          <div class="t-meta" style="color:var(--accent-on)">設備報告</div>
           <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(20px,1.7vw);line-height:1.05">設備報告</h3>
           <p class="body-sm" style="color:var(--accent-on)">設備商回報產品出貨</p>
         </div>
         <div class="card-ink" style="position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);width:15vw;min-height:14vh;padding:2.2vh 1.4vw;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.7vh;z-index:1">
-          <div class="t-meta" style="color:rgba(255,255,255,.62)">CROSS-VERIFY</div>
+          <div class="t-meta" style="color:rgba(255,255,255,.62)">交叉驗證</div>
           <div style="font-family:var(--sans),var(--sans-zh);font-size:min(3.5vw,6vh);line-height:.95;font-weight:200;color:#fff">稽核</div>
           <p class="body-sm" style="color:rgba(255,255,255,.76)">雙邊報告交叉驗證</p>
         </div>
         <div class="card-fill" style="position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:30vw;padding:2vh 1.6vw;border-top:3px solid var(--accent);z-index:1">
-          <div class="t-meta" style="color:var(--accent)">MISMATCH DETECTED</div>
+          <div class="t-meta" style="color:var(--accent)">偵測少報</div>
           <div style="font-family:var(--sans),var(--sans-zh);font-weight:300;font-size:max(20px,1.8vw);line-height:1.18;color:var(--text-primary)">少報超過 5% → 三倍未付授權金</div>
         </div>
       </div>
@@ -1759,7 +1771,7 @@
 <section class="slide light" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
     <div class="chrome-min">
-      <div class="l">Case 02 · TSMC</div>
+      <div class="l"></div>
       <div class="r">15 / 24</div>
     </div>
     <div style="flex:1;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:2.6vh">
@@ -1795,14 +1807,14 @@
     <div class="split-half">
       <div class="half b-accent" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between"><canvas class="ascii-bg" aria-hidden="true"></canvas>
   <div class="chrome-min">
-    <div class="l">No-license Strategy</div>
+    <div class="l"></div>
     <div class="r">16 / 24</div>
-  </div><div data-anim="left" style="font-family:var(--sans),var(--sans-zh);font-size:min(7.4vw,13vh);font-weight:200;line-height:.96;letter-spacing:-.025em;color:#fff">把秘密<br/>留著</div><p style="color:rgba(255,255,255,.78);font-family:var(--sans),var(--sans-zh);font-size:max(13px,1vw);line-height:1.6;font-weight:300">授權出去等於同時失去秘密，並創造競爭對手。</p></div>
+  </div><div data-anim="left" style="font-family:var(--sans),var(--sans-zh);font-size:min(7.4vw,13vh);font-weight:200;line-height:.96;letter-spacing:-.025em;color:#fff">把秘密<br/>留著</div><p style="color:rgba(255,255,255,.78);font-family:var(--sans),var(--sans-zh);font-size:max(18px,1.35vw);line-height:1.42;font-weight:300">授權出去等於同時失去秘密，並創造競爭對手。</p></div>
       <div class="half" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between">
   <div class="chrome-min">
-    <div class="l">Service Model</div>
+    <div class="l"></div>
     <div class="r">16 / 24</div>
-  </div><div data-anim="right" style="font-family:var(--sans),var(--sans-zh);font-size:min(7.4vw,13vh);font-weight:200;line-height:.96;letter-spacing:-.025em;color:var(--ink)">賣的是<br/>我幫你做</div><p style="color:var(--text-secondary);font-family:var(--sans),var(--sans-zh);font-size:max(13px,1vw);line-height:1.6;font-weight:300">客戶買到的不是配方，而是台積電把配方轉成量產結果的能力。</p></div>
+  </div><div data-anim="right" style="font-family:var(--sans),var(--sans-zh);font-size:min(7.4vw,13vh);font-weight:200;line-height:.96;letter-spacing:-.025em;color:var(--ink)">賣的是<br/>我幫你做</div><p style="color:var(--text-secondary);font-family:var(--sans),var(--sans-zh);font-size:max(18px,1.35vw);line-height:1.42;font-weight:300">客戶買到的不是配方，而是台積電把配方轉成量產結果的能力。</p></div>
     </div>
   </div>
 </section>
@@ -1811,7 +1823,7 @@
   <div class="canvas-card">
     
   <div class="chrome-min">
-    <div class="l">TSMC · Know-how System</div>
+    <div class="l"></div>
     <div class="r">17 / 24</div>
   </div>
     
@@ -1823,21 +1835,21 @@
     <div data-anim="up" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.4vw;margin-top:5vh;flex:1">
       
   <article class="card-accent" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
-    <div class="t-meta" style="color:var(--accent-on)">CORE</div>
+    <div class="t-meta" style="color:var(--accent-on)">核心</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">製程窗口</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--accent-on)">每一步的溫度、壓力、氣體、時間。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--accent-on)">每一步的溫度、壓力、氣體、時間。</p>
   </article>
       
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
-    <div class="t-meta" style="">MIDDLE</div>
+    <div class="t-meta" style="">中層</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">良率學習資料庫</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">知道哪些條件會讓良率崩潰。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">知道哪些條件會讓良率崩潰。</p>
   </article>
       
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
-    <div class="t-meta" style="">OUTER</div>
+    <div class="t-meta" style="">外圍</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">設備與供應鏈</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">機台配方、材料批次、缺陷診斷與客戶協作。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">機台配方、材料批次、缺陷診斷與客戶協作。</p>
   </article>
     </div>
     <div data-anim="up" style="border-top:1px solid var(--ink);padding-top:2vh;display:flex;justify-content:space-between"><div style="font-family:var(--sans),var(--sans-zh);font-size:min(4.2vw,7.4vh);font-weight:200;letter-spacing:-.025em;color:var(--accent)">負面知識：知道什麼不能做</div><p class="body" style="max-width:40ch;color:var(--text-secondary)">重建秘密不只是重新發明，還要重新經歷所有失敗。</p></div>
@@ -1848,7 +1860,7 @@
   <div class="canvas-card">
     
   <div class="chrome-min">
-    <div class="l">TSMC · Boundary of Licensing</div>
+    <div class="l"></div>
     <div class="r">18 / 24</div>
   </div>
     
@@ -1868,7 +1880,7 @@
 <section class="slide light" data-layout="S16" data-animate="field-notes">
   <div class="canvas-card">
     <div class="chrome-min">
-      <div class="l">Case 03 · Waymo v. Uber</div>
+      <div class="l"></div>
       <div class="r">19 / 24</div>
     </div>
     <div style="flex:1;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:2.6vh">
@@ -1903,7 +1915,7 @@
   <div class="canvas-card">
     
   <div class="chrome-min">
-    <div class="l">Waymo · Timeline</div>
+    <div class="l"></div>
     <div class="r">20 / 24</div>
   </div>
     
@@ -1917,7 +1929,7 @@
         <div class="th-node up "><span class="dot"></span><div class="label"><span class="yr">2015/12</span><span class="name">下載與抹除</span><span class="desc">14,107 檔案到 USB</span></div></div><div class="th-node down "><span class="dot"></span><div class="label"><span class="yr">2016/08</span><span class="name">Uber 收購 Otto</span><span class="desc">約 $680M</span></div></div><div class="th-node up accent"><span class="dot"></span><div class="label"><span class="yr">2016/12</span><span class="name">意外 CC</span><span class="desc">OTTO FILES 附件曝光</span></div></div><div class="th-node down "><span class="dot"></span><div class="label"><span class="yr">2018/02</span><span class="name">開庭後和解</span><span class="desc">0.34% 股權</span></div></div><div class="th-node up "><span class="dot"></span><div class="label"><span class="yr">2021/01</span><span class="name">特赦</span><span class="desc">未入獄服刑</span></div></div>
       </div>
     </div>
-    <div class="t-meta" style="color:var(--text-helper)">THE SMOKING GUN WAS AN EMAIL.</div>
+    <div class="t-meta" style="color:var(--text-helper)">關鍵證據是一封被 CC 的供應商信件</div>
   </div>
 </section>
 
@@ -1925,7 +1937,7 @@
   <div class="canvas-card">
     
   <div class="chrome-min">
-    <div class="l">Waymo · Forensics</div>
+    <div class="l"></div>
     <div class="r">21 / 24</div>
   </div>
     
@@ -1935,25 +1947,25 @@
     
   </div>
     <div data-anim="up" style="display:grid;grid-template-columns:minmax(0,5fr) minmax(0,11fr);gap:2vw;flex:1;margin-top:4vh">
-      <div class="card-ink" style="padding:3vh 2vw;display:flex;flex-direction:column;justify-content:space-between"><div class="t-meta" style="color:rgba(255,255,255,.62)">EVIDENCE STACK</div><div style="font-family:var(--sans),var(--sans-zh);font-size:min(5vw,8.5vh);font-weight:200;line-height:1;color:#fff">三組<br/>鑑識<br/>工具</div></div>
+      <div class="card-ink" style="padding:3vh 2vw;display:flex;flex-direction:column;justify-content:space-between"><div class="t-meta" style="color:rgba(255,255,255,.62)">鑑識證據</div><div style="font-family:var(--sans),var(--sans-zh);font-size:min(5vw,8.5vh);font-weight:200;line-height:1;color:#fff">三組<br/>鑑識<br/>工具</div></div>
       <div style="display:flex;flex-direction:column;gap:1.4vh">
         
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="">01</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">Armada</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">確認下載來源來自 Levandowski 的公司筆電。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">確認下載來源來自 Levandowski 的公司筆電。</p>
   </article>
         
   <article class="card-accent" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="color:var(--accent-on)">02</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">Bit9</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--accent-on)">記錄 USB 外接硬碟的連接與移除。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--accent-on)">記錄 USB 外接硬碟的連接與移除。</p>
   </article>
         
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="">03</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">GRR</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">在筆電被擦掉前，把存取日誌回傳伺服器。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">在筆電被擦掉前，把存取日誌回傳伺服器。</p>
   </article>
       </div>
     </div>
@@ -1964,7 +1976,7 @@
   <div class="canvas-card">
     
   <div class="chrome-min">
-    <div class="l">Waymo · Red Flags / Outcome</div>
+    <div class="l"></div>
     <div class="r">22 / 24</div>
   </div>
     <div data-anim="ledger" style="display:flex;flex-direction:column;gap:0;flex:1">
@@ -1977,7 +1989,7 @@
   <div class="canvas-card">
     
   <div class="chrome-min">
-    <div class="l">Defense Architecture</div>
+    <div class="l"></div>
     <div class="r">23 / 24</div>
   </div>
     
@@ -1991,37 +2003,37 @@
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="">01</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">法律層</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">NDA、發明歸屬、保密存續、稽核權。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">NDA、發明歸屬、保密存續、稽核權。</p>
   </article>
       
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="">02</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">員工層</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">角色式存取、培訓紀錄、離職面談。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">角色式存取、培訓紀錄、離職面談。</p>
   </article>
       
   <article class="card-accent" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="color:var(--accent-on)">03</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">技術層</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--accent-on)">Need-to-know、DLP、浮水印、日誌、禁止批量匯出。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--accent-on)">Need-to-know、DLP、浮水印、日誌、禁止批量匯出。</p>
   </article>
       
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="">04</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">組織層</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">營業秘密登錄冊、揭露審批、供應商管控。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">營業秘密登錄冊、揭露審批、供應商管控。</p>
   </article>
       
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="">05</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">證據層</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">不可竄改日誌、版本控管、存取歷史。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">不可竄改日誌、版本控管、存取歷史。</p>
   </article>
       
   <article class="card-fill" style="padding:2.4vh 1.5vw;min-height:17vh;display:flex;flex-direction:column;gap:1.2vh">
     <div class="t-meta" style="">06</div>
     <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.7vw);line-height:1.15;letter-spacing:-.015em">實體／供應鏈</h3>
-    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.95vw);line-height:1.55;font-weight:300;color:var(--text-secondary)">無手機區、遠端工作規則、現場稽核。</p>
+    <p style="font-family:var(--sans),var(--sans-zh);font-size:max(16px,1.25vw);line-height:1.42;font-weight:300;color:var(--text-secondary)">無手機區、遠端工作規則、現場稽核。</p>
   </article>
     </div>
   </div>
@@ -2034,23 +2046,22 @@
         <canvas class="ascii-bg" aria-hidden="true"></canvas>
         
   <div class="chrome-min">
-    <div class="l">Closing</div>
+    <div class="l"></div>
     <div class="r">24 / 24</div>
   </div>
         <div data-anim="manifesto" style="display:flex;flex-direction:column;gap:2vh">
-          <div class="t-meta" style="color:rgba(255,255,255,.78)">MANIFESTO</div>
           <h2 style="font-family:var(--sans),var(--sans-zh);font-size:min(7.8vw,13.8vh);line-height:.96;letter-spacing:-.025em;font-weight:200;color:#fff">秘密不只是資訊。<br/>它是可控的<br/><span style="font-style:italic;font-weight:300">重複性</span>。</h2>
         </div>
-        <div class="t-meta" style="color:rgba(255,255,255,.62);border-top:1px solid rgba(255,255,255,.24);padding-top:2vh">END · TRADE SECRETS IPR</div>
+        <div class="t-meta" style="color:rgba(255,255,255,.62);border-top:1px solid rgba(255,255,255,.24);padding-top:2vh">第六組</div>
       </div>
       <div class="half" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between">
         
   <div class="chrome-min">
-    <div class="l">Three Modes</div>
-    <div class="r">TAKEAWAYS</div>
+    <div class="l"></div>
+    <div class="r"></div>
   </div>
         <div data-anim="rules" style="display:flex;flex-direction:column;gap:0">
-          <div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:2.6vh 0;border-top:1px solid var(--border-subtle);"><div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9;color:var(--text-primary)">01</div><div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:var(--text-primary);margin-bottom:1vh">Dolby</h3><p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.92vw);line-height:1.6;color:var(--text-secondary);font-weight:300">把 know-how 打包進授權組合，每年約 $1.25B 授權收入。</p></div></div><div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:2.6vh 0;border-top:1px solid var(--border-subtle);"><div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9;color:var(--text-primary)">02</div><div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:var(--text-primary);margin-bottom:1vh">台積電</h3><p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.92vw);line-height:1.6;color:var(--text-secondary);font-weight:300">把 know-how 留著，賣服務與量產能力。</p></div></div><div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:2.6vh 0;border-top:1px solid var(--border-subtle);border-bottom:2px solid var(--accent)"><div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9;color:var(--accent)">03</div><div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:var(--accent);margin-bottom:1vh">Waymo / Uber</h3><p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.92vw);line-height:1.6;color:var(--text-secondary);font-weight:300">know-how 被偷走，和解 $245M，Uber 最終放棄自駕。</p></div></div>
+          <div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:2.6vh 0;border-top:1px solid var(--border-subtle);"><div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9;color:var(--text-primary)">01</div><div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:var(--text-primary);margin-bottom:1vh">Dolby</h3><p style="font-family:var(--sans),var(--sans-zh);font-size:max(17px,1.25vw);line-height:1.42;color:var(--text-secondary);font-weight:300">把 know-how 打包進授權組合，每年約 $1.25B 授權收入。</p></div></div><div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:2.6vh 0;border-top:1px solid var(--border-subtle);"><div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9;color:var(--text-primary)">02</div><div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:var(--text-primary);margin-bottom:1vh">台積電</h3><p style="font-family:var(--sans),var(--sans-zh);font-size:max(17px,1.25vw);line-height:1.42;color:var(--text-secondary);font-weight:300">把 know-how 留著，賣服務與量產能力。</p></div></div><div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:2.6vh 0;border-top:1px solid var(--border-subtle);border-bottom:2px solid var(--accent)"><div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9;color:var(--accent)">03</div><div><h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:var(--accent);margin-bottom:1vh">Waymo / Uber</h3><p style="font-family:var(--sans),var(--sans-zh);font-size:max(17px,1.25vw);line-height:1.42;color:var(--text-secondary);font-weight:300">know-how 被偷走，和解 $245M，Uber 最終放棄自駕。</p></div></div>
         </div>
         <div class="t-meta" style="color:var(--text-helper);text-align:right">控制好了，就是現金流；控制不好，價值一夕崩塌。</div>
       </div>
@@ -2062,10 +2073,9 @@
   <div class="canvas-card">
     <canvas class="ascii-bg" aria-hidden="true"></canvas>
     <div data-anim="line" style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:3vh">
-      <div class="t-meta" style="color:rgba(255,255,255,.72)">THANK YOU</div>
       <h1 style="font-family:var(--sans),var(--sans-zh);font-size:min(10vw,17vh);font-weight:200;line-height:.92;letter-spacing:-.04em;color:#fff">謝謝聆聽</h1>
     </div>
-    <div class="t-meta" style="color:rgba(255,255,255,.66);border-top:1px solid rgba(255,255,255,.24);padding-top:2vh">第六組 · Q&A</div>
+    <div class="t-meta" style="color:rgba(255,255,255,.66);border-top:1px solid rgba(255,255,255,.24);padding-top:2vh">第六組｜提問時間</div>
   </div>
 </section>
 
@@ -2272,7 +2282,7 @@ function buildOverview(){
     clone.style.cssText='width:100vw;height:100vh;transform:scale('+(1/4.5)+');transform-origin:top left;position:absolute;top:0;left:0;pointer-events:none';
     wrap.appendChild(clone);
     const label=document.createElement('div');
-    label.style.cssText='padding:6px 10px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);opacity:.7';
+    label.style.cssText='padding:6px 10px;font-family:var(--mono);font-size:max(14px,1vw);letter-spacing:.08em;text-transform:none;color:var(--ink);opacity:.7';
     label.textContent=(i+1)+' / '+total;
     card.appendChild(wrap);
     card.appendChild(label);
