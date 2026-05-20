@@ -115,6 +115,7 @@
     position: sticky; top: 110px; align-self: flex-start;
     width: 220px; flex-shrink: 0; padding: 16px 0 16px 24px;
     max-height: calc(100vh - 130px); overflow-y: auto;
+    overscroll-behavior: contain;
     scrollbar-width: thin; scrollbar-color: var(--border) transparent;
   }
   .toc-sidebar::-webkit-scrollbar { width: 4px; }
@@ -244,18 +245,48 @@
   .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
   .back-to-top:hover { box-shadow: var(--shadow-lg); border-color: var(--text-tertiary); }
   .back-to-top svg { width: 18px; height: 18px; color: var(--text-secondary); }
+  .mobile-menu-button, .mobile-menu-popover { display: none; }
   .site-footer { text-align: center; padding: 24px; font-size: 12px; color: var(--text-tertiary); border-top: 1px solid var(--border-light); }
   @media (max-width: 960px) {
     .toc-sidebar { display: none; }
     .main-wrapper { max-width: 840px; }
   }
   @media (max-width: 640px) {
+    .site-header, .slide-nav-bar { display: none; }
     .header-inner { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px 16px; }
     .header-left { justify-content: space-between; }
     .header-subtitle { display: none; }
     .version-toggle { align-self: stretch; }
     .version-btn { flex: 1; text-align: center; }
     .slide-nav-scroll { padding: 0 16px; }
+    .mobile-menu-button {
+      position: fixed; right: 16px; top: 16px; z-index: 120;
+      width: 42px; height: 42px; border-radius: 50%;
+      border: 1px solid var(--border); background: rgba(255,255,255,0.92);
+      color: var(--text-primary); box-shadow: var(--shadow-md);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Noto Sans TC', sans-serif; font-size: 18px; font-weight: 700;
+      cursor: pointer;
+    }
+    .mobile-menu-popover.open { display: block; }
+    .mobile-menu-popover {
+      position: fixed; right: 12px; top: 66px; z-index: 119;
+      width: min(320px, calc(100vw - 24px)); max-height: calc(100vh - 88px);
+      overflow-y: auto; overscroll-behavior: contain;
+      background: rgba(255,255,255,0.96); border: 1px solid var(--border);
+      border-radius: 14px; box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      padding: 14px;
+    }
+    .mobile-menu-label {
+      font-size: 11px; font-weight: 700; color: var(--text-label);
+      letter-spacing: 0.1em; text-transform: uppercase; margin: 2px 2px 8px;
+    }
+    .mobile-version-toggle { margin-bottom: 16px; }
+    .mobile-toc-list { display: flex; flex-direction: column; gap: 2px; }
+    .mobile-toc-list .toc-item { padding: 8px 10px; font-size: 13px; }
     .main-wrapper { max-width: none; width: 100%; }
     .main-content { width: 100%; max-width: none; padding: 16px 12px 96px; }
     .intro-banner { padding: 20px 14px; margin-bottom: 12px; border-radius: 0; border-left: 0; border-right: 0; box-shadow: none; }
@@ -316,6 +347,18 @@
   <div class="slide-nav-scroll" id="slideNavScroll">
     <div class="slide-nav" id="slideNav"></div>
   </div>
+</div>
+<button class="mobile-menu-button" id="mobileMenuButton" type="button" aria-label="開啟目錄" aria-expanded="false" onclick="toggleMobileMenu()">
+  目
+</button>
+<div class="mobile-menu-popover" id="mobileMenuPopover" aria-hidden="true">
+  <div class="mobile-menu-label">版本</div>
+  <div class="version-toggle mobile-version-toggle">
+    <button class="version-btn active" data-version="detailed" onclick="switchVersion('detailed')">詳細版</button>
+    <button class="version-btn" data-version="short" onclick="switchVersion('short')">簡潔版</button>
+  </div>
+  <div class="mobile-menu-label">目錄</div>
+  <div id="mobileTocList" class="mobile-toc-list"></div>
 </div>
 <div class="main-wrapper">
 <aside class="toc-sidebar" id="tocSidebar">
@@ -894,7 +937,7 @@ function getCurrentSlides() {
 function scrollToSlide(slideNum, behavior = 'smooth') {
   const el = document.getElementById('slide-' + slideNum);
   if (!el) return;
-  const topOffset = window.innerWidth <= 640 ? 132 : 104;
+  const topOffset = window.innerWidth <= 640 ? 12 : 104;
   const targetTop = el.getBoundingClientRect().top + window.pageYOffset - topOffset;
   window.scrollTo({ top: Math.max(0, targetTop), behavior });
 }
@@ -927,6 +970,16 @@ function updateSlideNavActive(num) {
   document.querySelectorAll('.slide-nav-btn').forEach(btn => {
     btn.classList.toggle('active', parseInt(btn.dataset.slide) === num);
   });
+}
+
+function toggleMobileMenu(forceOpen) {
+  const popover = document.getElementById('mobileMenuPopover');
+  const button = document.getElementById('mobileMenuButton');
+  if (!popover || !button) return;
+  const open = typeof forceOpen === 'boolean' ? forceOpen : !popover.classList.contains('open');
+  popover.classList.toggle('open', open);
+  popover.setAttribute('aria-hidden', open ? 'false' : 'true');
+  button.setAttribute('aria-expanded', open ? 'true' : 'false');
 }
 
 function renderSlides() {
@@ -983,8 +1036,9 @@ function toggleSupplement(btn) {
 
 function switchVersion(version) {
   if (version === currentVersion) return;
+  const targetSlide = activeSlideInView || 1;
   currentVersion = version;
-  activeSlideInView = 1;
+  activeSlideInView = targetSlide;
   document.querySelectorAll('.version-btn').forEach(b => {
     b.classList.toggle('active', b.dataset.version === version);
   });
@@ -996,28 +1050,36 @@ function switchVersion(version) {
   }
   renderSlides();
   buildToc();
-  updateSlideNavActive(1);
+  updateSlideNavActive(targetSlide);
   observeSlideCards();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  scrollToSlide(targetSlide);
 }
 
 function buildToc() {
   const tocList = document.getElementById('tocList');
+  const mobileTocList = document.getElementById('mobileTocList');
   tocList.innerHTML = '';
+  if (mobileTocList) mobileTocList.innerHTML = '';
   const slides = getCurrentSlides();
   slides.forEach(s => {
-    const item = document.createElement('a');
-    item.className = 'toc-item';
-    item.href = '#slide-' + s.num;
-    item.dataset.slide = s.num;
-    item.innerHTML = '<span class="toc-num">' + s.num + '</span><span class="toc-label">' + s.title + '</span>';
-    item.onclick = (e) => {
-      e.preventDefault();
-      scrollToSlide(s.num);
-    };
-    tocList.appendChild(item);
+    tocList.appendChild(createTocItem(s, false));
+    if (mobileTocList) mobileTocList.appendChild(createTocItem(s, true));
   });
   updateTocActive(activeSlideInView);
+}
+
+function createTocItem(slide, closeOnClick) {
+  const item = document.createElement('a');
+  item.className = 'toc-item';
+  item.href = '#slide-' + slide.num;
+  item.dataset.slide = slide.num;
+  item.innerHTML = '<span class="toc-num">' + slide.num + '</span><span class="toc-label">' + slide.title + '</span>';
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    scrollToSlide(slide.num);
+    if (closeOnClick) toggleMobileMenu(false);
+  });
+  return item;
 }
 
 function updateTocActive(num) {
@@ -1074,6 +1136,7 @@ function observeSlideCards() {
 }
 
 document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') toggleMobileMenu(false);
   if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
     e.preventDefault();
     const prev = Math.max(1, activeSlideInView - 1);
@@ -1083,6 +1146,14 @@ document.addEventListener('keydown', (e) => {
     const next = Math.min(24, activeSlideInView + 1);
     scrollToSlide(next);
   }
+});
+
+document.addEventListener('click', (e) => {
+  const popover = document.getElementById('mobileMenuPopover');
+  const button = document.getElementById('mobileMenuButton');
+  if (!popover || !button || !popover.classList.contains('open')) return;
+  if (popover.contains(e.target) || button.contains(e.target)) return;
+  toggleMobileMenu(false);
 });
 
 buildSlideNav();
