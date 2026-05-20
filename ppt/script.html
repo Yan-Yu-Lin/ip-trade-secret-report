@@ -110,7 +110,26 @@
   .slide-nav-btn.active.speaker-4 { background: var(--speaker-4); border-color: var(--speaker-4); }
   .slide-nav-btn.active.speaker-5 { background: var(--speaker-5); border-color: var(--speaker-5); }
   .slide-nav-btn.active.speaker-6 { background: var(--speaker-6); border-color: var(--speaker-6); }
-  .main-content { max-width: 840px; margin: 0 auto; padding: 32px 24px 120px; }
+  .main-wrapper { max-width: 1120px; margin: 0 auto; display: flex; gap: 0; position: relative; }
+  .toc-sidebar {
+    position: sticky; top: 110px; align-self: flex-start;
+    width: 220px; flex-shrink: 0; padding: 16px 0 16px 24px;
+    max-height: calc(100vh - 130px); overflow-y: auto;
+    scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+  }
+  .toc-sidebar::-webkit-scrollbar { width: 4px; }
+  .toc-sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .toc-title { font-size: 11px; font-weight: 600; color: var(--text-tertiary); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; padding-left: 10px; }
+  .toc-item {
+    display: flex; align-items: baseline; gap: 8px; padding: 5px 10px; border-radius: 6px;
+    cursor: pointer; transition: all 0.15s ease; text-decoration: none; color: var(--text-secondary);
+    font-size: 13px; line-height: 1.4; border-left: 2px solid transparent; margin-bottom: 1px;
+  }
+  .toc-item:hover { background: var(--border-light); color: var(--text-primary); }
+  .toc-item.active { background: var(--bg-card); color: var(--text-primary); font-weight: 500; border-left-color: var(--accent); box-shadow: var(--shadow-sm); }
+  .toc-item .toc-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-label); flex-shrink: 0; width: 20px; }
+  .toc-item .toc-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .main-content { flex: 1; min-width: 0; max-width: 840px; padding: 32px 24px 120px; }
   .intro-banner {
     background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
     padding: 32px; margin-bottom: 40px; box-shadow: var(--shadow-sm);
@@ -225,6 +244,10 @@
   .back-to-top:hover { box-shadow: var(--shadow-lg); border-color: var(--text-tertiary); }
   .back-to-top svg { width: 18px; height: 18px; color: var(--text-secondary); }
   .site-footer { text-align: center; padding: 24px; font-size: 12px; color: var(--text-tertiary); border-top: 1px solid var(--border-light); }
+  @media (max-width: 960px) {
+    .toc-sidebar { display: none; }
+    .main-wrapper { max-width: 840px; }
+  }
   @media (max-width: 640px) {
     .header-inner { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px 16px; }
     .header-left { justify-content: space-between; }
@@ -267,6 +290,11 @@
     <div class="slide-nav" id="slideNav"></div>
   </div>
 </div>
+<div class="main-wrapper">
+<aside class="toc-sidebar" id="tocSidebar">
+  <div class="toc-title">目錄</div>
+  <div id="tocList"></div>
+</aside>
 <main class="main-content" id="mainContent">
   <div class="intro-banner">
     <h1>營業秘密 &times; 技術授權</h1>
@@ -286,6 +314,7 @@
   </div>
   <div id="slidesContainer"></div>
 </main>
+</div>
 <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0})">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <polyline points="18 15 12 9 6 15"></polyline>
@@ -920,7 +949,39 @@ function switchVersion(version) {
     note.innerHTML = '每頁標註講者建議、預估時間、要講的內容。講者可以用自己的話講，這裡是參考底稿。';
   }
   renderSlides();
+  buildToc();
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function buildToc() {
+  const tocList = document.getElementById('tocList');
+  tocList.innerHTML = '';
+  const slides = currentVersion === 'detailed' ? SLIDES_DETAILED : SLIDES_SHORT;
+  slides.forEach(s => {
+    const item = document.createElement('a');
+    item.className = 'toc-item';
+    item.href = '#slide-' + s.num;
+    item.dataset.slide = s.num;
+    item.innerHTML = '<span class="toc-num">' + s.num + '</span><span class="toc-label">' + s.title + '</span>';
+    item.onclick = (e) => { e.preventDefault(); const el = document.getElementById('slide-' + s.num); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+    tocList.appendChild(item);
+  });
+}
+
+function updateTocActive(num) {
+  document.querySelectorAll('.toc-item').forEach(item => {
+    item.classList.toggle('active', parseInt(item.dataset.slide) === num);
+  });
+  const activeItem = document.querySelector('.toc-item.active');
+  if (activeItem) {
+    const sidebar = document.getElementById('tocSidebar');
+    const itemTop = activeItem.offsetTop - sidebar.offsetTop;
+    const sidebarScroll = sidebar.scrollTop;
+    const sidebarHeight = sidebar.clientHeight;
+    if (itemTop < sidebarScroll || itemTop > sidebarScroll + sidebarHeight - 40) {
+      sidebar.scrollTo({ top: itemTop - sidebarHeight / 3, behavior: 'smooth' });
+    }
+  }
 }
 
 function setupScrollObservers() {
@@ -940,13 +1001,15 @@ function setupScrollObservers() {
         document.querySelectorAll('.slide-nav-btn').forEach(btn => {
           btn.classList.toggle('active', parseInt(btn.dataset.slide) === num);
         });
+        updateTocActive(num);
         const activeBtn = document.querySelector('.slide-nav-btn[data-slide="' + num + '"]');
         if (activeBtn) {
           const scroll = document.getElementById('slideNavScroll');
           const btnRect = activeBtn.getBoundingClientRect();
           const scrollRect = scroll.getBoundingClientRect();
           if (btnRect.left < scrollRect.left || btnRect.right > scrollRect.right) {
-            activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            const offset = activeBtn.offsetLeft - scroll.offsetWidth / 2 + activeBtn.offsetWidth / 2;
+            scroll.scrollTo({ left: offset, behavior: 'smooth' });
           }
         }
       }
