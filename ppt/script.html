@@ -129,6 +129,18 @@
   }
   .toc-item:hover { background: var(--border-light); color: var(--text-primary); }
   .toc-item.active { background: var(--bg-card); color: var(--text-primary); font-weight: 500; border-left-color: var(--accent); box-shadow: var(--shadow-sm); }
+  .toc-item.speaker-1 { border-left-color: var(--speaker-1); }
+  .toc-item.speaker-2 { border-left-color: var(--speaker-2); }
+  .toc-item.speaker-3 { border-left-color: var(--speaker-3); }
+  .toc-item.speaker-4 { border-left-color: var(--speaker-4); }
+  .toc-item.speaker-5 { border-left-color: var(--speaker-5); }
+  .toc-item.speaker-6 { border-left-color: var(--speaker-6); }
+  .toc-item.active.speaker-1 { box-shadow: inset 3px 0 0 var(--speaker-1), var(--shadow-sm); }
+  .toc-item.active.speaker-2 { box-shadow: inset 3px 0 0 var(--speaker-2), var(--shadow-sm); }
+  .toc-item.active.speaker-3 { box-shadow: inset 3px 0 0 var(--speaker-3), var(--shadow-sm); }
+  .toc-item.active.speaker-4 { box-shadow: inset 3px 0 0 var(--speaker-4), var(--shadow-sm); }
+  .toc-item.active.speaker-5 { box-shadow: inset 3px 0 0 var(--speaker-5), var(--shadow-sm); }
+  .toc-item.active.speaker-6 { box-shadow: inset 3px 0 0 var(--speaker-6), var(--shadow-sm); }
   .toc-item .toc-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-label); flex-shrink: 0; width: 20px; }
   .toc-item .toc-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .main-content { flex: 1; min-width: 0; max-width: 840px; padding: 32px 24px 120px; }
@@ -1070,7 +1082,7 @@ function buildToc() {
 
 function createTocItem(slide, closeOnClick) {
   const item = document.createElement('a');
-  item.className = 'toc-item';
+  item.className = 'toc-item speaker-' + (slide.speaker || getSpeaker(slide.num));
   item.href = '#slide-' + slide.num;
   item.dataset.slide = slide.num;
   item.innerHTML = '<span class="toc-num">' + slide.num + '</span><span class="toc-label">' + slide.title + '</span>';
@@ -1086,14 +1098,16 @@ function updateTocActive(num) {
   document.querySelectorAll('.toc-item').forEach(item => {
     item.classList.toggle('active', parseInt(item.dataset.slide) === num);
   });
-  const activeItem = document.querySelector('.toc-item.active');
-  if (activeItem) {
-    const sidebar = document.getElementById('tocSidebar');
-    const itemTop = activeItem.offsetTop - sidebar.offsetTop;
-    const sidebarScroll = sidebar.scrollTop;
-    const sidebarHeight = sidebar.clientHeight;
-    if (itemTop < sidebarScroll || itemTop > sidebarScroll + sidebarHeight - 40) {
-      sidebar.scrollTo({ top: itemTop - sidebarHeight / 3, behavior: 'smooth' });
+  const activeItem = document.querySelector('#tocList .toc-item.active');
+  const sidebar = document.getElementById('tocSidebar');
+  if (activeItem && sidebar && sidebar.clientHeight > 0) {
+    const itemRect = activeItem.getBoundingClientRect();
+    const sidebarRect = sidebar.getBoundingClientRect();
+    const isAbove = itemRect.top < sidebarRect.top;
+    const isBelow = itemRect.bottom > sidebarRect.bottom;
+    if (isAbove || isBelow) {
+      const targetTop = sidebar.scrollTop + (itemRect.top - sidebarRect.top) - (sidebar.clientHeight / 2) + (itemRect.height / 2);
+      sidebar.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
     }
   }
 }
