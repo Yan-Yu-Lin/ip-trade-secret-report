@@ -22,9 +22,9 @@ OUTPUT_DIR = Path(__file__).parent
 SCREENSHOTS_DIR = OUTPUT_DIR / "slides"
 OUTPUT_PPTX = OUTPUT_DIR / "presentation.pptx"
 
-SLIDE_WIDTH = 1920
-SLIDE_HEIGHT = 1080
-TOTAL_SLIDES = 24
+SLIDE_WIDTH = 3840
+SLIDE_HEIGHT = 2160
+TOTAL_SLIDES = 28
 
 
 def parse_speaker_notes(narrative_path: Path) -> dict[int, str]:
@@ -84,11 +84,16 @@ async def capture_slides():
         print(f"Loading {file_url}")
         await page.goto(file_url, wait_until="networkidle", timeout=60000)
 
-        # Wait for WebGL and animations to settle
-        await page.wait_for_timeout(3000)
+        # Wait for WebGL and animations to settle (keep dynamic mode for background textures)
+        await page.wait_for_timeout(5000)
 
-        # Force static/low-power mode for clean screenshots
-        await page.evaluate("window.__setLowPowerMode && window.__setLowPowerMode(true, {persist:false})")
+        # Hide hint bar and nav dots
+        await page.evaluate("""
+            const hint = document.getElementById('hint');
+            if (hint) hint.style.display = 'none';
+            const nav = document.getElementById('nav');
+            if (nav) nav.style.display = 'none';
+        """)
         await page.wait_for_timeout(500)
 
         # Get total slides
@@ -102,9 +107,9 @@ async def capture_slides():
                 deck.style.transition = 'none';
                 deck.style.transform = 'translateX(-{i * 100}vw)';
             """)
-            await page.wait_for_timeout(300)
+            await page.wait_for_timeout(500)
 
-            # Force all animations to final state on this slide
+            # Force all content animations to final state but keep WebGL background running
             await page.evaluate(f"""
                 const slides = document.querySelectorAll('.slide');
                 const slide = slides[{i}];
@@ -113,7 +118,7 @@ async def capture_slides():
                     el.style.transform = 'none';
                 }});
             """)
-            await page.wait_for_timeout(200)
+            await page.wait_for_timeout(1000)
 
             path = SCREENSHOTS_DIR / f"slide-{i+1:02d}.png"
             await page.screenshot(path=str(path))
