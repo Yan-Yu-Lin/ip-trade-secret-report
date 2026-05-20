@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>講稿 — 營業秘密 × 技術授權</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700;900&family=Noto+Sans+TC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --bg-card: #FFFFFF;
+    --bg-slide-content: #F5F3EE;
+    --bg-supplement: #F8F6F1;
+    --border: #E8E4DD;
+    --border-light: #F0EDE6;
+    --text-primary: #1A1A18;
+    --text-secondary: #5C5A54;
+    --text-tertiary: #8A877E;
+    --text-label: #A09D94;
+    --accent: #2D2B28;
+    --speaker-1: #B85C38;
+    --speaker-1-bg: #FDF5F0;
+    --speaker-1-border: #E8C4B0;
+    --speaker-2: #3D7C98;
+    --speaker-2-bg: #F0F7FA;
+    --speaker-2-border: #B0D4E4;
+    --speaker-3: #6B7B3A;
+    --speaker-3-bg: #F5F7EE;
+    --speaker-3-border: #C4CDA0;
+    --speaker-4: #8B5E83;
+    --speaker-4-bg: #F9F3F8;
+    --speaker-4-border: #D4B8CE;
+    --speaker-5: #C17D2E;
+    --speaker-5-bg: #FDF8F0;
+    --speaker-5-border: #E4CCA8;
+    --speaker-6: #4A7B6F;
+    --speaker-6-bg: #F0F7F5;
+    --speaker-6-border: #A8D4C8;
+    --radius: 8px;
+    --radius-lg: 12px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.03);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,0.06), 0 4px 8px rgba(0,0,0,0.03);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.8;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .site-header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(250, 250, 248, 0.88);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border-light);
+    transition: box-shadow 0.3s ease;
+  }
+  .site-header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.05); }
+  .header-inner {
+    max-width: 840px; margin: 0 auto; padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .header-left { display: flex; align-items: center; gap: 14px; min-width: 0; }
+  .header-title {
+    font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 17px;
+    color: var(--text-primary); letter-spacing: 0.02em; white-space: nowrap;
+  }
+  .header-subtitle { font-size: 12px; color: var(--text-tertiary); white-space: nowrap; font-weight: 400; }
+  .version-toggle { display: flex; background: var(--border-light); border-radius: 20px; padding: 3px; gap: 2px; flex-shrink: 0; }
+  .version-btn {
+    padding: 6px 16px; border-radius: 18px; border: none; background: transparent;
+    font-family: 'Noto Sans TC', sans-serif; font-size: 13px; font-weight: 500;
+    color: var(--text-tertiary); cursor: pointer; transition: all 0.25s ease; white-space: nowrap;
+  }
+  .version-btn.active { background: var(--bg-card); color: var(--text-primary); box-shadow: var(--shadow-sm); }
+  .version-btn:hover:not(.active) { color: var(--text-secondary); }
+  .slide-nav-bar { background: var(--bg-card); border-bottom: 1px solid var(--border-light); overflow: hidden; }
+  .slide-nav-scroll {
+    max-width: 840px; margin: 0 auto; padding: 0 24px;
+    overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .slide-nav-scroll::-webkit-scrollbar { display: none; }
+  .slide-nav { display: flex; gap: 2px; padding: 8px 0; }
+  .slide-nav-btn {
+    flex-shrink: 0; width: 34px; height: 34px; border-radius: 8px;
+    border: 1.5px solid var(--border); background: var(--bg);
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500;
+    color: var(--text-tertiary); cursor: pointer; transition: all 0.2s ease;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .slide-nav-btn:hover { border-color: var(--text-tertiary); color: var(--text-secondary); }
+  .slide-nav-btn.active { border-color: var(--accent); background: var(--accent); color: #fff; }
+  .slide-nav-btn.speaker-1 { border-left: 3px solid var(--speaker-1); }
+  .slide-nav-btn.speaker-2 { border-left: 3px solid var(--speaker-2); }
+  .slide-nav-btn.speaker-3 { border-left: 3px solid var(--speaker-3); }
+  .slide-nav-btn.speaker-4 { border-left: 3px solid var(--speaker-4); }
+  .slide-nav-btn.speaker-5 { border-left: 3px solid var(--speaker-5); }
+  .slide-nav-btn.speaker-6 { border-left: 3px solid var(--speaker-6); }
+  .slide-nav-btn.active.speaker-1 { background: var(--speaker-1); border-color: var(--speaker-1); }
+  .slide-nav-btn.active.speaker-2 { background: var(--speaker-2); border-color: var(--speaker-2); }
+  .slide-nav-btn.active.speaker-3 { background: var(--speaker-3); border-color: var(--speaker-3); }
+  .slide-nav-btn.active.speaker-4 { background: var(--speaker-4); border-color: var(--speaker-4); }
+  .slide-nav-btn.active.speaker-5 { background: var(--speaker-5); border-color: var(--speaker-5); }
+  .slide-nav-btn.active.speaker-6 { background: var(--speaker-6); border-color: var(--speaker-6); }
+  .main-wrapper { max-width: 1120px; margin: 0 auto; display: flex; gap: 0; position: relative; }
+  .toc-sidebar {
+    position: sticky; top: 110px; align-self: flex-start;
+    width: 220px; flex-shrink: 0; padding: 16px 0 16px 24px;
+    max-height: calc(100vh - 130px); overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+  }
+  .toc-sidebar::-webkit-scrollbar { width: 4px; }
+  .toc-sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .toc-title { font-size: 11px; font-weight: 600; color: var(--text-tertiary); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; padding-left: 10px; }
+  #tocList { display: flex; flex-direction: column; gap: 2px; }
+  .toc-item {
+    display: flex; align-items: baseline; gap: 8px; padding: 6px 10px; border-radius: 6px;
+    cursor: pointer; transition: all 0.15s ease; text-decoration: none; color: var(--text-secondary);
+    font-size: 13px; line-height: 1.4; border-left: 2px solid transparent; margin-bottom: 1px;
+  }
+  .toc-item:hover { color: var(--text-primary); }
+  .toc-item.active { color: #fff; font-weight: 600; border-left-color: currentColor; box-shadow: var(--shadow-sm); }
+  .toc-item.speaker-1 { background: var(--speaker-1-bg); background: color-mix(in srgb, var(--speaker-1-bg) 88%, var(--speaker-1) 12%); border-left-color: var(--speaker-1); }
+  .toc-item.speaker-2 { background: var(--speaker-2-bg); background: color-mix(in srgb, var(--speaker-2-bg) 88%, var(--speaker-2) 12%); border-left-color: var(--speaker-2); }
+  .toc-item.speaker-3 { background: var(--speaker-3-bg); background: color-mix(in srgb, var(--speaker-3-bg) 88%, var(--speaker-3) 12%); border-left-color: var(--speaker-3); }
+  .toc-item.speaker-4 { background: var(--speaker-4-bg); background: color-mix(in srgb, var(--speaker-4-bg) 88%, var(--speaker-4) 12%); border-left-color: var(--speaker-4); }
+  .toc-item.speaker-5 { background: var(--speaker-5-bg); background: color-mix(in srgb, var(--speaker-5-bg) 88%, var(--speaker-5) 12%); border-left-color: var(--speaker-5); }
+  .toc-item.speaker-6 { background: var(--speaker-6-bg); background: color-mix(in srgb, var(--speaker-6-bg) 88%, var(--speaker-6) 12%); border-left-color: var(--speaker-6); }
+  .toc-item.speaker-1 .toc-num { color: var(--speaker-1); }
+  .toc-item.speaker-2 .toc-num { color: var(--speaker-2); }
+  .toc-item.speaker-3 .toc-num { color: var(--speaker-3); }
+  .toc-item.speaker-4 .toc-num { color: var(--speaker-4); }
+  .toc-item.speaker-5 .toc-num { color: var(--speaker-5); }
+  .toc-item.speaker-6 .toc-num { color: var(--speaker-6); }
+  .toc-item.active.speaker-1 { background: var(--speaker-1); border-left-color: var(--speaker-1); }
+  .toc-item.active.speaker-2 { background: var(--speaker-2); border-left-color: var(--speaker-2); }
+  .toc-item.active.speaker-3 { background: var(--speaker-3); border-left-color: var(--speaker-3); }
+  .toc-item.active.speaker-4 { background: var(--speaker-4); border-left-color: var(--speaker-4); }
+  .toc-item.active.speaker-5 { background: var(--speaker-5); border-left-color: var(--speaker-5); }
+  .toc-item.active.speaker-6 { background: var(--speaker-6); border-left-color: var(--speaker-6); }
+  .toc-item.active .toc-num { color: rgba(255,255,255,0.78); }
+  .toc-item.active .toc-label { color: #fff; }
+  .toc-item .toc-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-label); flex-shrink: 0; width: 20px; }
+  .toc-item .toc-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .main-content { flex: 1; min-width: 0; max-width: 840px; padding: 32px 24px 120px; }
+  .intro-banner {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: 32px; margin-bottom: 40px; box-shadow: var(--shadow-sm);
+  }
+  .intro-banner h1 {
+    font-family: 'Noto Serif TC', serif; font-weight: 900; font-size: 28px;
+    letter-spacing: 0.04em; margin-bottom: 8px; color: var(--text-primary);
+  }
+  .intro-banner p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+  .intro-banner .note {
+    margin-top: 16px; padding: 12px 16px; background: var(--bg-slide-content);
+    border-radius: var(--radius); font-size: 13px; color: var(--text-tertiary);
+    line-height: 1.7; border-left: 3px solid var(--border);
+  }
+  .speaker-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 20px; }
+  .speaker-legend-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-secondary); }
+  .speaker-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .slide-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    margin-bottom: 24px; overflow: hidden; box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.3s ease;
+  }
+  body:not(.no-animate) .slide-card:not(.no-enter) { animation: slideIn 0.4s ease both; }
+  .slide-card.no-enter { animation: none !important; opacity: 1; transform: none; }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .slide-card:hover { box-shadow: var(--shadow-md); }
+  .slide-card-header {
+    padding: 20px 28px; display: flex; align-items: flex-start;
+    justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--border-light);
+  }
+  .slide-card-header-left { display: flex; align-items: flex-start; gap: 14px; min-width: 0; }
+  .slide-number {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; color: #fff;
+    background: var(--accent); width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+  }
+  .slide-meta { min-width: 0; }
+  .slide-title {
+    font-family: 'Noto Serif TC', serif; font-weight: 600; font-size: 18px;
+    line-height: 1.5; color: var(--text-primary); margin-bottom: 4px;
+  }
+  .slide-info { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .speaker-badge {
+    display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px;
+    border-radius: 12px; font-size: 12px; font-weight: 500; white-space: nowrap;
+  }
+  .time-badge { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-tertiary); white-space: nowrap; }
+  .speaker-1 .slide-number { background: var(--speaker-1); }
+  .speaker-1 .speaker-badge { background: var(--speaker-1-bg); color: var(--speaker-1); border: 1px solid var(--speaker-1-border); }
+  .speaker-2 .slide-number { background: var(--speaker-2); }
+  .speaker-2 .speaker-badge { background: var(--speaker-2-bg); color: var(--speaker-2); border: 1px solid var(--speaker-2-border); }
+  .speaker-3 .slide-number { background: var(--speaker-3); }
+  .speaker-3 .speaker-badge { background: var(--speaker-3-bg); color: var(--speaker-3); border: 1px solid var(--speaker-3-border); }
+  .speaker-4 .slide-number { background: var(--speaker-4); }
+  .speaker-4 .speaker-badge { background: var(--speaker-4-bg); color: var(--speaker-4); border: 1px solid var(--speaker-4-border); }
+  .speaker-5 .slide-number { background: var(--speaker-5); }
+  .speaker-5 .speaker-badge { background: var(--speaker-5-bg); color: var(--speaker-5); border: 1px solid var(--speaker-5-border); }
+  .speaker-6 .slide-number { background: var(--speaker-6); }
+  .speaker-6 .speaker-badge { background: var(--speaker-6-bg); color: var(--speaker-6); border: 1px solid var(--speaker-6-border); }
+  .slide-card-body { padding: 24px 28px; }
+  .on-slide {
+    background: var(--bg-slide-content); border: 1px solid var(--border-light);
+    border-radius: var(--radius); padding: 14px 18px; margin-bottom: 20px;
+  }
+  .section-label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--text-label); margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+  }
+  .section-label .icon { font-size: 13px; opacity: 0.6; }
+  .on-slide-text { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+  .speech-section { margin-bottom: 20px; }
+  .speech-text {
+    font-family: 'Noto Serif TC', serif; font-size: 16.5px; line-height: 2;
+    color: var(--text-primary); font-weight: 400;
+  }
+  .speech-text p { margin-bottom: 14px; }
+  .speech-text p:last-child { margin-bottom: 0; }
+  .speech-text strong {
+    font-weight: 600; color: var(--text-primary);
+    background: linear-gradient(to bottom, transparent 60%, rgba(200, 180, 130, 0.18) 60%);
+    padding: 0 1px;
+  }
+  .supplement-section { border-top: 1px solid var(--border-light); padding-top: 16px; margin-top: 4px; }
+  .supplement-toggle {
+    display: flex; align-items: center; gap: 8px; cursor: pointer; padding: 8px 14px;
+    background: var(--bg-supplement); border: 1px solid var(--border-light); border-radius: var(--radius);
+    font-size: 13px; font-weight: 500; color: var(--text-tertiary); transition: all 0.2s ease;
+    width: 100%; text-align: left;
+  }
+  .supplement-toggle:hover { color: var(--text-secondary); border-color: var(--border); }
+  .supplement-toggle .chevron { transition: transform 0.25s ease; font-size: 11px; flex-shrink: 0; }
+  .supplement-toggle.open .chevron { transform: rotate(90deg); }
+  .supplement-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; }
+  .supplement-content.open { max-height: 2000px; padding-top: 12px; }
+  .supplement-content ul { list-style: none; padding: 0; }
+  .supplement-content li {
+    position: relative; padding-left: 18px; margin-bottom: 8px;
+    font-size: 13.5px; color: var(--text-tertiary); line-height: 1.8;
+  }
+  .supplement-content li::before {
+    content: ''; position: absolute; left: 0; top: 11px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--border);
+  }
+  .back-to-top {
+    position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px;
+    border-radius: 50%; border: 1px solid var(--border);
+    background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); box-shadow: var(--shadow-md);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: translateY(10px); transition: all 0.3s ease;
+    pointer-events: none; z-index: 50;
+  }
+  .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .back-to-top:hover { box-shadow: var(--shadow-lg); border-color: var(--text-tertiary); }
+  .back-to-top svg { width: 18px; height: 18px; color: var(--text-secondary); }
+  .mobile-menu-button, .mobile-menu-popover { display: none; }
+  .site-footer { text-align: center; padding: 24px; font-size: 12px; color: var(--text-tertiary); border-top: 1px solid var(--border-light); }
+  @media (max-width: 960px) {
+    .toc-sidebar { display: none; }
+    .main-wrapper { max-width: 840px; }
+  }
+  @media (max-width: 640px) {
+    .site-header, .slide-nav-bar { display: none; }
+    .header-inner { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px 16px; }
+    .header-left { justify-content: space-between; }
+    .header-subtitle { display: none; }
+    .version-toggle { align-self: stretch; }
+    .version-btn { flex: 1; text-align: center; }
+    .slide-nav-scroll { padding: 0 16px; }
+    .mobile-menu-button {
+      position: fixed; right: 16px; top: 16px; z-index: 120;
+      width: 42px; height: 42px; border-radius: 50%;
+      border: 1px solid var(--border); background: rgba(255,255,255,0.92);
+      color: var(--text-primary); box-shadow: var(--shadow-md);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Noto Sans TC', sans-serif; font-size: 18px; font-weight: 700;
+      cursor: pointer;
+    }
+    .mobile-menu-popover.open { display: block; }
+    .mobile-menu-popover {
+      position: fixed; right: 12px; top: 66px; z-index: 119;
+      width: min(320px, calc(100vw - 24px)); max-height: calc(100vh - 88px);
+      overflow-y: auto; overscroll-behavior: contain;
+      background: rgba(255,255,255,0.96); border: 1px solid var(--border);
+      border-radius: 14px; box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      padding: 14px;
+    }
+    .mobile-menu-label {
+      font-size: 11px; font-weight: 700; color: var(--text-label);
+      letter-spacing: 0.1em; text-transform: uppercase; margin: 2px 2px 8px;
+    }
+    .mobile-version-toggle { margin-bottom: 16px; }
+    .mobile-toc-list { display: flex; flex-direction: column; gap: 2px; }
+    .mobile-toc-list .toc-item { padding: 8px 10px; font-size: 13px; }
+    .main-wrapper { max-width: none; width: 100%; }
+    .main-content { width: 100%; max-width: none; padding: 16px 12px 96px; }
+    .intro-banner { padding: 20px 14px; margin-bottom: 12px; border-radius: 0; border-left: 0; border-right: 0; box-shadow: none; }
+    .intro-banner h1 { font-size: 22px; }
+    .slide-card {
+      background: transparent; border: 0; border-top: 1px solid var(--border);
+      border-radius: 0; box-shadow: none; margin: 0; overflow: visible;
+    }
+    .slide-card:hover { box-shadow: none; }
+    .slide-card-header {
+      padding: 14px 2px 10px; flex-direction: row; align-items: flex-start;
+      gap: 10px; border-bottom: 0;
+    }
+    .slide-card-header-left { gap: 10px; }
+    .slide-number { width: 30px; height: 30px; border-radius: 6px; font-size: 12px; margin-top: 1px; }
+    .slide-title { font-size: 17px; line-height: 1.4; margin-bottom: 5px; }
+    .slide-info { gap: 6px; }
+    .speaker-badge { padding: 2px 8px; font-size: 11px; border-radius: 10px; }
+    .time-badge { font-size: 11px; }
+    .slide-card-body { padding: 0 2px 24px; }
+    .on-slide {
+      background: transparent; border: 0; border-left: 3px solid var(--border);
+      border-radius: 0; padding: 8px 0 8px 12px; margin-bottom: 18px;
+    }
+    .on-slide-text { font-size: 14.5px; line-height: 1.8; }
+    .speech-section { margin-bottom: 18px; }
+    .speech-text { font-size: 16px; line-height: 1.95; }
+    .supplement-section { margin-top: 0; padding-top: 12px; border-top: 1px solid var(--border-light); }
+    .supplement-toggle {
+      background: transparent; border: 0; border-left: 3px solid var(--border);
+      border-radius: 0; padding: 8px 0 8px 12px;
+    }
+    .supplement-content.open { padding-top: 10px; }
+    .back-to-top { bottom: 20px; right: 20px; }
+  }
+  @media print {
+    .site-header, .slide-nav-bar, .version-toggle, .back-to-top { display: none; }
+    .main-content { max-width: 100%; padding: 0; }
+    .slide-card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+    .supplement-content { max-height: none !important; padding-top: 12px !important; }
+  }
+</style>
+</head>
+<body>
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <div class="header-left">
+      <span class="header-title">講稿</span>
+      <span class="header-subtitle">營業秘密 &times; 技術授權 &mdash; 24 頁</span>
+    </div>
+    <div class="version-toggle">
+      <button class="version-btn active" data-version="detailed" onclick="switchVersion('detailed')">詳細版</button>
+      <button class="version-btn" data-version="short" onclick="switchVersion('short')">簡潔版</button>
+    </div>
+  </div>
+</header>
+<div class="slide-nav-bar" id="slideNavBar">
+  <div class="slide-nav-scroll" id="slideNavScroll">
+    <div class="slide-nav" id="slideNav"></div>
+  </div>
+</div>
+<button class="mobile-menu-button" id="mobileMenuButton" type="button" aria-label="開啟目錄" aria-expanded="false" onclick="toggleMobileMenu()">
+  目
+</button>
+<div class="mobile-menu-popover" id="mobileMenuPopover" aria-hidden="true">
+  <div class="mobile-menu-label">版本</div>
+  <div class="version-toggle mobile-version-toggle">
+    <button class="version-btn active" data-version="detailed" onclick="switchVersion('detailed')">詳細版</button>
+    <button class="version-btn" data-version="short" onclick="switchVersion('short')">簡潔版</button>
+  </div>
+  <div class="mobile-menu-label">目錄</div>
+  <div id="mobileTocList" class="mobile-toc-list"></div>
+</div>
+<div class="main-wrapper">
+<aside class="toc-sidebar" id="tocSidebar">
+  <div class="toc-title">目錄</div>
+  <div id="tocList"></div>
+</aside>
+<main class="main-content" id="mainContent">
+  <div class="intro-banner">
+    <h1>營業秘密 &times; 技術授權</h1>
+    <p>第六組 &mdash; 逐頁講稿，共 24 頁投影片，6 位講者</p>
+    <div class="note" id="introBannerNote">
+      每頁標註講者建議、預估時間、投影片內容摘要、要講的內容、以及補充細節。<br>
+      講者可以用自己的話講，不需要逐字唸。補充細節是給講者自己理解用的背景知識，不一定要全部講出來。
+    </div>
+    <div class="speaker-legend">
+      <div class="speaker-legend-item"><div class="speaker-dot" style="background:var(--speaker-1)"></div>Speaker 1</div>
+      <div class="speaker-legend-item"><div class="speaker-dot" style="background:var(--speaker-2)"></div>Speaker 2</div>
+      <div class="speaker-legend-item"><div class="speaker-dot" style="background:var(--speaker-3)"></div>Speaker 3</div>
+      <div class="speaker-legend-item"><div class="speaker-dot" style="background:var(--speaker-4)"></div>Speaker 4</div>
+      <div class="speaker-legend-item"><div class="speaker-dot" style="background:var(--speaker-5)"></div>Speaker 5</div>
+      <div class="speaker-legend-item"><div class="speaker-dot" style="background:var(--speaker-6)"></div>Speaker 6</div>
+    </div>
+  </div>
+  <div id="slidesContainer"></div>
+</main>
+</div>
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0})">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+<footer class="site-footer">第六組 &mdash; 智慧財產權課程報告</footer>
+<script>
+
+const detailedSlides = [
+  {
+    "num": 1,
+    "title": "開場封面",
+    "speaker": 1,
+    "time": "~40 秒",
+    "onSlide": "營業秘密 × 技術授權。「如果全世界都知道晶片怎麼設計、電視怎麼做聲音、自駕車怎麼看路，為什麼不是每家公司都做得一樣好？」",
+    "speech": "<p>大家好，我們是第六組。今天要報告的主題是營業秘密和技術授權。</p>\n<p>在開始之前，我想先問一個問題。晶片製造的物理原理寫在教科書裡 — 光刻、蝕刻、沉積這些步驟，大學物理系和電子系都在教。Dolby 的音訊壓縮演算法有公開的標準規格書，任何工程師都可以去讀。自駕車 LiDAR 的基本原理 — 用雷射打出去、測量反射回來的時間來建立 3D 地圖 — 這也是公開知識。</p>\n<p>換句話說，<strong>這些技術的「原理」其實不是秘密。</strong></p>\n<p>那為什麼全世界只有少數幾家公司能做到最好？為什麼台積電的良率遠超三星和 Intel？為什麼 Dolby 能讓全世界幾乎每台電視都付它錢？為什麼 Waymo 的 LiDAR 值得有人冒著坐牢的風險去偷？</p>\n<p>差在哪裡？答案就是今天要講的主題：<strong>營業秘密。</strong> 不是原理，而是把原理變成量產結果的 know-how。</p>",
+    "supplement": [
+      "台積電 2024 年營收 US$90.08B，全球市佔率超過 60%",
+      "Dolby FY2025 授權收入 $1.248B，佔總營收 92.5%",
+      "Waymo 的自研 LiDAR 讓他們不需要花 $75,000+ 買商用 LiDAR"
+    ]
+  },
+  {
+    "num": 2,
+    "title": "核心主張：專利 vs 營業秘密",
+    "speaker": 1,
+    "time": "~50 秒",
+    "onSlide": "左半「專利是公開的邊界線」，右半「營業秘密是私有的執行系統」",
+    "speech": "<p>要理解營業秘密，先要理解它跟專利的差別。因為這兩個常常被搞混，但它們的邏輯完全相反。</p>\n<p><strong>專利</strong>的本質是一個交易。你把你的發明細節<strong>公開</strong>寫在一份文件裡，提交給政府審查。如果通過，政府給你一個權利：在接下來的 <strong>20 年</strong>裡，除了你以外，沒有人可以合法地製造、使用或銷售這個發明。這是很強的保護 — 即使別人自己獨立想到了完全一樣的東西，只要你的專利還在有效期內，他們也不能做。</p>\n<p>但代價是什麼？<strong>公開。</strong> 你的專利文件是公開的，全世界任何人 — 包括你的競爭對手 — 都可以去讀。他們讀了之後就知道你做了什麼、怎麼做到的。而且 20 年後專利過期，任何人都可以合法使用。</p>\n<p><strong>營業秘密</strong>走的是完全相反的路。你什麼都不公開，靠保密來維持優勢。好處是<strong>沒有 20 年的期限</strong> — 只要秘密不被洩漏，保護可以永遠持續。可口可樂的配方就是最有名的例子，保密了超過 130 年。</p>\n<p>但壞處也很明確：你<strong>沒有排他權</strong>。如果別人自己研發出來，你無法阻止他們。如果別人合法買了你的產品，拆開來逆向工程搞清楚你怎麼做的，你也無法阻止 — 因為合法的逆向工程不違反營業秘密法。</p>\n<p>更大的風險是：<strong>一旦秘密被洩漏出去，保護可能瞬間崩塌。</strong> 專利過期是慢慢來的，你知道什麼時候會失去保護。但營業秘密的洩漏是突然的、不可逆的。</p>\n<p>簡單用一句話說：<strong>專利保護的是「你發明了什麼」，營業秘密保護的是「你怎麼把它做出來」。</strong></p>",
+    "supplement": [
+      "台灣營業秘密法和美國 DTSA（Defend Trade Secrets Act）的定義類似",
+      "專利的排他權很強：即使對方是獨立發明也能告。營業秘密做不到這一點。",
+      "但營業秘密的持續時間可以無限 — 只要不洩漏。專利最多 20 年。"
+    ]
+  },
+  {
+    "num": 3,
+    "title": "營業秘密三要件",
+    "speaker": 1,
+    "time": "~50 秒",
+    "onSlide": "三層：不為公眾所知、具有經濟價值、合理保密措施",
+    "speech": "<p>這裡要先澄清一件很重要的事：<strong>不是公司自己說「這是秘密」就算營業秘密。</strong> 很多人以為只要不公開就自動受保護，其實不是。法律上，必須同時滿足三個條件，缺一不可。</p>\n<p>第一個條件：<strong>不為公眾所知。</strong> 這個資訊不是一般人能輕易取得的，也不是去 Google 搜一下就能找到的。如果你的「秘密」其實在論文裡、教科書裡或產業報告裡已經出現過了，那就不算。</p>\n<p>第二個條件：<strong>具有經濟價值。</strong> 正因為它是秘密的，才讓你的公司有成本、速度、品質或市場上的優勢。如果這個資訊就算公開了也不會影響你的競爭力，那它可能有秘密性但沒有經濟價值，法律上也不算。</p>\n<p>第三個條件，也是<strong>最常被忽略、最常在法庭上被檢驗的</strong>：公司必須<strong>採取合理的保密措施</strong>。意思是你有實際運作的控制機制在保護它 — 有存取權限控制、有員工簽 NDA、有日誌記錄誰看了什麼、離職的時候有歸還和刪除程序。</p>\n<p>不是只蓋一個「機密」章就算。台灣最高法院 102 年台上字第 235 號判決明確說過：「合理保密措施」要看實際的管控行為，標籤不夠。</p>\n<p>為什麼第三點這麼重要？因為如果有一天你的秘密真的被偷了，你去告對方，法院第一件事就是看<strong>你自己</strong>有沒有認真在保護。如果你自己都沒保護好 — 任何員工都能隨意存取、沒有 NDA、沒有紀錄 — 法院會說：這不算營業秘密，因為你自己都不當它是秘密。</p>\n<p>後面我們會在案例裡具體看到：有保護好的公司（台積電）最終能追究法律責任，而保護有漏洞的公司（Google/Waymo）雖然也贏了官司，但偷竊在發生整整一年後才被發現。</p>",
+    "supplement": [
+      "台灣營業秘密法第 2 條定義了這三個要件",
+      "美國 DTSA 的定義類似：reasonable measures to keep such information secret",
+      "台灣 2013 年修法加入刑事責任，2022 年再強化國家安全法保護國家核心關鍵技術"
+    ]
+  },
+  {
+    "num": 4,
+    "title": "專利 vs 營業秘密對比",
+    "speaker": 1,
+    "time": "~50 秒",
+    "onSlide": "A 專利（公開但可排除）vs B 營業秘密（不公開但怕外洩）",
+    "speech": "<p>把兩種保護方式放在一起看，差異就很清楚了。</p>\n<p><strong>專利這邊：</strong> 任何人都能讀你的發明，但在 20 年有效期內，沒有你的許可不能做。最大的優勢是它可以擋住「獨立發明」— 即使對方是自己想到的，你有專利就能告。侵權的比對也相對清楚，因為專利文件寫得很具體，把對方的產品跟你的專利範圍一比就知道有沒有侵權。</p>\n<p><strong>營業秘密這邊：</strong> 靠控制和保密維持優勢。最大的優勢是<strong>沒有期限</strong> — 只要不洩漏，可以永遠持續。但它擋不住合法的逆向工程，也擋不住獨立發明。如果對方是自己研發出來的，你沒辦法告人。</p>\n<p>而且一旦公開外洩，法律保護和商業價值可能<strong>大幅崩塌</strong>。這跟專利不同 — 專利是慢慢到期，你有時間準備。營業秘密的洩漏是突然的，而且不可逆 — 你沒辦法讓一個已經公開的資訊重新變成秘密。</p>\n<p>舉證方面也差很多。專利侵權你拿產品跟專利範圍比對就好。但營業秘密的濫用通常發生在對手的工廠或辦公室裡，你根本不知道，舉證高度依賴你平常有沒有做好日誌和內控。</p>\n<p>所以這<strong>不是「哪個比較好」的問題</strong>，而是要看你的技術適合哪一種保護方式。接下來這張投影片就要講判斷的依據。</p>",
+    "supplement": [
+      "專利的排他權是「物權型」的，像買了一塊地，別人不能進來",
+      "營業秘密的保護是「行為型」的，保護的是「不正當取得」的行為，不是資訊本身",
+      "兩者可以同時使用（混合策略），後面台積電的案例會展示"
+    ]
+  },
+  {
+    "num": 5,
+    "title": "決策矩陣",
+    "speaker": 2,
+    "time": "~50 秒",
+    "onSlide": "四張卡：逆向工程、生命週期、侵權偵測、獨立發明",
+    "speech": "<p>那具體來說，什麼時候該選專利、什麼時候該選營業秘密？這裡有一個決策矩陣，用四個因素來判斷。核心問題是：<strong>如果這個技術被公開了，會怎樣？</strong></p>\n<p>第一個因素：<strong>逆向工程的難度。</strong> 你的產品賣出去以後，別人能不能拆開來搞清楚怎麼做的？如果可以 — 像硬體結構、電路板設計 — 那保密沒用，產品一上市就不是秘密了，不如申請專利至少有 20 年保護。但如果技術藏在工廠的製程裡面，外部根本看不到 — 像台積電的製程參數 — 那保密就非常有效。</p>\n<p>第二個因素：<strong>技術的生命週期。</strong> 這個技術在 20 年內就會被新技術淘汰嗎？那專利的 20 年保護期夠用了。但如果技術的價值可能超過 20 年呢？可口可樂的配方就是最極端的例子 — 從 1886 年至今 130 多年，如果當初申請了專利，配方早在 1906 年就公開了。</p>\n<p>第三個因素：<strong>侵權偵測。</strong> 你能不能從市場上的產品直接看出有人侵權？如果可以，專利比較好 — 因為你有明確的比對基礎。但如果濫用發生在競爭對手的工廠裡面，你根本不知道對方在用你的技術，那即使有專利也很難舉證，反而用營業秘密搭配內部控制更實際。</p>\n<p>第四個因素：<strong>獨立發明的風險。</strong> 如果這個技術很有可能別人自己也會想到，那趕快申請專利卡位。但如果這個技術需要大量的試錯、大量的經驗累積才可能知道 — 像半導體的良率調校 — 那保密就好，因為對手很難自己做到。</p>\n<p>最聰明的公司其實不是二選一，而是<strong>兩個都用</strong>。用專利保護別人能觀察到的架構層，用營業秘密保護別人看不到的執行層。台積電就是這樣做的 — 11.4 萬件專利守住架構，47.5 萬筆營業秘密守住製程。</p>",
+    "supplement": [
+      "老師要求的「決策矩陣」就是這張投影片",
+      "混合策略的關鍵：不是同一個東西又專利又保密（這不合邏輯），而是同一個技術的不同層面用不同方式保護",
+      "例子：台積電專利保護 GAAFET 電晶體架構（從晶片上能看到），營業秘密保護製程窗口參數（從晶片上看不出來）"
+    ]
+  },
+  {
+    "num": 6,
+    "title": "變現三路徑",
+    "speaker": 2,
+    "time": "~50 秒",
+    "onSlide": "溢價 Premium / 授權抽成 Licensing / 風險降低 Risk Reduction",
+    "speech": "<p>知道了什麼是營業秘密、知道了什麼時候該用它之後，下一個問題是：<strong>怎麼靠它賺錢？</strong></p>\n<p>營業秘密轉換成現金流主要有三種路線。</p>\n<p>第一種是<strong>溢價（Premium）</strong>。你的 know-how 讓你的產品良率更高、成本更低、品質更穩定。所以同樣的東西你能用更低的成本做出來（利潤更高），或者你能做到別人做不到的規格（賣更貴）。台積電就是走這條路 — 它不把 know-how 授權給別人，而是自己用來做晶圓代工，靠製程能力的差距賺錢。等一下我們會詳細講。</p>\n<p>第二種是<strong>授權抽成（Licensing）</strong>。你把 know-how 跟其他東西 — 專利、軟體、品牌、認證 — 包在一起，做成一個授權組合，授權給其他公司使用。每台產品出貨你抽一筆錢。Dolby 就是這個模式的教科書案例 — 它幾乎不做硬體產品，但靠授權每年賺超過 12 億美元。</p>\n<p>第三種是<strong>風險降低（Risk Reduction）</strong>。透過保密來防止技術流失，降低被競爭對手追趕的風險，維持你的領先時間。這是所有擁有營業秘密的公司都在做的基本功 — 不是主動賺錢，而是保護你的賺錢能力不被侵蝕。</p>\n<p>今天我們會用三個案例分別展示這三種路線：Dolby（授權）、台積電（溢價 / 服務）、Waymo v. Uber（風險降低失敗的反面教材）。</p>",
+    "supplement": [
+      "老師要求的「價值轉化機制」就是這張投影片在講的",
+      "Premium 和 Licensing 不互斥 — Dolby 同時有授權金（licensing）和品牌溢價（premium）",
+      "第三種「風險降低」不是直接的收入來源，而是保護前兩種收入的防禦機制"
+    ]
+  },
+  {
+    "num": 7,
+    "title": "驗貨悖論",
+    "speaker": 2,
+    "time": "~40 秒",
+    "onSlide": "「買家要先看到秘密才知道值不值得買；但看了秘密，就不是秘密了。」",
+    "speech": "<p>但如果你選擇走授權路線，馬上會遇到一個根本矛盾。</p>\n<p>場景是這樣的：你跟一家公司說「我有一個很厲害的製程 know-how，可以讓你的良率提升 20%」。對方說：「聽起來不錯，但我怎麼知道你說的是真的？讓我先看看這個技術的細節，我評估一下值不值得買。」</p>\n<p>你說：「可是我一給你看，你就知道了。不管你最後有沒有跟我簽約，你已經拿到資訊了。」</p>\n<p>這就是所謂的<strong>「驗貨悖論」（Inspection Paradox）</strong>。買家需要先看到秘密才能判斷價值，但看了秘密就不再是秘密了。</p>\n<p>這個矛盾不是理論上的 — 它是每一筆 know-how 授權交易都必須面對的實際問題。接下來這張投影片就是講實務上怎麼解決。</p>",
+    "supplement": [
+      "WIPO（世界智慧財產權組織）在其授權手冊中明確提到這個問題：trade secrets are harder to license than patents because the potential licensee needs access to evaluate value",
+      "這是為什麼 know-how 授權比專利授權在合約設計上更複雜"
+    ]
+  },
+  {
+    "num": 8,
+    "title": "分級揭露",
+    "speaker": 2,
+    "time": "~50 秒",
+    "onSlide": "五階段時間線：NDA + 評估包 → 付費試用 → 簽約授權 → 驗收里程碑 → 商業量產",
+    "speech": "<p>解決驗貨悖論的方法是：<strong>不要一次交出所有東西。把授權設計成分階段的產品 — 先讓對方看到效果，再逐步揭露細節。</strong></p>\n<p>第一步：簽 NDA 之後，只給對方一個「評估包」— 高階的流程圖、去敏感化的效能數據。對方能知道「你的技術能達到什麼效果」，比如良率能到多少、成本能降多少，但不知道具體怎麼做到的。這樣對方可以判斷值不值得繼續，但你還沒有洩漏核心秘密。</p>\n<p>第二步：如果對方有興趣，付費進入試用期。這時候才給有限範圍的製程參數和試產協議。開始收錢了。</p>\n<p>第三步：正式簽約後，交出完整的 SOP（標準作業程序）、設備設定、材料規格。</p>\n<p>第四步：對方要先證明自己能重現你承諾的效能 — 也就是通過驗收里程碑。通過了，才交出進階的良率改善參數和更深層的 know-how。</p>\n<p>最後量產階段：提供故障排除資料庫、缺陷庫、甚至下一代的改進。</p>\n<p>每個階段都收不同的錢。重點是：<strong>揭露本身就是產品，不是一次性的信息傳遞。</strong> 賣的不是資訊，是控制揭露的節奏。</p>",
+    "supplement": [
+      "實務上另外還有幾種輔助機制：黑箱展示（授權方自己執行製程，買方只看結果不看參數）、第三方專家審查（中立技術專家評估可行性，只報告結論不揭露細節）、Escrow（秘密存在中立第三方，只在特定條件下釋出）",
+      "WIPO 引用的數字：非專屬生技授權費率大約淨銷售額 1-5%（診斷）到 5-10%（治療/疫苗）"
+    ]
+  },
+  {
+    "num": 9,
+    "title": "收入結構",
+    "speaker": 2,
+    "time": "~40 秒",
+    "onSlide": "六張卡：前期授權金、里程碑付款、按量抽成、最低授權金、技術支援費、稽核權",
+    "speech": "<p>搭配分級揭露，付款結構也是分層設計的，每一種付款對應不同的風險分配。</p>\n<p><strong>前期授權金</strong>是「入場費」— 對方付了這筆錢才能取得機密資料包，同時也幫授權方回收一部分研發成本。</p>\n<p><strong>里程碑付款</strong>是「驗收後才付的錢」— 對方每通過一個階段的驗收，才進入下一階段的付款和揭露。這保護了授權方：如果對方做不出來，你不需要繼續交出更深層的 know-how。</p>\n<p><strong>按量或按營收抽成</strong>是長期的利潤分享 — 對方每出一台產品、每賣一台設備，你都抽一筆。這是持續性的現金流。</p>\n<p><strong>最低授權金</strong>很重要但常被忽略 — 它防止對方拿到技術後擱置不用。如果對方拿了你的 know-how 但不量產、不出貨，你靠抽成什麼都拿不到。最低授權金確保不管對方用不用，每年至少要付一個底線金額。</p>\n<p><strong>技術支援費</strong>是工程師培訓、現場調試、問題排除的費用。know-how 不是給了文件就能用 — 很多時候需要授權方的工程師實際到場協助。</p>\n<p>最後是<strong>稽核權</strong> — 授權方有權檢查對方的帳簿，確認出貨量和銷售額有沒有少報。這不只是法律條款，它是營收保護機制。等一下講 Dolby 的時候會看到稽核有多重要。</p>",
+    "supplement": [
+      "老師要求的「授權包怎麼賣」就是 Slide 8 和 Slide 9 在講的",
+      "合約裡還會有其他條款：授權範圍（field of use、地區、專屬/非專屬）、改良技術歸屬（improvements 誰擁有）、再授權（能不能 sublicense）、終止後義務（返還/銷毀資料、保密存續）"
+    ]
+  },
+  {
+    "num": 10,
+    "title": "BMC 分析",
+    "speaker": 2,
+    "time": "~40 秒",
+    "onSlide": "九宮格 BMC，底部「執行優勢」",
+    "speech": "<p>老師要求我們用 BMC — Business Model Canvas，商業模式圖 — 來分析營業秘密的角色。BMC 是一個九宮格的分析框架，用來描述一家公司怎麼創造、傳遞和獲取價值。</p>\n<p>很多人直覺會把營業秘密放在「關鍵資源」那一格。但其實它滲透了整個九宮格。</p>\n<p>它是<strong>關鍵資源</strong>（製程配方、良率數據）。它決定了<strong>價值主張</strong>（更快投產、更高良率、更低失敗風險）。它產生了<strong>收入來源</strong>（授權金、技術支援費、認證費）。它定義了<strong>關鍵活動</strong>（保護、改良、培訓、稽核）。它塑造了<strong>客戶關係</strong>（長期技術支援、改進共享）。它也影響了<strong>成本結構</strong>（安全、法律、監控、訴訟準備）。</p>\n<p>跟專利型 BMC 最大的差異在於：<strong>專利說的是「沒有我的許可你不能合法做這件事」— 變現的是排除權。營業秘密說的是「你可以試，但我能讓你做得更快、更便宜、更少損失」— 變現的是執行優勢。</strong></p>",
+    "supplement": [
+      "老師特別要求在 BMC 裡標出 IPR 在哪個區塊 — 答案是「不只一個區塊，而是滲透整個模型」",
+      "BMC 的九個區塊：關鍵資源、關鍵活動、關鍵夥伴、價值主張、客戶關係、通路、目標客群、收入來源、成本結構"
+    ]
+  },
+  {
+    "num": 11,
+    "title": "Dolby 案例開場",
+    "speaker": 3,
+    "time": "~40 秒",
+    "onSlide": "Dolby 授權生態系 — 六格卡片：晶片商、設備商、內容平台、消費者、認證、稽核",
+    "speech": "<p>接下來我們用三個案例來具體說明。第一個是 Dolby — 授權模式的典範。</p>\n<p>先講幾個數字讓大家感受一下 Dolby 有多厲害。Dolby Laboratories 幾乎<strong>不做硬體產品</strong>，但 FY2025 的總營收是 13.49 億美元，其中 <strong>92.5%，也就是 12.48 億美元，全部來自授權金</strong>。全公司只有大約 2,200 名員工。換算一下，平均每個員工貢獻的授權收入超過 56 萬美元。</p>\n<p>它怎麼做到的？它建立了一個完整的生態系，有六個環節。晶片商把 Dolby 技術做進晶片。設備商（電視、手機、音響）每台出貨付授權金。內容平台用 Dolby 格式輸出音訊和影像。消費者認得 Dolby 的品牌，把它當作品質的保證。每個產品上市前都要通過 Dolby 的認證測試。最後還有稽核機制確保沒有人少報。</p>\n<p>這六個環節環環相扣，形成一個自我強化的循環。</p>",
+    "supplement": [
+      "Dolby 約管理 1,000 家被授權方",
+      "授權收入分佈：廣播 34%、行動 22%、PC 12%、消費電子 12%、其他（汽車、電影院、遊戲、串流）20%",
+      "Dolby 的毛利率約 88% — 因為授權業務幾乎沒有硬體成本"
+    ]
+  },
+  {
+    "num": 12,
+    "title": "Dolby IP 組合包",
+    "speaker": 3,
+    "time": "~40 秒",
+    "onSlide": "六張卡：專利、Know-how、Show-how、軟體、品牌、認證",
+    "speech": "<p>Dolby 賣的不是「專利許可」這麼簡單。它的授權包是<strong>五層 IP 的組合</strong>，每一層都有不同的保護機制和商業價值。</p>\n<p>第一層是<strong>專利</strong> — 保護音訊壓縮、Dolby Atmos 物件音訊、Dolby Vision HDR 等核心技術。這是有期限的保護（20 年）。</p>\n<p>第二層是 <strong>Know-how</strong> — 怎麼正確實作這些技術的專有資訊，包括營業秘密、設計圖、技術規格。這些東西不在專利文件裡，是 Dolby 的內部知識。</p>\n<p>第三層是 <strong>Show-how</strong> — Dolby 提供的教學、技能傳授、測試結果和技術示範。這是授權的「服務」層 — 不只給你文件，還教你怎麼用。</p>\n<p>第四層是<strong>軟體</strong> — 編譯過的參考解碼器。注意：是編譯過的，不是原始碼。合約裡明確禁止逆向工程和修改。</p>\n<p>第五層是<strong>品牌</strong> — Dolby 的名稱和雙 D 標誌。消費者認得這個 logo，把它當作品質訊號。</p>\n<p>最後是<strong>認證</strong> — 每個含有 Dolby 技術的產品上市前都必須提交給 Dolby 測試，通過才能出貨。</p>\n<p>這裡有一個很關鍵的洞見：<strong>即使 Dolby 的專利有一天全部過期，它的護城河還是在。</strong> 因為 know-how 和軟體受營業秘密和著作權保護（沒有到期日），品牌受商標權保護（也沒有到期日），認證系統是建立在信任基礎上的。專利只是五道護城河中的一道 — 而且是唯一有到期日的那一道。</p>",
+    "supplement": [
+      "這些資訊來自 Dolby 實際在 SEC 提交的授權合約（Exhibit 10.6）",
+      "合約裡把 Know-how 定義為「proprietary information including but not limited to trade secrets, software, designs, drawings, specifications」",
+      "Show-how 定義為「valuable and necessary teaching, skills, experience, reports, tests, test results, education, techniques and demonstrations」",
+      "SDK（開發套件）包含 53 項測試相關的交付物"
+    ]
+  },
+  {
+    "num": 13,
+    "title": "Dolby 雙層授權制",
+    "speaker": 3,
+    "time": "~40 秒",
+    "onSlide": "晶片商 → 設備商 → 合格名單。「控制供應鏈入口，就是控制授權收入出口。」",
+    "speech": "<p>Dolby 用一個很聰明的<strong>雙層制</strong>來確保每台設備都有付錢。</p>\n<p>第一層叫做 <strong>Implementation License（實作授權）</strong>。晶片商 — 像 Qualcomm、MediaTek — 可以把 Dolby 的技術整合進他們的晶片裡。但有一個條件：這些含有 Dolby 技術的晶片<strong>只能賣給 Dolby 認可的系統授權方</strong>。</p>\n<p>第二層叫做 <strong>System License（系統授權）</strong>。設備製造商 — 像 Samsung、LG、Apple — 要做含有 Dolby 技術的終端產品，必須先成為 Dolby 的系統授權方，通過產品測試，列入一份叫做 SQR（Schedule of Qualified Recipients，合格接收方名單）的清單。然後每台產品出貨，付授權金給 Dolby。</p>\n<p>關鍵在於：<strong>如果你不在 SQR 上，你連有 Dolby 技術的晶片都買不到。</strong> 因為晶片商被合約要求只能賣給 SQR 上的公司。</p>\n<p>這就是為什麼這張投影片底部寫：「控制供應鏈入口，就是控制授權收入出口。」Dolby 透過控制誰能買到晶片，確保每台設備都在付費體系內。</p>",
+    "supplement": [
+      "這個雙層制是 Dolby 在 1980 年代就發展出來的",
+      "為什麼製造商願意付？兩個原因：(1) Dolby Digital 寫進了 DVD、ATSC 數位電視、Blu-ray 規格，做符合標準的設備就必須授權 (2) 所有主要串流平台用 Dolby 格式輸出，消費者期待 Dolby 體驗"
+    ]
+  },
+  {
+    "num": 14,
+    "title": "Dolby 稽核機制",
+    "speaker": 3,
+    "time": "~50 秒",
+    "onSlide": "四步驟 + 交叉驗證圖：晶片報告 + 設備報告 → 稽核 → 少報超過 5% = 三倍授權金",
+    "speech": "<p>前面講收入結構的時候提到「稽核權」。Dolby 把稽核做到了極致 — 它不只是一個合約條款，而是一個持續運作的營收保護機制。</p>\n<p>運作方式是這樣的。第一步，晶片供應商每季要回報：出了多少 Dolby 晶片給哪些公司。第二步，系統授權方每季也要回報：出了多少台含 Dolby 技術的設備。</p>\n<p>第三步是關鍵：<strong>Dolby 把這兩組數據交叉比對。</strong> 如果晶片商說出了 100 萬顆 Dolby 晶片給 A 公司，但 A 公司只報賣了 80 萬台設備 — 那 20 萬的差距去哪了？Dolby 會發動調查。</p>\n<p>第四步：如果稽核發現少報的金額<strong>超過應付金額的 5%</strong>，就構成重大違約。後果很嚴重：被授權方要賠<strong>三倍</strong>未付授權金，加上月利率 1.5% 的利息，加上 Dolby 的稽核和法律費用全額。</p>\n<p>更狠的是：如果是<strong>蓄意少報</strong>，Dolby 可以直接通知晶片供應商，告訴他們這家公司<strong>不再具備良好資格</strong> — 直接斷供 Dolby 晶片。等於直接切斷對方的產品線。</p>\n<p>這不是理論上的威脅。2024 年 Roku 就因為拒絕讓 Dolby 行使合約裡的稽核權，被 Dolby 告上美國加州聯邦法院。Dolby 甚至在德國拿到了初步禁制令。</p>\n<p>所以稽核不是「以防萬一」的防禦措施 — <strong>它是授權商業模式的營收保護機制</strong>，是確保整個收費體系能運轉的關鍵環節。</p>",
+    "supplement": [
+      "Dolby 10-K 年報裡明確提到稽核回收是「常規性的」：recoveries from licensee audits are a regular occurrence",
+      "合約規定被授權方必須保留完整帳簿和銷售紀錄 3 年",
+      "Dolby 每年最多稽核兩次（合理通知、營業時間內）",
+      "三倍賠償的那次稽核不計入每年兩次的限制"
+    ]
+  },
+  {
+    "num": 15,
+    "title": "台積電案例開場",
+    "speaker": 4,
+    "time": "~40 秒",
+    "onSlide": "台積電製程 know-how 系統 — 六格卡片：製程窗口、設備配方、良率資料、缺陷診斷、供應商、客戶協作",
+    "speech": "<p>第二個案例是台積電。它走的是跟 Dolby 完全不同的路線。</p>\n<p>先講規模。台積電 2024 年營收 <strong>900 億美元</strong>，大約台幣 2.9 兆。幫 522 家客戶生產超過一萬種產品，用了 288 種不同的製程技術。先進製程 — 就是 7 奈米以下 — 佔營收的 69%。</p>\n<p>台積電有超過 11.4 萬件專利申請，其中 7.9 萬件已核准。但我們前面說過，三星和 Intel 也有大量專利 — 大家讀的是同樣的物理教科書，用的是同樣廠商的設備。</p>\n<p>那差在哪？差在台積電從 2013 到 2024 年間<strong>內部登錄了 475,462 筆營業秘密</strong>。注意「內部登錄」— 這不是政府的註冊系統，而是台積電自己建立的營業秘密管理制度，用來追蹤和保護公司內部的 know-how。</p>\n<p>這些 know-how 包括：每一個製程步驟的精確參數（溫度、壓力、氣體比例、時間）、針對每台機器的設備調校配方、良率學習資料庫、缺陷診斷系統、供應商管理 know-how、以及跟客戶的協作流程。</p>",
+    "supplement": [
+      "台積電連續 10 年是台灣 TIPO 國內發明專利申請第一名（2025 年：1,485 件）",
+      "47.5 萬筆營業秘密 vs 11.4 萬件專利 — 營業秘密的量是專利的 4 倍多",
+      "來源：台積電 2024 年報 / 2025 年報"
+    ]
+  },
+  {
+    "num": 16,
+    "title": "不授權 Statement",
+    "speaker": 4,
+    "time": "~40 秒",
+    "onSlide": "左：「把秘密留著」，右：「賣的是我幫你做」",
+    "speech": "<p>台積電選擇的策略是：<strong>不把 know-how 授權出去。</strong></p>\n<p>為什麼？因為台積電的 know-how 不是一個可以寫在文件裡交出去的「配方」。它是一整套互相耦合的系統 — 製程參數、設備配方、良率資料庫、缺陷診斷、供應商管理，這些東西彼此關聯，拆開來就不完整了。</p>\n<p>而且把這些授權出去等於同時做了兩件最糟糕的事。第一，<strong>失去秘密</strong> — know-how 一旦交出去就收不回來。第二，<strong>創造競爭對手</strong> — 拿到你的 know-how 的公司有一天可能跟你搶客戶。</p>\n<p>所以台積電選了另一條路：<strong>把秘密留在自己手裡，賣的不是技術，而是「我幫你做」的服務。</strong></p>\n<p>Apple 想要最先進的手機晶片？台積電幫你做。Nvidia 想要最強的 GPU？台積電幫你做。客戶付的是代工費，但他們實際買的是台積電的秘密製程能力帶來的結果 — 更高良率（更低單位成本）、更快投產（更早上市搶市場）、更可靠的量產（更低風險）。</p>",
+    "supplement": [
+      "這跟 Dolby 的模式形成鮮明對比：Dolby 把 know-how 打包授權出去收錢，台積電把 know-how 留著自己用",
+      "兩個模式都成功 — 差別在於技術的性質。Dolby 的技術可以標準化、文件化、遠端認證。台積電的技術高度依賴現場的設備調校和製程控制，很難打包。",
+      "Intel 和三星也嘗試做晶圓代工，但良率一直追不上台積電 — 因為 know-how 的差距"
+    ]
+  },
+  {
+    "num": 17,
+    "title": "TSMC Know-how 系統",
+    "speaker": 4,
+    "time": "~40 秒",
+    "onSlide": "三層：製程窗口（CORE）、良率學習資料庫（MIDDLE）、設備與供應鏈（OUTER）。底部：「負面知識：知道什麼不能做」",
+    "speech": "<p>把台積電的 know-how 拆開來看，可以分成三層。</p>\n<p>核心層是<strong>製程窗口</strong> — 每一個製造步驟的精確參數：溫度要多少度、壓力要多少、用什麼氣體、比例多少、時間多長。這些參數的組合就是台積電的「配方」。但不是一個配方 — 每一個製程節點（3nm、2nm）都有不同的配方，而且隨著設備老化和材料變化還要持續調整。</p>\n<p>中間層是<strong>良率學習資料庫</strong> — 台積電在十幾年的生產過程中累積了大量的數據，知道什麼條件下良率會崩潰、什麼訊號預示問題。這不是教科書能教的 — 是靠實際生產中上千次的失敗和調整才建立起來的。</p>\n<p>外層是<strong>設備與供應鏈管理</strong> — 每台機器的最佳調校配方（同一型號的機器，每一台的最佳參數可能都不一樣）、哪個供應商的化學品批次會造成變異、缺陷診斷系統。</p>\n<p>底下有一句很重要的話：<strong>「負面知識：知道什麼不能做。」</strong> 量產 know-how 很大一部分是「負面知識」— 經過上千次失敗之後才知道「什麼不該嘗試」、「什麼參數組合會導致災難」。這種知識你沒辦法從教科書裡學到，也沒辦法用錢買 — 只能自己去經歷那些失敗。</p>\n<p>這就是為什麼即使你有同樣的設備、讀了同樣的論文，<strong>重建台積電的 know-how 不是幾個月的事，而是幾年甚至十幾年。</strong></p>",
+    "supplement": [
+      "「負面知識」這個概念是我們整個報告中最重要的洞見之一",
+      "它解釋了為什麼營業秘密的替代成本特別高 — 你不只要重新發明正確的做法，還要重新經歷所有導致失敗的錯誤做法",
+      "這也是為什麼偷竊營業秘密被稱為「時間壓縮攻擊」— 偷的人跳過了所有失敗的學費"
+    ]
+  },
+  {
+    "num": 18,
+    "title": "授權邊界",
+    "speaker": 4,
+    "time": "~40 秒",
+    "onSlide": "A「授權出去 — 失去秘密、創造對手」vs B「自己代工 — 保留秘密、出售結果」",
+    "speech": "<p>台積電的案例告訴我們一件重要的事：<strong>技術授權策略不只是「要不要授權」的問題，也包括「什麼東西絕對不能授權出去」。</strong></p>\n<p>左邊是授權出去的風險。一旦製程窗口、設備配方和良率資料庫外流，競爭者可以跳過多年的試錯。而且營業秘密一旦揭露就不可逆 — 你拿不回來。合約可以約定對方不能用，但合約救濟永遠晚於實際損害。</p>\n<p>右邊是台積電的選擇。保留秘密，賣的是結果而不是技術。Apple、Nvidia、AMD 付的是代工費，實際買的是台積電的秘密製程能力 — 更高良率、更快投產、更低量產風險。</p>\n<p><strong>有些 know-how，最好的變現方式就是不授權。</strong> 這聽起來矛盾 — 我們今天的主題不是「技術授權」嗎？但理解「什麼不能授權」正是授權策略的一部分。Dolby 授權 know-how 是因為它的技術可以標準化和遠端認證。台積電不授權是因為它的技術高度依賴現場控制，授權出去反而會失去控制。</p>\n<p>兩個都是成功的營業秘密商業模式 — 差別在於技術的性質決定了最適合的變現路線。</p>",
+    "supplement": [
+      "老師要求的「防禦與替代分析」可以在這裡帶入：如果競爭對手想繞過台積電的 know-how 自己做，替代成本 = 研發時間 + 失敗實驗 + 試產損失 + 良率犧牲 + 人才培訓 + 機會成本",
+      "Intel 和三星投入了數百億美元試圖追趕台積電的先進製程良率，至今仍有顯著差距"
+    ]
+  },
+  {
+    "num": 19,
+    "title": "Waymo 案例開場",
+    "speaker": 5,
+    "time": "~40 秒",
+    "onSlide": "Waymo / Uber — 六格卡片：下載、搬移、抹除、意外、鑑識、後果",
+    "speech": "<p>第三個案例是反面教材。前面看了 Dolby 怎麼靠營業秘密賺錢、台積電怎麼靠營業秘密建立競爭壁壘。現在我們看：<strong>如果營業秘密被偷了，會怎樣？</strong></p>\n<p>Waymo v. Uber 案是近年全球最知名的營業秘密竊盜案。審理法官 William Alsup 稱它為「他見過最大的營業秘密犯罪案件」。</p>\n<p>故事的主角是 Anthony Levandowski，Google 自駕車計畫（後來獨立為 Waymo）的核心工程師。他專門負責 LiDAR — Light Detection and Ranging，光達感測器 — 讓自駕車能「看見」周圍環境的核心技術。</p>\n<p>為什麼 LiDAR 這麼值錢？當時市面上一顆商用 LiDAR 要 <strong>7.5 萬美元以上</strong>。Waymo 自己研發的 LiDAR 更便宜也更好 — 這是數百名工程師花了好幾年、投入數百萬美元研發的成果。</p>\n<p>2015 年 12 月，Levandowski 在離職前六週做了這些事：他在公司筆電上安裝了專用軟體，從 Waymo 的內部設計伺服器下載了 <strong>14,107 份機密檔案，共 9.7 GB</strong> — 包括 LiDAR 電路板藍圖、製造規格、供應商名單、原始碼和測試文件。然後他把檔案搬到 USB 外接硬碟，<strong>擦掉整台筆電</strong>（重灌 Linux 覆蓋 Windows）試圖銷毀數位鑑識證據。</p>\n<p>之後他成立了 Otto 公司，被 Uber 以約 6.8 億美元收購，成為 Uber 自駕部門的主管。</p>",
+    "supplement": [
+      "LiDAR 的原理：發射雷射光束 → 測量反射回來的時間 → 計算距離 → 建立 3D 點雲地圖",
+      "Waymo（前身 Google Self-Driving Car Project）從 2009 年就開始研發",
+      "Levandowski 另外還用手機拍攝了數千張電腦螢幕的照片"
+    ]
+  },
+  {
+    "num": 20,
+    "title": "Waymo 時間線",
+    "speaker": 5,
+    "time": "~50 秒",
+    "onSlide": "時間線：2015/12 下載 → 2016/08 Uber 收購 → 2016/12 意外 CC → 2018/02 和解 → 2021/01 特赦",
+    "speech": "<p>接下來看時間線。故事最戲劇性的部分不在法庭上 — 而在一封被意外 CC 的電子郵件。</p>\n<p>2015 年 12 月，Levandowski 下載檔案並擦掉筆電。2016 年 1 月底，他不預警辭職。2016 年 5 月，他成立 Otto。8 月，Uber 收購 Otto。</p>\n<p>然後到了 <strong>2016 年 12 月 13 日</strong>。Waymo 的一名員工被<strong>意外 CC</strong> 進一封來自 LiDAR 零件供應商的電子郵件。這封信原本是寄給 Uber 團隊的，標題是「OTTO FILES」。附件是 Otto/Uber 的 LiDAR 電路板設計圖 — 跟 Waymo 的機密設計<strong>驚人地相似</strong>。</p>\n<p>就是這封意外的 CC，觸發了整起訴訟。</p>\n<p>Waymo 啟動內部調查，2017 年 2 月正式提告。2018 年 2 月開庭審理，但只審了<strong>四天</strong>就突然和解 — Uber 給 Waymo 約 <strong>2.45 億美元</strong>等值的股權，加上承諾不使用 Waymo 的機密資訊。本來預計要審三週以上的案子，四天就結束了。</p>\n<p>刑事方面，2019 年 Levandowski 被聯邦大陪審團起訴 <strong>33 項竊盜罪</strong>。2020 年他認罪一項，判處 18 個月。</p>\n<p>但故事最後的轉折是：<strong>2021 年 1 月 20 日，Trump 在任期的最後一天特赦了 Levandowski。</strong> 他從未入獄服刑。支持特赦的人包括科技圈的 Peter Thiel 和 Palmer Luckey。</p>",
+    "supplement": [
+      "Waymo 原本求償 18 億美元，後來調高到 26 億美元",
+      "和解金 2.45 億基於 Uber 當時 720 億美元的估值（0.34% 股權）",
+      "Levandowski 另外還因為違約被仲裁判賠 Google 1.79 億美元，因此宣告破產",
+      "法官 Alsup 的原話：「This is the biggest trade secret crime I have ever seen.」"
+    ]
+  },
+  {
+    "num": 21,
+    "title": "鑑識工具",
+    "speaker": 5,
+    "time": "~40 秒",
+    "onSlide": "三組鑑識工具：Armada、Bit9、GRR",
+    "speech": "<p>這個案子有一個技術上很有趣、也很重要的地方。Levandowski 擦掉了整台筆電，重灌了作業系統，試圖銷毀所有數位證據。他以為這樣就安全了。</p>\n<p>但他不知道的是，Google 的安全工具<strong>在筆電被擦掉之前</strong>，就已經把關鍵的存取日誌回傳到 Google 的伺服器了。</p>\n<p>三個工具各自紀錄了不同的東西。<strong>Armada</strong> 是 Google 內部的 IT 資料庫，它確認了下載 14,107 份檔案的那個網路位址來自 Levandowski 的公司筆電。<strong>Bit9</strong>（後來改名叫 Carbon Black）是一個安全應用程式，它記錄了 USB 外接硬碟<strong>什麼時候被插上、什麼時候被拔掉</strong>。<strong>GRR（Google Rapid Response）</strong> 是 Google 自己開發的數位鑑識軟體，它在背景定期把裝置上的事件日誌回傳到 Google 的伺服器 — 所以即使裝置本身被擦掉了，日誌早就已經傳回去了。</p>\n<p><strong>這告訴我們一件事：在內控做得好的公司，你以為你刪除了的證據，其實早就被備份了。</strong> Levandowski 擦掉了筆電，但 Google 不需要那台筆電 — 日誌都在伺服器上。</p>\n<p>但這裡也有一個諷刺的地方：這些工具雖然記錄了一切，但<strong>沒有即時警報</strong>。Levandowski 下載了 9.7 GB 的檔案到 USB，當下沒有人被通知。整整一年後，是因為一封意外的 CC 郵件才發現的。如果有即時的異常下載警報，這起竊盜可能在發生的當天就被攔截。</p>",
+    "supplement": [
+      "Google 安全工程師 Gary Brown 在法庭上作證解釋了這三個工具",
+      "這三個工具不是特別安裝來監視 Levandowski 的 — 它們是 Google 所有公司設備上的標準安全軟體",
+      "教訓：有日誌不等於有保護。日誌 + 即時警報 + 即時回應，三者缺一不可"
+    ]
+  },
+  {
+    "num": 22,
+    "title": "紅旗與結果",
+    "speaker": 5,
+    "time": "~40 秒",
+    "onSlide": "50,000 封信件 / 33 項起訴 / 18 個月刑期 / $3B Uber 投入",
+    "speech": "<p>最戲劇性的部分是：<strong>Uber 在收購 Otto 之前，就已經看到了大量的紅旗。</strong></p>\n<p>Uber 收購前請了鑑識公司 Stroz Friedberg 做盡職調查。調查報告揭露了什麼？Levandowski 的個人電腦裡有 <strong>5 萬封 Google 的工作信件</strong>。他在離開 Google 之後還存取過 Google 的檔案。他銷毀了五張含有 Google 機密的光碟。而且在調查進行的過程中，他<strong>嘗試刪除檔案、要人刪 iMessages</strong> — 甚至在鑑識公司 Stroz Friedberg 的辦公室裡嘗試清空 Macbook 的垃圾桶。</p>\n<p>這些全都寫在盡調報告裡。但 Uber <strong>照樣完成了 6.8 億美元的收購</strong>，讓 Levandowski 當自駕部門主管。而且 Stroz 報告<strong>從未提交給 Uber 的董事會</strong>。</p>\n<p>法官 Alsup 對此的評論是：<strong>「數十億美元的未來利益在眼前，當那種財務誘因存在時，好人也會做出可怕的事。」</strong></p>\n<p>最終結果：33 項竊盜罪起訴，認罪 1 項，判 18 個月（後被特赦，從未服刑）。Uber 最終放棄了整個自駕車計畫，把 1,200 人的部門賣給了 Aurora，前後投入近 <strong>30 億美元</strong>。</p>\n<p>聯邦檢察官 David Anderson 說了一句很有名的話：<strong>「偷竊不是創新。」</strong></p>",
+    "supplement": [
+      "Stroz Friedberg 報告是 2017 年 9 月在法院命令下被公開的",
+      "還有一個更大的醜聞：前 Uber 安全主管 Richard Jacobs 的「炸彈信件」揭露 Uber 有系統性的間諜團隊和證據銷毀程序",
+      "Jacobs 跟 Uber 以 450 萬美元和解，包含不誹謗條款",
+      "這封信的存在是聯邦檢察官在 2017 年 11 月告訴法官的 — Uber 自己沒有主動揭露"
+    ]
+  },
+  {
+    "num": 23,
+    "title": "五層內控",
+    "speaker": 6,
+    "time": "~50 秒",
+    "onSlide": "六張卡：法律層、員工層、技術層、組織層、證據層、實體/供應鏈",
+    "speech": "<p>三個案例都指向同一件事：<strong>營業秘密的價值取決於你怎麼保護它。</strong></p>\n<p>而且要記得我們在第三張投影片講的第三個法律要件 — 「合理保密措施」。如果你不能證明有在認真保護，法律上你的秘密<strong>可能根本不算營業秘密</strong>。你去告對方偷你的東西，法院會先問：你自己有在保護嗎？</p>\n<p>所以內控不只是「防禦措施」— 不是為了防止壞事發生才做的。<strong>它是你能主張營業秘密權利的基礎建設。</strong> 沒有它，你連告人的資格都可能沒有。</p>\n<p>六個層面。</p>\n<p><strong>法律層</strong>：NDA（保密協議）、發明歸屬條款（員工的發明歸公司所有）、保密存續條款（離職後保密義務持續）、授權合約裡的稽核權。</p>\n<p><strong>員工層</strong>：角色式存取控制（不是每個人都能看到所有東西）、培訓紀錄（確保員工知道什麼是機密、怎麼處理）、離職面談和歸還/刪除認證。</p>\n<p><strong>技術層</strong>：Need-to-know 權限設計、DLP 系統（Data Loss Prevention，偵測和阻擋異常的資料外洩）、文件浮水印、存取日誌記錄、禁止大量匯出。</p>\n<p><strong>組織層</strong>：營業秘密登錄冊（公司知道自己有哪些秘密）、揭露審批流程（要分享給外部之前要經過批准）、供應商管控。</p>\n<p><strong>證據層</strong>：不可竄改的日誌、版本控管、存取歷史紀錄、簽署的交接文件。</p>\n<p>最後是<strong>實體和供應鏈層</strong>：無手機區（防拍照）、遠端工作的安全規則、供應商現場稽核。</p>\n<p>回頭看案例。<strong>台積電 vs TEL 案</strong>告訴我們：DLP 擋得住數位外洩（下載、轉寄、列印），但擋不住有人拿手機對著螢幕拍照。遠端工作讓機密離開了無手機區的保護。2026 年一審判決：主犯 10 年，TEL 台灣罰金 1.5 億新台幣。台灣檢方是依國家安全法加營業秘密法起訴 — 因為先進半導體製程被列為國家核心關鍵技術。</p>\n<p><strong>Waymo 案</strong>告訴我們：日誌有在記錄，但沒有即時警報。9.7 GB 的大量下載整整一年後才因為一封意外的 CC 郵件被發現。保護必須是全方位的 — 有記錄不等於有保護。</p>",
+    "supplement": [
+      "老師要求的「策略配套建議」就是這張投影片在講的",
+      "台灣勞基法 9-1 條規定競業禁止最長 2 年，而且要有合理補償",
+      "台灣國家安全法第 8 條：核心技術營業秘密犯罪可處 5-12 年；意圖用於境外/中國/港澳可處 3-10 年",
+      "企業如果未盡防止義務，要負企業刑事責任"
+    ]
+  },
+  {
+    "num": 24,
+    "title": "結論",
+    "speaker": 6,
+    "time": "~40 秒",
+    "onSlide": "左：「秘密不只是資訊。它是可控的重複性。」右：三模式總結（Dolby / 台積電 / Waymo）",
+    "speech": "<p>最後做個總結。三個案例，三種模式，一個道理。</p>\n<p><strong>Dolby</strong> 把 know-how、專利、軟體、品牌和認證打包成授權組合，建立了一個自我強化的生態系。每年收 12.5 億美元授權金，92.5% 的營收來自授權，全公司只有 2,200 人。</p>\n<p><strong>台積電</strong> 選擇不授權 — 把 know-how 留在自己手裡，賣的是「我幫你做」的服務。靠十幾年累積的製程 know-how 和 47.5 萬筆營業秘密，撐起年營收 900 億美元的晶圓代工帝國。</p>\n<p><strong>Waymo/Uber</strong> 是反面教材。Waymo 的 LiDAR know-how 被偷走，和解 2.45 億美元。Uber 最終放棄自駕，前後損失 30 億美元。聯邦檢察官說：「偷竊不是創新。」</p>\n<p><strong>秘密不只是資訊。它是一家公司花了大量時間和失敗累積出來的執行能力 — 是可控的重複性。</strong></p>\n<p>控制好了，它就是源源不絕的現金流。控制不好，價值可能一夕崩塌。</p>\n<p>以上是我們第六組的報告，謝謝大家。</p>",
+    "supplement": [
+      "如果有 Q&A，可能被問到的問題：",
+      "「台灣有什麼相關法律？」→ 營業秘密法（民事+刑事）、國安法保護國家核心關鍵技術、勞基法 9-1 競業禁止",
+      "「如果對手合法逆向工程怎麼辦？」→ 營業秘密法不阻止合法逆向工程，所以技術如果能被逆向就不適合用營業秘密保護，該用專利",
+      "「為什麼 Levandowski 被特赦？」→ Trump 任期最後一天特赦，支持者包括 Peter Thiel 和 Palmer Luckey"
+    ]
+  }
+];
+const shortSlides = [
+  {
+    "num": 1,
+    "title": "開場封面",
+    "speaker": 1,
+    "time": "~30 秒",
+    "onSlide": "營業秘密 × 技術授權。「如果全世界都知道晶片怎麼設計、電視怎麼做聲音、自駕車怎麼看路，為什麼不是每家公司都做得一樣好？」",
+    "speech": "<p>大家好，我們是第六組。今天要報告的主題是營業秘密和技術授權。</p>\n<p>在開始之前，我想先問一個問題。晶片製造的物理原理寫在教科書裡，Dolby 的音訊壓縮有公開的標準規格書，自駕車 LiDAR 的測距原理任何工程系的學生都學得到。</p>\n<p>那為什麼全世界只有少數幾家公司能做到最好？台積電的良率、Dolby 的授權帝國、Waymo 的自駕技術 — 它們的原理不是秘密，但它們的成果別人複製不了。</p>\n<p>差在哪裡？今天就是要講這件事。</p>",
+    "supplement": null
+  },
+  {
+    "num": 2,
+    "title": "核心主張：專利 vs 營業秘密",
+    "speaker": 1,
+    "time": "~40 秒",
+    "onSlide": "左半「專利是公開的邊界線」，右半「營業秘密是私有的執行系統」",
+    "speech": "<p>一家公司有了技術，法律上有兩種主要的保護方式。</p>\n<p>第一種是<strong>專利</strong>。專利的本質是一個交易 — 你把發明細節公開寫出來，交給政府，政府給你 20 年的排他權。在這 20 年裡，沒有人可以合法做同樣的東西。但代價是公開 — 全世界都可以去讀你的專利文件，知道你做了什麼。</p>\n<p>第二種是<strong>營業秘密</strong>。完全相反 — 你什麼都不公開，靠保密來維持優勢。好處是沒有期限，只要秘密不洩漏就一直有效。但壞處是沒有排他權 — 別人如果自己研發出來或者合法逆向工程，你無法阻止。</p>\n<p>簡單說：專利保護的是「你發明了什麼」，營業秘密保護的是「你怎麼把它做出來」。</p>",
+    "supplement": null
+  },
+  {
+    "num": 3,
+    "title": "營業秘密三要件",
+    "speaker": 1,
+    "time": "~40 秒",
+    "onSlide": "三層：不為公眾所知、具有經濟價值、合理保密措施",
+    "speech": "<p>這裡要先澄清一件很重要的事：不是公司自己說「這是秘密」就算營業秘密。法律上，必須同時滿足三個條件。</p>\n<p>第一，這個資訊<strong>不為公眾所知</strong> — 不是任何人隨便就能查到的。</p>\n<p>第二，它<strong>具有經濟價值</strong> — 正因為它是秘密的，才讓公司有競爭優勢。</p>\n<p>第三，也是最常被忽略的：公司必須<strong>採取合理的保密措施</strong>。意思是你有實際在保護它 — 有存取控制、有 NDA、有日誌記錄。不是只蓋一個「機密」章就算。</p>\n<p>第三點為什麼重要？因為如果有一天你的秘密被偷了，你去告對方，法院第一件事就是看你自己有沒有認真在保護。如果你自己都沒保護好，法院會說：這不算營業秘密。</p>",
+    "supplement": null
+  },
+  {
+    "num": 4,
+    "title": "專利 vs 營業秘密對比",
+    "speaker": 1,
+    "time": "~40 秒",
+    "onSlide": "A 專利（公開但可排除）vs B 營業秘密（不公開但怕外洩）",
+    "speech": "<p>把兩種保護方式放在一起看。</p>\n<p>專利：任何人都能讀你的發明，但在有效期內，沒有許可不能做。保護 20 年，可以擋住即使是獨立發明出同樣東西的人。侵權比對相對清楚。</p>\n<p>營業秘密：靠控制和保密維持優勢。只要不洩漏可以無限期。但擋不住合法的逆向工程，而且一旦公開外洩，法律保護和商業價值可能大幅崩塌。舉證也高度依賴你平常有沒有做好日誌和內控。</p>\n<p>所以這不是「哪個比較好」的問題，而是要看你的技術適合哪一種保護方式。</p>",
+    "supplement": null
+  },
+  {
+    "num": 5,
+    "title": "決策矩陣",
+    "speaker": 2,
+    "time": "~40 秒",
+    "onSlide": "四張卡：逆向工程、生命週期、侵權偵測、獨立發明",
+    "speech": "<p>那什麼時候該選專利、什麼時候該選營業秘密？核心問題是：<strong>如果這個技術被公開了，會怎樣？</strong></p>\n<p>四個判斷因素：</p>\n<p>一、<strong>逆向工程</strong>。你的產品賣出去，別人一拆就知道怎麼做的 — 那保密沒用，不如申請專利。但如果技術藏在工廠的製程裡，外部根本看不到，那保密就有用。</p>\n<p>二、<strong>生命週期</strong>。技術在 20 年內就會被淘汰？專利夠用。價值可能超過 20 年？保密更好 — 像可口可樂的配方就保密了 130 多年。</p>\n<p>三、<strong>侵權偵測</strong>。從產品上就能發現有人侵權？專利。濫用發生在競爭對手的工廠裡，你根本不知道？營業秘密更適合，但舉證也更難。</p>\n<p>四、<strong>獨立發明風險</strong>。別人很可能自己想到？趕快申請專利卡位。沒有大量試錯很難發現的？保密就好。</p>",
+    "supplement": null
+  },
+  {
+    "num": 6,
+    "title": "變現三路徑",
+    "speaker": 2,
+    "time": "~40 秒",
+    "onSlide": "溢價 Premium / 授權抽成 Licensing / 風險降低 Risk Reduction",
+    "speech": "<p>知道了什麼是營業秘密之後，下一個問題是：怎麼靠它賺錢？</p>\n<p>主要有三種路線。</p>\n<p>第一種是<strong>溢價</strong>。你的 know-how 讓你的良率更高、成本更低，所以同樣的產品你能賺更多。台積電就是這個模式 — 它不把 know-how 賣給別人，自己用來做代工，靠效能差距賺錢。</p>\n<p>第二種是<strong>授權抽成</strong>。把 know-how 跟其他東西（專利、軟體、品牌）包在一起，授權給別的公司，每台產品抽一筆錢。Dolby 就是這個模式 — 它幾乎不做硬體，靠授權每年賺超過 12 億美元。</p>\n<p>第三種是<strong>風險降低</strong>。透過保密防止技術流失，降低被競爭對手追趕的風險。這是所有擁有營業秘密的公司都在做的基本功。</p>\n<p>今天我們會用三個案例分別展示這三種路線。</p>",
+    "supplement": null
+  },
+  {
+    "num": 7,
+    "title": "驗貨悖論",
+    "speaker": 2,
+    "time": "~30 秒",
+    "onSlide": "「買家要先看到秘密才知道值不值得買；但看了秘密，就不是秘密了。」",
+    "speech": "<p>但如果你選擇走授權路線，馬上會遇到一個根本矛盾。</p>\n<p>你跟對方說「我有一個很厲害的 know-how」。對方說：「讓我先看看值不值得買。」你說：「可是我一給你看，你就知道了，不管最後有沒有簽約。」</p>\n<p>這就是所謂的「驗貨悖論」。你要怎麼在不洩漏秘密的情況下，讓買家相信這個東西有價值？</p>",
+    "supplement": null
+  },
+  {
+    "num": 8,
+    "title": "分級揭露",
+    "speaker": 2,
+    "time": "~40 秒",
+    "onSlide": "五階段時間線：NDA + 評估包 → 付費試用 → 簽約授權 → 驗收里程碑 → 商業量產",
+    "speech": "<p>答案是：把授權設計成分階段的產品。先賣信心，再賣秘密。</p>\n<p>第一步，先簽 NDA，然後只給對方高階的流程圖和去敏感化的效能數據。對方知道「你能做到什麼效果」，但不知道「怎麼做到的」。</p>\n<p>第二步，對方如果有興趣，付費進入試用期。這時候才給有限範圍的參數。</p>\n<p>第三步，正式簽約後，交出完整的 SOP 和設備設定。</p>\n<p>第四步，對方要先證明自己能重現效能，通過驗收後才交出進階的良率改善資料。</p>\n<p>最後量產階段，才提供故障排除資料庫和下一代改進。</p>\n<p>每個階段都收不同的錢。重點是：<strong>揭露本身就是產品，不是一次性的交易。</strong></p>",
+    "supplement": null
+  },
+  {
+    "num": 9,
+    "title": "收入結構",
+    "speaker": 2,
+    "time": "~30 秒",
+    "onSlide": "六張卡：前期授權金、里程碑付款、按量抽成、最低授權金、技術支援費、稽核權",
+    "speech": "<p>搭配分級揭露，付款結構也是分層的。</p>\n<p>前期授權金是「入場費」，回收研發成本。里程碑付款是對方每通過一個驗收才付。按量抽成是長期的利潤分享。最低授權金防止對方拿到技術後擱置不用。技術支援費是工程師培訓和問題排除。稽核權則是確認對方有沒有少報出貨量。</p>\n<p>這六個加在一起，就是一套完整的授權商業模式。</p>",
+    "supplement": null
+  },
+  {
+    "num": 10,
+    "title": "BMC 分析",
+    "speaker": 2,
+    "time": "~30 秒",
+    "onSlide": "九宮格 BMC，底部「執行優勢」",
+    "speech": "<p>用 BMC 商業模式圖來看，營業秘密不只是「關鍵資源」這一格 — 它滲透了整個九宮格。它是關鍵資源，同時決定了價值主張（更快投產、更高良率）、收入來源（授權金、支援費）、關鍵活動（保護、培訓、稽核），以及成本結構（安全、法律、監控）。</p>\n<p>跟專利型 BMC 最大的差異在於：專利說的是「沒有我的許可你不能做」，營業秘密說的是「你可以試，但我能讓你做得更快、更便宜、更少損失」。一個變現排除權，一個變現執行優勢。</p>",
+    "supplement": null
+  },
+  {
+    "num": 11,
+    "title": "Dolby 案例開場",
+    "speaker": 3,
+    "time": "~30 秒",
+    "onSlide": "Dolby 授權生態系 — 六格卡片：晶片商、設備商、內容平台、消費者、認證、稽核",
+    "speech": "<p>接下來我們用三個案例來具體說明。第一個是 Dolby — 授權模式的典範。</p>\n<p>Dolby 幾乎不做硬體產品，但 2025 年的營收是 13.5 億美元，其中 92.5%、也就是 12.5 億美元，全部來自授權。全公司只有 2,200 名員工。</p>\n<p>它怎麼做到的？它建立了一個完整的生態系。晶片商把 Dolby 技術做進晶片、設備商每台出貨付授權金、內容平台用 Dolby 格式輸出、消費者認得 Dolby 的品牌、每個產品上市前都要通過認證、還有稽核確保沒有少報。</p>",
+    "supplement": null
+  },
+  {
+    "num": 12,
+    "title": "Dolby IP 組合包",
+    "speaker": 3,
+    "time": "~30 秒",
+    "onSlide": "六張卡：專利、Know-how、Show-how、軟體、品牌、認證",
+    "speech": "<p>Dolby 賣的不只是專利許可。它的授權包是五層 IP 的組合。</p>\n<p>專利保護音訊壓縮和 HDR 等核心技術。Know-how 是怎麼正確實作的專有資訊。Show-how 是 Dolby 提供的教學和技術示範。軟體是編譯過的參考解碼器，禁止逆向工程。品牌是 Dolby 的商標和雙 D 標誌。加上認證 — 每個產品上市前都要通過 Dolby 的測試。</p>\n<p>這就是為什麼即使 Dolby 的專利有一天全部過期，它的護城河還是在 — 因為 know-how、軟體和品牌沒有到期日。</p>",
+    "supplement": null
+  },
+  {
+    "num": 13,
+    "title": "Dolby 雙層授權制",
+    "speaker": 3,
+    "time": "~30 秒",
+    "onSlide": "晶片商 → 設備商 → 合格名單。「控制供應鏈入口，就是控制授權收入出口。」",
+    "speech": "<p>Dolby 用一個很聰明的雙層制來確保每台設備都有付錢。</p>\n<p>第一層：晶片商（像 Qualcomm、MediaTek）可以把 Dolby 技術整合進晶片，但這些晶片只能賣給 Dolby 認可的系統授權方。</p>\n<p>第二層：設備製造商（像 Samsung、LG、Apple）用這些晶片做終端產品，每台出貨付授權金給 Dolby。</p>\n<p>如果你不是 Dolby 認可的授權方，你連有 Dolby 技術的晶片都買不到。控制供應鏈入口，就是控制授權收入的出口。</p>",
+    "supplement": null
+  },
+  {
+    "num": 14,
+    "title": "Dolby 稽核機制",
+    "speaker": 3,
+    "time": "~40 秒",
+    "onSlide": "四步驟 + 交叉驗證圖：晶片報告 + 設備報告 → 稽核 → 少報超過 5% = 三倍授權金",
+    "speech": "<p>Dolby 還有一個很厲害的保護機制：交叉驗證。</p>\n<p>它同時從晶片供應商和設備製造商那邊收季度報告。晶片商要回報「出了多少 Dolby 晶片給誰」，設備商要回報「出了多少台設備」。</p>\n<p>這兩組數據一比對，少報就無所遁形。如果晶片商說出了 100 萬顆給 A 公司，但 A 公司只報賣了 80 萬台 — Dolby 就會調查。</p>\n<p>少報超過 5%？構成重大違約，要賠<strong>三倍</strong>未付授權金，加上利息和所有稽核費用。蓄意少報？Dolby 可以直接通知晶片供應商停止供貨。</p>\n<p>2024 年 Roku 就因為拒絕讓 Dolby 稽核，被告上法院。所以稽核不是「以防萬一」的防禦措施 — 它是授權商業模式的營收保護機制。</p>",
+    "supplement": null
+  },
+  {
+    "num": 15,
+    "title": "台積電案例開場",
+    "speaker": 4,
+    "time": "~30 秒",
+    "onSlide": "台積電製程 know-how 系統 — 六格卡片：製程窗口、設備配方、良率資料、缺陷診斷、供應商、客戶協作",
+    "speech": "<p>第二個案例是台積電。跟 Dolby 完全不同的路線。</p>\n<p>台積電 2024 年營收 900 億美元，幫 522 家客戶生產超過一萬種產品。先進製程佔營收的 69%。</p>\n<p>台積電有 11.4 萬件專利。但它真正的護城河不是專利 — 是它從 2013 到 2024 年間內部登錄的 47.5 萬筆營業秘密。製程窗口、設備配方、良率資料、缺陷診斷、供應商管理、客戶協作 — 這些是只有在工廠裡做了十幾年才累積得出來的東西。</p>",
+    "supplement": null
+  },
+  {
+    "num": 16,
+    "title": "不授權 Statement",
+    "speaker": 4,
+    "time": "~30 秒",
+    "onSlide": "左：「把秘密留著」，右：「賣的是我幫你做」",
+    "speech": "<p>台積電選擇的策略是：<strong>不把 know-how 授權出去。</strong></p>\n<p>為什麼？因為把 know-how 授權出去等於同時做了兩件最糟糕的事：失去秘密，而且創造了一個能跟你競爭的對手。</p>\n<p>所以台積電走了另一條路：把秘密留在自己手裡，賣的是「我幫你做」的服務。Apple 和 Nvidia 付的是代工費，但他們實際買的是台積電的秘密製程能力帶來的結果 — 更高良率、更快投產、更低風險。</p>",
+    "supplement": null
+  },
+  {
+    "num": 17,
+    "title": "TSMC Know-how 系統",
+    "speaker": 4,
+    "time": "~30 秒",
+    "onSlide": "三層：製程窗口（CORE）、良率學習資料庫（MIDDLE）、設備與供應鏈（OUTER）。底部：「負面知識：知道什麼不能做」",
+    "speech": "<p>台積電的 know-how 不是一個配方，而是一整套系統。核心是製程窗口 — 每一步的溫度、壓力、氣體和時間。中層是良率學習資料庫 — 知道哪些條件會讓良率崩潰。外層是設備和供應鏈的管理 — 機台配方、材料批次、缺陷診斷。</p>\n<p>特別要講的是底下這句：<strong>「負面知識：知道什麼不能做。」</strong> 量產 know-how 很大一部分是經過上千次失敗之後才知道「什麼不該嘗試」。這種知識你沒辦法從教科書裡學到，也沒辦法用錢直接買 — 只能自己去經歷那些失敗。這就是為什麼重建台積電的秘密不是幾個月的事，而是幾年甚至十幾年。</p>",
+    "supplement": null
+  },
+  {
+    "num": 18,
+    "title": "授權邊界",
+    "speaker": 4,
+    "time": "~30 秒",
+    "onSlide": "A「授權出去 — 失去秘密、創造對手」vs B「自己代工 — 保留秘密、出售結果」",
+    "speech": "<p>所以台積電告訴我們一件事：技術授權策略不只是「要不要授權」的問題，也包括「什麼東西絕對不能授權出去」。</p>\n<p>左邊是授權出去的風險：一旦製程窗口和良率資料外流，競爭者可以跳過多年的試錯。而且揭露之後不可逆 — 你拿不回來。</p>\n<p>右邊是台積電的選擇：保留秘密，賣的是結果而不是技術。Apple、Nvidia、AMD 付代工費，實際買的是台積電的秘密製程能力。</p>\n<p>有些 know-how，最好的變現方式就是不授權。</p>",
+    "supplement": null
+  },
+  {
+    "num": 19,
+    "title": "Waymo 案例開場",
+    "speaker": 5,
+    "time": "~30 秒",
+    "onSlide": "Waymo / Uber — 六格卡片：下載、搬移、抹除、意外、鑑識、後果",
+    "speech": "<p>第三個案例是反面教材。如果營業秘密被偷了，會怎樣？</p>\n<p>Waymo v. Uber 案是近年最知名的營業秘密竊盜案。</p>\n<p>Anthony Levandowski 是 Google 自駕車計畫 Waymo 的核心工程師，專門做 LiDAR — 讓自駕車能「看見」周圍環境的光達感測器。當時一顆商用 LiDAR 要 7.5 萬美元以上，Waymo 自研的更便宜也更好。</p>\n<p>2015 年 12 月，他在離職前六週，下載了 14,107 份機密檔案到 USB 硬碟，然後擦掉整台筆電。之後他成立公司，被 Uber 以約 6.8 億美元收購。</p>",
+    "supplement": null
+  },
+  {
+    "num": 20,
+    "title": "Waymo 時間線",
+    "speaker": 5,
+    "time": "~40 秒",
+    "onSlide": "時間線：2015/12 下載 → 2016/08 Uber 收購 → 2016/12 意外 CC → 2018/02 和解 → 2021/01 特赦",
+    "speech": "<p>事情怎麼被發現的？一個意外。</p>\n<p>2016 年 12 月 13 日，Waymo 的一名員工被意外 CC 進一封 LiDAR 零件供應商的信件。標題是「OTTO FILES」，附件是 Uber 的 LiDAR 電路板設計圖 — 跟 Waymo 的機密設計驚人地相似。</p>\n<p>Waymo 啟動調查。2017 年正式提告。2018 年 2 月開庭，但只審了四天就和解 — Uber 給 Waymo 約 2.45 億美元等值的股權。</p>\n<p>刑事方面，Levandowski 被起訴 33 項竊盜罪，認罪一項，判 18 個月。但 2021 年 1 月，Trump 在任期最後一天特赦了他 — 從未入獄服刑。</p>",
+    "supplement": null
+  },
+  {
+    "num": 21,
+    "title": "鑑識工具",
+    "speaker": 5,
+    "time": "~30 秒",
+    "onSlide": "三組鑑識工具：Armada、Bit9、GRR",
+    "speech": "<p>這個案子有一個技術上很有趣的地方。Levandowski 擦掉了整台筆電，試圖銷毀證據。但 Google 的安全工具<strong>在筆電被擦掉之前</strong>，就已經把存取日誌傳回伺服器了。</p>\n<p>三個工具：Armada 確認了下載的來源是他的公司筆電。Bit9 記錄了 USB 硬碟的連接和移除。GRR 在背景定期回傳存取日誌到 Google 的伺服器，所以即使筆電被銷毀，日誌都還在。</p>\n<p>這告訴我們：在內控做得好的公司，你以為刪除了的證據其實還在。</p>",
+    "supplement": null
+  },
+  {
+    "num": 22,
+    "title": "紅旗與結果",
+    "speaker": 5,
+    "time": "~30 秒",
+    "onSlide": "50,000 封信件 / 33 項起訴 / 18 個月刑期 / $3B Uber 投入",
+    "speech": "<p>最戲劇性的是：Uber 在收購前就知道這些紅旗。他們請了鑑識公司做盡職調查，報告顯示 Levandowski 的個人電腦有 5 萬封 Google 工作信件、他銷毀了含機密的光碟、在調查進行中還嘗試刪除證據。</p>\n<p>但 Uber 照樣完成了收購。法官 Alsup 說：「數十億美元的未來利益在眼前，當那種財務誘因存在時，好人也會做出可怕的事。」</p>\n<p>Uber 最終放棄了整個自駕車計畫，前後投入近 30 億美元。聯邦檢察官 Anderson 說了一句很有名的話：<strong>「偷竊不是創新。」</strong></p>",
+    "supplement": null
+  },
+  {
+    "num": 23,
+    "title": "五層內控",
+    "speaker": 6,
+    "time": "~40 秒",
+    "onSlide": "六張卡：法律層、員工層、技術層、組織層、證據層、實體/供應鏈",
+    "speech": "<p>三個案例都指向同一件事：營業秘密的價值取決於你怎麼保護它。</p>\n<p>而且要記得前面講的第三個法律要件 — 「合理保密措施」。如果你不能證明有在認真保護，法律上你的秘密可能根本不算營業秘密。所以內控不只是防禦措施，<strong>它是你能主張營業秘密權利的基礎建設</strong>。</p>\n<p>六個層面。法律層：NDA、發明歸屬條款、稽核權。員工層：角色式存取、離職面談。技術層：DLP 系統、浮水印、日誌記錄。組織層：營業秘密登錄冊、供應商管控。證據層：不可竄改的日誌和版本紀錄。最後是實體和供應鏈層：無手機區、遠端工作規則。</p>\n<p>台積電的案例告訴我們：DLP 擋得住數位外洩，但擋不住有人拿手機拍螢幕。Waymo 的案例告訴我們：大量下載如果沒有即時警報，偷竊可以一年後才被發現。保護必須是全方位的。</p>",
+    "supplement": null
+  },
+  {
+    "num": 24,
+    "title": "結論",
+    "speaker": 6,
+    "time": "~30 秒",
+    "onSlide": "左：「秘密不只是資訊。它是可控的重複性。」右：三模式總結（Dolby / 台積電 / Waymo）",
+    "speech": "<p>最後做個總結。三個案例，三種模式，一個道理。</p>\n<p>Dolby 把 know-how 打包進授權組合，每年收 12.5 億美元授權金。台積電把 know-how 留著，靠它賣代工服務，年營收 900 億美元。Waymo 的 know-how 被偷走，和解 2.45 億美元，Uber 最終放棄自駕、損失 30 億美元。</p>\n<p><strong>秘密不只是資訊。它是一家公司花了大量時間和失敗累積出來的執行能力。</strong></p>\n<p>控制好了，它就是源源不絕的現金流。控制不好，價值一夕崩塌。</p>\n<p>以上是我們的報告，謝謝大家。</p>",
+    "supplement": null
+  }
+];
+
+let currentVersion = 'detailed';
+let activeSlideInView = 1;
+let slideObserver = null;
+
+function getCurrentSlides() {
+  return currentVersion === 'detailed' ? detailedSlides : shortSlides;
+}
+
+function scrollToSlide(slideNum, behavior = 'smooth') {
+  const el = document.getElementById('slide-' + slideNum);
+  if (!el) return;
+  const topOffset = window.innerWidth <= 640 ? 12 : 104;
+  const targetTop = el.getBoundingClientRect().top + window.pageYOffset - topOffset;
+  if (behavior === 'instant') {
+    const root = document.documentElement;
+    const previousScrollBehavior = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    window.scrollTo({ top: Math.max(0, targetTop), behavior: 'auto' });
+    root.style.scrollBehavior = previousScrollBehavior;
+    return;
+  }
+  window.scrollTo({ top: Math.max(0, targetTop), behavior });
+}
+
+function getSpeaker(slideNum) {
+  const ranges = {1:[1,2,3,4], 2:[5,6,7,8,9,10], 3:[11,12,13,14], 4:[15,16,17,18], 5:[19,20,21,22], 6:[23,24]};
+  for (const [speaker, slides] of Object.entries(ranges)) {
+    if (slides.includes(slideNum)) return parseInt(speaker);
+  }
+  return 1;
+}
+
+function buildSlideNav() {
+  const nav = document.getElementById('slideNav');
+  nav.innerHTML = '';
+  for (let i = 1; i <= 24; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'slide-nav-btn speaker-' + getSpeaker(i);
+    btn.textContent = i;
+    btn.dataset.slide = i;
+    if (i === 1) btn.classList.add('active');
+    btn.addEventListener('click', () => {
+      scrollToSlide(i);
+    });
+    nav.appendChild(btn);
+  }
+}
+
+function updateSlideNavActive(num) {
+  document.querySelectorAll('.slide-nav-btn').forEach(btn => {
+    btn.classList.toggle('active', parseInt(btn.dataset.slide) === num);
+  });
+}
+
+function toggleMobileMenu(forceOpen) {
+  const popover = document.getElementById('mobileMenuPopover');
+  const button = document.getElementById('mobileMenuButton');
+  if (!popover || !button) return;
+  const open = typeof forceOpen === 'boolean' ? forceOpen : !popover.classList.contains('open');
+  popover.classList.toggle('open', open);
+  popover.setAttribute('aria-hidden', open ? 'false' : 'true');
+  button.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+
+function renderSlides(options = {}) {
+  const animate = options.animate !== false;
+  const container = document.getElementById('slidesContainer');
+  const slides = getCurrentSlides();
+  container.innerHTML = '';
+  slides.forEach((slide, idx) => {
+    const card = document.createElement('div');
+    card.className = 'slide-card speaker-' + slide.speaker;
+    card.id = 'slide-' + slide.num;
+    if (animate && !document.body.classList.contains('no-animate')) {
+      card.style.animationDelay = Math.min(idx * 0.03, 0.3) + 's';
+    } else {
+      card.classList.add('no-enter');
+      card.style.animation = 'none';
+      card.style.animationDelay = '0s';
+    }
+    let supplementHTML = '';
+    if (slide.supplement && slide.supplement.length > 0) {
+      const items = slide.supplement.map(s => '<li>' + s + '</li>').join('');
+      supplementHTML = '<div class="supplement-section">' +
+        '<button class="supplement-toggle" onclick="toggleSupplement(this)">' +
+        '<span class="chevron">&#9654;</span>' +
+        '<span>補充背景（講者參考）</span>' +
+        '</button>' +
+        '<div class="supplement-content"><ul>' + items + '</ul></div></div>';
+    }
+    card.innerHTML =
+      '<div class="slide-card-header">' +
+        '<div class="slide-card-header-left">' +
+          '<div class="slide-number">' + slide.num + '</div>' +
+          '<div class="slide-meta">' +
+            '<div class="slide-title">' + slide.title + '</div>' +
+            '<div class="slide-info">' +
+              '<span class="speaker-badge">Speaker ' + slide.speaker + '</span>' +
+              '<span class="time-badge">' + slide.time + '</span>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="slide-card-body">' +
+        '<div class="on-slide">' +
+          '<div class="section-label"><span class="icon">&#9654;</span> 投影片上寫的</div>' +
+          '<div class="on-slide-text">' + slide.onSlide + '</div>' +
+        '</div>' +
+        '<div class="speech-section">' +
+          '<div class="section-label" style="margin-bottom:10px"><span class="icon">&#127908;</span> 要講的</div>' +
+          '<div class="speech-text">' + slide.speech + '</div>' +
+        '</div>' +
+        supplementHTML +
+      '</div>';
+    container.appendChild(card);
+  });
+}
+
+function toggleSupplement(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+}
+
+function switchVersion(version) {
+  if (version === currentVersion) return;
+  const targetSlide = activeSlideInView || 1;
+  currentVersion = version;
+  activeSlideInView = targetSlide;
+  document.querySelectorAll('.version-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.version === version);
+  });
+  const note = document.getElementById('introBannerNote');
+  if (version === 'detailed') {
+    note.innerHTML = '每頁標註講者建議、預估時間、投影片內容摘要、要講的內容、以及補充細節。<br>講者可以用自己的話講，不需要逐字唸。補充細節是給講者自己理解用的背景知識，不一定要全部講出來。';
+  } else {
+    note.innerHTML = '每頁標註講者建議、預估時間、要講的內容。講者可以用自己的話講，這裡是參考底稿。';
+  }
+  document.body.classList.add('no-animate');
+  renderSlides({ animate: false });
+  buildToc();
+  updateSlideNavActive(targetSlide);
+  observeSlideCards();
+  scrollToSlide(targetSlide, 'instant');
+  requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.remove('no-animate')));
+}
+
+function buildToc() {
+  const tocList = document.getElementById('tocList');
+  const mobileTocList = document.getElementById('mobileTocList');
+  tocList.innerHTML = '';
+  if (mobileTocList) mobileTocList.innerHTML = '';
+  const slides = getCurrentSlides();
+  slides.forEach(s => {
+    tocList.appendChild(createTocItem(s, false));
+    if (mobileTocList) mobileTocList.appendChild(createTocItem(s, true));
+  });
+  updateTocActive(activeSlideInView);
+}
+
+function createTocItem(slide, closeOnClick) {
+  const item = document.createElement('a');
+  item.className = 'toc-item speaker-' + (slide.speaker || getSpeaker(slide.num));
+  item.href = '#slide-' + slide.num;
+  item.dataset.slide = slide.num;
+  item.innerHTML = '<span class="toc-num">' + slide.num + '</span><span class="toc-label">' + slide.title + '</span>';
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    scrollToSlide(slide.num);
+    if (closeOnClick) toggleMobileMenu(false);
+  });
+  return item;
+}
+
+function updateTocActive(num) {
+  document.querySelectorAll('.toc-item').forEach(item => {
+    item.classList.toggle('active', parseInt(item.dataset.slide) === num);
+  });
+  const activeItem = document.querySelector('#tocList .toc-item.active');
+  const sidebar = document.getElementById('tocSidebar');
+  if (activeItem && sidebar && sidebar.clientHeight > 0) {
+    const itemRect = activeItem.getBoundingClientRect();
+    const sidebarRect = sidebar.getBoundingClientRect();
+    const isAbove = itemRect.top < sidebarRect.top;
+    const isBelow = itemRect.bottom > sidebarRect.bottom;
+    if (isAbove || isBelow) {
+      const targetTop = sidebar.scrollTop + (itemRect.top - sidebarRect.top) - (sidebar.clientHeight / 2) + (itemRect.height / 2);
+      sidebar.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
+    }
+  }
+}
+
+function setupScrollObservers() {
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 10);
+  }, { passive: true });
+  const btt = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    btt.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+  observeSlideCards();
+}
+
+function observeSlideCards() {
+  if (slideObserver) slideObserver.disconnect();
+  slideObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const num = parseInt(entry.target.id.replace('slide-', ''));
+        activeSlideInView = num;
+        updateSlideNavActive(num);
+        updateTocActive(num);
+        const activeBtn = document.querySelector('.slide-nav-btn[data-slide="' + num + '"]');
+        if (activeBtn) {
+          const scroll = document.getElementById('slideNavScroll');
+          const btnRect = activeBtn.getBoundingClientRect();
+          const scrollRect = scroll.getBoundingClientRect();
+          if (btnRect.left < scrollRect.left || btnRect.right > scrollRect.right) {
+            const offset = activeBtn.offsetLeft - scroll.offsetWidth / 2 + activeBtn.offsetWidth / 2;
+            scroll.scrollTo({ left: offset, behavior: 'smooth' });
+          }
+        }
+      }
+    });
+  }, { rootMargin: '-100px 0px -60% 0px', threshold: 0 });
+  document.querySelectorAll('.slide-card').forEach(card => slideObserver.observe(card));
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') toggleMobileMenu(false);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    const prev = Math.max(1, activeSlideInView - 1);
+    scrollToSlide(prev);
+  } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+    e.preventDefault();
+    const next = Math.min(24, activeSlideInView + 1);
+    scrollToSlide(next);
+  }
+});
+
+document.addEventListener('click', (e) => {
+  const popover = document.getElementById('mobileMenuPopover');
+  const button = document.getElementById('mobileMenuButton');
+  if (!popover || !button || !popover.classList.contains('open')) return;
+  if (popover.contains(e.target) || button.contains(e.target)) return;
+  toggleMobileMenu(false);
+});
+
+buildSlideNav();
+renderSlides();
+buildToc();
+setupScrollObservers();
+
+</script>
+</body>
+</html>
